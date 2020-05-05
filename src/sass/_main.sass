@@ -1,0 +1,211 @@
+body
+	overflow: auto
+	height: 100vh 
+	+main
+	color: $brown
+	&.morning
+		background: #fff
+		color: $brown
+		.header__time
+			color: $light-gray
+	&.lunchtime
+		background: #fff
+		color: $brown
+		.header__time
+			color: $accent-color
+	&.evening
+		background: $light-gray
+		color: $brown
+		.header__time
+			color: #fff
+	&.night
+		background: $brown
+		color: white
+		.header__time
+			color: black
+		.navbar__filter-btn
+			border-color: $accent-color
+			.open
+				path
+					fill: white
+			&:hover
+				border-color: $light-gray
+.header
+	width: 100%
+	height: 100vh
+	position: fixed
+	overflow: hidden
+	overflow-x: auto
+	scrollbar-width: none 
+	-ms-overflow-style: none 
+	&::-webkit-scrollbar 
+		width: 0px 
+		background: transparent 
+	&__clock
+		height: 100%
+		position: fixed 
+		z-index: 1
+		width: 100%
+		display: flex
+		justify-content: center
+		align-items: center
+		svg
+			height: 86%
+			width: 100%
+			path
+				opacity: 0
+		.real
+			path
+				opacity: 1
+				cursor: pointer
+			display: none
+			&.is-visible
+				display: block
+			.active
+				path
+					stroke: $accent-color
+			.active
+				stroke: $accent-color
+	&__time-wrapper
+		position: fixed
+		z-index: 0 
+		top: 50%
+		left: 50%
+		transform: translate(-50%, -50%)
+		overflow: hidden
+		height: 9vw
+		display: flex
+		justify-content: center
+		align-items: center
+		opacity: 0
+		width: 100vw
+	&__time
+		font-size: 18.7vw
+		line-height: 1em
+		transform: translateY(-18%)
+		+header
+		display: inline-flex
+		span
+			display: inline-block  
+			transform: translateY(100%)
+		.dots
+	&__names
+		position: absolute
+		top: 50%
+		transform: translateY(-50%) translateX(20%) skewX(-25deg)
+		text-align: center 
+		width: fit-content 
+		z-index: 2 
+		// cursor: grab 
+		user-select: none
+		opacity: 0 
+		// &:active
+		// 	cursor: grabbing
+		.container
+			display: flex
+			justify-content: space-between
+			align-items: center 
+	&__name-wrapper
+		width: 22vw
+		margin-right: 2.5vw
+		display: none 
+		&:hover
+			.header__name
+				color: $accent-color
+		&.is-visible
+			display: block
+			&:nth-child(4n+1)
+				margin-top: 33vh 
+			&:nth-child(4n+2)
+				margin-bottom: 22.3vh
+			&:nth-child(4n+3)
+				margin-top: 31vh 
+			&:nth-child(4n+4)
+				margin-bottom: 20.3vh
+	&__name
+		+header
+		text-transform: uppercase
+		font-size: 3.25vw 
+		line-height: 0.8em
+		transition: color .3s ease 
+	&__description
+		margin-top: 16px
+		opacity: 0.6
+		font-size: 1vw 
+		padding-left: 40px
+		padding-right: 40px 
+
+.footer
+	position: fixed
+	bottom: 5%
+	width: 100%
+	z-index: 2
+	font-size: 0.85vw
+	+bold
+	.container
+		display: flex
+		justify-content: space-between
+		align-items: flex-end 
+	&__left
+		svg
+			margin-left: 5px 
+	&__right
+		display: flex
+		flex-direction: column
+		align-items: flex-end
+		span
+			letter-spacing: 0.24em
+			text-transform: uppercase
+			font-size: 0.6vw
+			display: inline-block
+			margin-bottom: 3px
+			+main
+	a
+		transition: color .3s ease
+		&:hover
+			color: $accent-color
+
+.filter
+	position: fixed
+	top: 0
+	left: 0
+	z-index: 100
+	width: 100%
+	height: 100vh
+	background: $light-gray
+	align-items: center
+	display: flex 
+	opacity: 0
+	pointer-events: none
+	color: $brown
+	transition: opacity .5s ease
+	.container
+		display: flex
+		align-items: flex-start
+	&__left
+		width: 36%
+	&__right
+		width: 55%
+	&.open
+		opacity: 1
+		pointer-events: auto 
+
+.tabs
+	&__nav
+		+bold 
+		display: flex
+		justify-content: space-between
+	&__nav-item
+		width: 28%
+	&__content
+		display: flex
+		justify-content: space-between
+		.tab
+			width: 28%
+			margin-top: 24px		
+	&__item
+		margin-top: 24px
+		cursor: pointer
+		transition: color .3s ease
+		&:hover
+			color: $accent-color

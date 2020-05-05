@@ -1,0 +1,81 @@
+.navbar
+	position: fixed
+	top: 0
+	padding: 33px 0px
+	left: 0
+	width: 100%
+	z-index: 101
+	user-select: none
+	transition: background .3s ease
+	&.filter-open
+		background: white
+		color: $brown
+	&__logo
+		+header
+		font-size: 17px
+		letter-spacing: 0.02em
+		line-height: 88%
+	.container
+		display: flex
+		align-items: center
+	&__left
+		display: flex
+		align-items: center
+		width: 36%
+	&__filter-current
+		margin-left: 33px
+		border: 1px solid $medium-gray
+		padding: 12px
+		cursor: pointer
+		position: relative
+		transition: border-color .3s ease 
+		display: flex
+		justify-content: space-between
+		align-items: center
+		opacity: 0
+		pointer-events: none
+		&:hover
+			border-color: $accent-color 
+		&.active
+			opacity: 1
+			pointer-events: auto
+		svg
+			margin-right: 8px
+	&__filter-btn
+		margin-left: 14px
+		border: 1px solid $medium-gray
+		padding: 10px
+		cursor: pointer
+		position: relative
+		transition: border-color .3s ease 
+		svg
+			display: block
+		&:hover
+			border-color: $accent-color 
+		.close
+			position: absolute
+			top: 50%
+			left: 50%
+			transform: translate(-50%, -50%)
+			opacity: 0
+			pointer-events: none 
+			transition: opacity .2s ease
+		.open
+			transition: opacity .2s ease
+		&.open
+			.close
+				opacity: 1
+			.open
+				opacity: 0
+
+	&__link
+		justify-self: center
+		font-size: 0.9vw
+		+bold
+		transition: color .3s ease
+		align-self: flex-start
+		margin-top: 10px
+		&:hover
+			color: $accent-color
+
+
