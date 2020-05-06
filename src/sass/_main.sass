@@ -8,6 +8,7 @@ body
 	height: 100vh 
 	+main
 	color: $brown
+	transition: color .3s ease, background .3s ease
 	&.morning
 		background: #fff
 		color: $brown
@@ -28,6 +29,19 @@ body
 		color: white
 		.header__time
 			color: black
+		.header__clock
+			svg
+				path
+					stroke: $accent-color
+				.active
+					path
+						stroke: white
+						stroke-width: 3px
+				.active
+					stroke: white
+		.header__description
+			color: #6A6765
+
 		.navbar__filter-btn
 			border-color: $accent-color
 			.open

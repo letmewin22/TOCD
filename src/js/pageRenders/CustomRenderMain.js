@@ -19,6 +19,7 @@ class CustomRendererMain extends Highway.Renderer {
     filter()
 
     const names = [...document.querySelectorAll('.header__name')]
+    const namesWrapper = [...document.querySelectorAll('.header__name-wrapper')]
     for (const name of names) {
       name.innerHTML = name.innerHTML.replace(/\s/, '<br>')
     }
@@ -30,15 +31,12 @@ class CustomRendererMain extends Highway.Renderer {
       duplicatedNode.style.textAlign = 'center'
       duplicatedNode.style.left = this.getBoundingClientRect().x + 'px'
       duplicatedNode.style.top = this.getBoundingClientRect().y + 'px'
+      // duplicatedNode.querySelector('h2').style.lineHeight = '0.89em'
       duplicatedNode.style.lineHeight = '0.89em'
       duplicatedNode.style.zIndex = '1000'
       duplicatedNode.classList.add('clicked')
       this.style.opacity = '0'
       document.body.appendChild(duplicatedNode)
-      
-      let tl = new TimelineMax({onComplete: () => duplicatedNode.style.position = 'static'})
-      tl
-        .to(duplicatedNode, 1, {left: '18%', top: '32%', fontSize: '6.45vw', ease: Power3.easeInOut})
     }
 
     names.forEach(el => el.addEventListener('click', clone))
