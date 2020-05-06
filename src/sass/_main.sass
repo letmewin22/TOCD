@@ -74,7 +74,7 @@ body
 			.active
 				path
 					stroke: $accent-color
-					stroke-width: 2px
+					stroke-width: 3px
 			.active
 				stroke: $accent-color
 	&__time-wrapper
@@ -90,6 +90,7 @@ body
 		align-items: center
 		opacity: 0
 		width: 100vw
+		user-select: none
 	&__time
 		font-size: 18.7vw
 		line-height: 1em
@@ -110,6 +111,7 @@ body
 		// cursor: grab 
 		user-select: none
 		opacity: 0 
+		pointer-events: none
 		// &:active
 		// 	cursor: grabbing
 		.container
@@ -123,6 +125,7 @@ body
 		justify-content: center
 		align-items: center
 		flex-direction: column 
+		pointer-events: auto
 		&:hover
 			.header__name
 				color: $accent-color

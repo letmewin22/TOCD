@@ -81,10 +81,9 @@ const mainSlider = () => {
   document.querySelectorAll('.line').forEach(el => el.addEventListener('click', function() {
 
     const scrollPos = (Math.floor(step) * (this.getAttribute('id').replace(/\D/g, '')))
-    console.log(scrollPos)
     let tl2 = new TimelineMax()
     tl2
-      .to(document.documentElement, 0.5, { scrollTop: scrollPos, ease: Power1.easeOut }, 0)
+      .to(document.documentElement, 2, { scrollTop: scrollPos, ease: Power3.easeOut }, 0)
   }))
 
 }
