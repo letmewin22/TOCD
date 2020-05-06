@@ -5,8 +5,8 @@ class CustomRendererAbout extends Highway.Renderer {
 
   onEnterCompleted() {
 
-    console.log('test')
     document.body.style.overflow = 'initial'
+    document.body.style.height = 'auto'
   }
 }
 // Don`t forget to export your renderer

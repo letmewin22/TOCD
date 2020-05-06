@@ -26,16 +26,19 @@ class CustomRendererMain extends Highway.Renderer {
     const clone = function() {
 
       const duplicatedNode = this.cloneNode(true)
-      duplicatedNode.style.position = 'absolute'
+      duplicatedNode.style.position = 'fixed'
       duplicatedNode.style.textAlign = 'center'
       duplicatedNode.style.left = this.getBoundingClientRect().x + 'px'
       duplicatedNode.style.top = this.getBoundingClientRect().y + 'px'
       duplicatedNode.style.lineHeight = '0.89em'
+      duplicatedNode.style.zIndex = '1000'
+      duplicatedNode.classList.add('clicked')
       this.style.opacity = '0'
       document.body.appendChild(duplicatedNode)
-      let tl = new TimelineMax()
+      
+      let tl = new TimelineMax({onComplete: () => duplicatedNode.style.position = 'static'})
       tl
-        .to(duplicatedNode, 1, {left: '50%', top: '50%', fontSize: '88px', ease: Power3.easeInOut})
+        .to(duplicatedNode, 1, {left: '18%', top: '32%', fontSize: '6.45vw', ease: Power3.easeInOut})
     }
 
     names.forEach(el => el.addEventListener('click', clone))

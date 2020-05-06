@@ -7,17 +7,8 @@ import CustomRendererInterviews from './pageRenders/CustomRenderInterviews'
 import CustomRendererAbout from './pageRenders/CustomRenderAbout'
 
 import SimpleTransition from './transitions/SimpleTransition'
+import InterviewTransition from './transitions/InterviewTransition'
 
-
-// const counter = (elem, callback, time) => {
-
-//   const tl = new TimelineMax()
-//   tl
-//     .delay(time)
-//     .to(elem, 0.5, { y: '-100%', opacity: 0, ease: Power3.easeIn, onComplete: callback })
-//     .to(elem, 0, { y: '100%' })
-//     .to(elem, 0.5, { y: '0%', opacity: 1, ease: Power3.easeOut })
-// }
 
 const H = new Highway.Core({
   renderers: {
@@ -26,7 +17,10 @@ const H = new Highway.Core({
     about: CustomRendererAbout
   },
   transitions: {
-    default: SimpleTransition
+    default: SimpleTransition,
+    contextual: {
+      toInterview: InterviewTransition
+    }
   }
 })
 

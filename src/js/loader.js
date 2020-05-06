@@ -16,7 +16,7 @@ const loader = (callback) => {
     // .staggerTo(bottomPath, 0.3, { opacity: 1, ease: Power3.easeInOut }, 0.05, 0.9)
     // .staggerTo(bottomPath, 0.3, { opacity: 0, ease: Power3.easeInOut }, 0.05, 1.2)
     // .staggerTo(bottomPath, 0.3, { opacity: 1, ease: Power3.easeInOut}, 0.05, 1.8)
-    // .staggerTo(document.querySelectorAll('.header__time span'), 0.7, { y: 0, ease: Power3.easeOut }, 0.12, 3.5)
+    // .staggerFromTo(document.querySelectorAll('.header__time span'), 0.7, { y: '100%', ease: Power3.easeOut }, { y: '0%', ease: Power3.easeOut }, 0.12, 3.5)
     // .to(document.querySelector('.header__time-wrapper'), 0.5, { opacity: 1, ease: Power3.easeInOut, onComplete: () => {
     //   document.querySelector('.fake').remove()
     //   document.querySelector('.real').classList.add('is-visible')
@@ -36,8 +36,8 @@ const loader = (callback) => {
     .to(document.querySelector('.header__names'), 0.1, { x: 0, skewX: 0, opacity: 1, ease: Power4.easeOut })
 
   let tl2 = new TimelineMax({repeat: -1})
-    .to(document.querySelectorAll('.dots'), 0.1, {opacity: 0, ease: Power3.easeInOut}, 1)
-    .to(document.querySelectorAll('.dots'), 0.1, {opacity: 1, ease: Power3.easeInOut}, 2)
+    .to(document.querySelectorAll('.dots'), 0.1, {opacity: 0, ease: Power3.easeInOut}, 0.75)
+    .to(document.querySelectorAll('.dots'), 0.1, {opacity: 1, ease: Power3.easeInOut}, 1.5)
 }
 
 export default loader

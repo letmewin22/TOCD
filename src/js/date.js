@@ -1,5 +1,15 @@
 export default function detectDate(el) {
   if (document.querySelector('[data-router-view]').getAttribute('data-router-view') === 'main') {
+
+    const counter = (elem, callback) => {
+
+      const tl = new TimelineMax()
+      tl
+        .to(elem, 0.5, { y: '-100%', opacity: 0, ease: Power3.easeIn, onComplete: callback })
+        .to(elem, 0, { y: '100%' })
+        .to(elem, 0.5, { y: '0%', opacity: 1, ease: Power3.easeOut })
+    }
+
     let d = new Date()
     let ukTime = new Date(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), d.getUTCHours() + 3, d.getUTCMinutes(), d.getUTCSeconds())
     let newd = new Date(ukTime)
@@ -34,12 +44,18 @@ export default function detectDate(el) {
       document.querySelector('body').classList = ''
       document.querySelector('body').classList.add('morning')
     }
-  
+
+    const changeDetector = (selector, timeSelector) => {
+      if (selector.innerText !== timeSelector) {
+        counter(selector, () => selector.innerText = timeSelector)
+      }
+    }
+
     document.querySelector('.days-1').innerText = construst.daysAfter.slice(0, 1)
     document.querySelector('.days-2').innerText = construst.daysAfter.slice(1)
     document.querySelector('.hours-1').innerText = construst.hoursAfter.slice(0, 1)
     document.querySelector('.hours-2').innerText = construst.hoursAfter.slice(1)
-    document.querySelector('.minutes-1').innerText = construst.minutesAfter.slice(0, 1)
-    document.querySelector('.minutes-2').innerText = construst.minutesAfter.slice(1)
+    changeDetector(document.querySelector('.minutes-2'), construst.minutesAfter.slice(1))
+    changeDetector(document.querySelector('.minutes-1'), construst.minutesAfter.slice(0, 1))
   }
 }
