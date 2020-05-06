@@ -19,6 +19,10 @@ class CustomRendererMain extends Highway.Renderer {
     
     filter()
 
+    const names = [...document.querySelectorAll('.header__name')]
+    for (const name of names) {
+      name.innerHTML = name.innerHTML.replace(/\s/, '<br>')
+    }
     // const reviewsArr = []
     // const wrapper = document.querySelector('.header__names .container')
 

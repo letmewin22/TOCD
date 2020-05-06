@@ -3,6 +3,7 @@ title: Index page
 route: main
 ---
 {% extends "layouts/_layout.html" %}
+{% import "data/data.html" as items %}
 {% block content %}
 <header class="header">
   <div class="header__clock">
@@ -22,134 +23,14 @@ route: main
   </div>
   <div class="header__names">
     <div class="container">
-      <a href="interview.html" class="header__name-wrapper is-visible" data-city="Харків" data-occupation="Дизайн і розробка" data-key="Фінанси">
-        <h2 class="header__name">
-          Олена <br>Бебко
-        </h2>
-        <p class="header__description">
-          Cпівзасновниця і&nbsp;керуючий партнер ресторанів Odessa  та&nbsp;Spicy NoSpicy
-        </p>
+      {% for i in range(0, 3) -%}
+      {% for item in items.list %}
+      <a href="interview.html" class="header__name-wrapper is-visible" data-city="{{item.city}}" data-occupation="{{item.occupation}}" data-key="{{item.key}}">
+        <h2 class="header__name">{{item.name}}</h2>
+        <p class="header__description">{{item.description|safe}}</p>
       </a>
-      <a href="#" class="header__name-wrapper is-visible" data-city="Київ" data-occupation="Будівництво" data-key="Середній бізнес">
-        <h2 class="header__name">
-          Ілля<br>Айзенштат
-        </h2>
-        <p class="header__description">
-          Співзасновник і&nbsp;CEO Beeworking
-        </p>
-      </a>
-      <a href="#" class="header__name-wrapper is-visible" data-city="Київ" data-occupation="Будівництво" data-key="Середній бізнес">
-        <h2 class="header__name">
-          Микола<br>Дориченко
-        </h2>
-        <p class="header__description">
-          Співвласник та виконавчий директор у&nbsp;Хексагон Едженсі
-        </p>
-      </a>
-      <a href="#" class="header__name-wrapper is-visible" data-city="Київ" data-occupation="Будівництво" data-key="Середній бізнес">
-        <h2 class="header__name">
-          Оксана<br>Соколова
-        </h2>
-        <p class="header__description">
-          Cпівзасновниця і&nbsp;керуючий партнер FIZMAT
-        </p>
-      </a>
-      <a href="#" class="header__name-wrapper is-visible" data-city="Київ" data-occupation="Будівництво" data-key="Коронавірус">
-        <h2 class="header__name">
-          Олена <br>Бебко
-        </h2>
-        <p class="header__description">
-          Cпівзасновниця і керуючий партнер ресторанів Odessa  та Spicy NoSpicy
-        </p>
-      </a>
-      <a href="#" class="header__name-wrapper is-visible" data-city="Київ" data-occupation="Будівництво" data-key="Середній бізнес">
-        <h2 class="header__name">
-          Ілля<br>Айзенштат
-        </h2>
-        <p class="header__description">
-          Співзасновник і CEO Beeworking
-        </p>
-      </a>
-      <a href="#" class="header__name-wrapper is-visible" data-city="Дніпро" data-occupation="Будівництво" data-key="Середній бізнес">
-        <h2 class="header__name">
-          Микола<br>Дориченко
-        </h2>
-        <p class="header__description">
-          Співвласник та виконавчий директор у Хексагон Едженсі
-        </p>
-      </a>
-      <a href="#" class="header__name-wrapper is-visible" data-city="Дніпро" data-occupation="Сфера послуг" data-key="Скорочення">
-        <h2 class="header__name">
-          Оксана<br>Соколова
-        </h2>
-        <p class="header__description">
-          Cпівзасновниця і керуючий партнер FIZMAT
-        </p>
-      </a>
-      <a href="#" class="header__name-wrapper is-visible" data-city="Харків" data-occupation="Дизайн і розробка" data-key="Фінанси">
-        <h2 class="header__name">
-          Олена <br>Бебко
-        </h2>
-        <p class="header__description">
-          Cпівзасновниця і&nbsp;керуючий партнер ресторанів Odessa  та&nbsp;Spicy NoSpicy
-        </p>
-      </a>
-      <a href="#" class="header__name-wrapper is-visible" data-city="Київ" data-occupation="Будівництво" data-key="Середній бізнес">
-        <h2 class="header__name">
-          Ілля<br>Айзенштат
-        </h2>
-        <p class="header__description">
-          Співзасновник і&nbsp;CEO Beeworking
-        </p>
-      </a>
-      <a href="#" class="header__name-wrapper is-visible" data-city="Київ" data-occupation="Будівництво" data-key="Середній бізнес">
-        <h2 class="header__name">
-          Микола<br>Дориченко
-        </h2>
-        <p class="header__description">
-          Співвласник та виконавчий директор у&nbsp;Хексагон Едженсі
-        </p>
-      </a>
-      <a href="#" class="header__name-wrapper is-visible" data-city="Київ" data-occupation="Будівництво" data-key="Середній бізнес">
-        <h2 class="header__name">
-          Оксана<br>Соколова
-        </h2>
-        <p class="header__description">
-          Cпівзасновниця і&nbsp;керуючий партнер FIZMAT
-        </p>
-      </a>
-      <a href="#" class="header__name-wrapper is-visible" data-city="Київ" data-occupation="Будівництво" data-key="Коронавірус">
-        <h2 class="header__name">
-          Олена <br>Бебко
-        </h2>
-        <p class="header__description">
-          Cпівзасновниця і керуючий партнер ресторанів Odessa  та Spicy NoSpicy
-        </p>
-      </a>
-      <a href="#" class="header__name-wrapper is-visible" data-city="Київ" data-occupation="Будівництво" data-key="Середній бізнес">
-        <h2 class="header__name">
-          Ілля<br>Айзенштат
-        </h2>
-        <p class="header__description">
-          Співзасновник і CEO Beeworking
-        </p>
-      </a>
-      <a href="#" class="header__name-wrapper is-visible" data-city="Дніпро" data-occupation="Будівництво" data-key="Середній бізнес">
-        <h2 class="header__name">
-          Микола<br>Дориченко
-        </h2>
-        <p class="header__description">
-          Співвласник та виконавчий директор у Хексагон Едженсі
-        </p>
-      </a>
-      <a href="#" class="header__name-wrapper is-visible" data-city="Дніпро" data-occupation="Сфера послуг" data-key="Скорочення">
-        <h2 class="header__name">
-          Оксана<br>Соколова
-        </h2>
-        <p class="header__description">
-          Cпівзасновниця і керуючий партнер FIZMAT
-        </p>
-      </a>
+      {% endfor %}
+      {%- endfor %}
     </div>
   </div>
 </header>

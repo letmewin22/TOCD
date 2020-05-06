@@ -1,0 +1,78 @@
+---
+title: About page
+route: about
+---
+{% extends "layouts/_layout.html" %}
+{% import "data/data.html" as team %}
+{% block content %}
+<header class="about-header">
+  <div class="container">
+    <h1>Поки весь світ завмер, щоб зрозуміти, що з нами відбувається, ми документуємо історію.</h1>
+  </div>
+</header>
+<main>
+  <section class="section about-section">
+    <div class="container">
+      <div class="about-section__right">
+        <h3 class="about-section__left-content">Як виглядає робота над проєктом?</h3>
+        <div class="about-section__right-content">
+          <p>Час закритих дверей – це документальний фотопроєкт <span><a href="https://gate.agency/" target="_blank" rel="noopener noreferrer">The Gate Agency</a></span> про те, що проживає український бізнес під час пандемії. Ми не зупиняємось лише на київських бізнесах і плануємо показати власників із Дніпра, Одеси, Запоріжжя, Харкова та Львова. Всього героїв буде 100.
+          </p>
+          <p class="with-margin">Ми фотографуємо власників бізнесу біля вхідних дверей і всередині їхніх офісів або закладів. Дізнаємося історію створення бізнесу, те, з яким почуттям довелося закрити двері, думки про те, що буде далі, і як керівник планує вчинити зі своєю справою після зняття карантину. Робимо близько 10 кадрів з кожної локації. Ці історії допоможуть власникам бізнесу відчути, що вони не самотні у своїх проблемах, та дізнатися нові варіанти розв'язання проблем, які принесла із собою пандемія COVID-19.</p>
+        </div>
+      </div>
+    </div>
+    <div class="container with-margin">
+      <div class="about-section__right">
+        <h3 class="about-section__left-content">Чому вирішили робити цей проєкт?</h3>
+        <div class="about-section__right-content">
+          <p>Це історія, а ми, фотографи, документалісти та журналісти, не маємо права й поготів бажання залишатися в стороні. В Україні немає відомства, яке відповідає за документування історично важливих для країни моментів. А ми точно знаємо, як це зробити влучно, стильно і виразно. У нас є всі запобіжні заходи: маски, обробка техніки і рук антисептиком, дистанція і ввічливий реверанс замість рукостискання.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section team-section">
+    <div class="container">
+      <div class="team-section__wrapper">
+        {% for member in team.team %}
+        <div class="team-section__item">
+          <img class="team-section__img" src="{{member.img}}" alt="team-member">
+          <h4 class="team-section__name">{{member.name}}</h4>
+          <span class="team-section__occupation">{{member.occupation}}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  <section class="section about-section">
+    <div class="container">
+      <div class="about-section__right">
+        <h3 class="about-section__left-content">Автори проєкту</h3>
+        <div class="about-section__right-content">
+          <p><span><a href="https://gate.agency" target="_blank" rel="noopener noreferrer">The Gate Agency</a></span> — агенція фотографії та відео для бізнесу. Ми для бізнесу і про бізнес. Про те, чим живе діловий світ: хто ті люди, що стоять за назвами компаній і що є самі компанії. Ми вміємо показувати обличчя та можливості українського бізнесу масштабно і стильно. Ми знімаємо особистостей та їх заводи, тих хто керує і визначає завтрашній день. Тому, що у нас є розуміння, як показати їх найсильніші сторони, щиро.
+          </p>
+          <p class="with-margin"><span><a href="https://hexagon.agency" target="_blank" rel="noopener noreferrer">Hexagon Agency</a></span> — дизайнерська агенція, яка спеціалізується на продуктовому дизайні та створенні інтерфейсів. Була заснована в Чернівцях близько 10 років тому. А з 2016 відкрила офіс у Києві. Серед клієнтів студії встигли побувати HP, Canon, Lipton, Vodafone та інші. Наразі основним джерелом клієнтів агенції є легендарна Кремнієва долина та розсип молодих стартапів. Близько року тому Hexagon став партнером продуктової компанії з Талліну, яка спеціалізується на розробці проектів в беттінг та гемблінг сфері.</p>
+        </div>
+      </div>
+    </div>
+    <div class="container with-margin">
+      <div class="about-section__right">
+        <h3 class="about-section__left-content">Ми в соцмережах</h3>
+        <div class="about-section__right-content">
+          <a href="#">Facebook</a>
+          <a href="#">Instagram</a>
+        </div>
+      </div>
+    </div>
+    <div class="container with-margin">
+      <div class="about-section__right">
+        <h3 class="about-section__left-content">Співпраця</h3>
+        <div class="about-section__right-content">
+          <span>Для співпраці зв’яжіться, будь ласка, з Катериною</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}

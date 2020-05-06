@@ -8,7 +8,7 @@
 		text-align: center
 		h1
 			+header
-			font-size: 88px
+			font-size: 6.45vw
 			line-height: 72%
 			letter-spacing: 0.02em
 	&__description
@@ -22,12 +22,86 @@
 		width: 50%
 		flex-direction: column
 		height: 100%
+		position: relative
 	&__right
 		width: 50%
 		height: 100%
 		padding-top: 40px
-		padding-bottom: 40px
+		margin-left: 16px
 		img
 			height: 100%
 			display: block 
 			float: right
+			width: 100%
+			object-fit: cover
+	&__bottom
+		position: absolute
+		bottom: 0
+		padding-bottom: 30px
+		display: flex
+		justify-content: space-between
+		width: 100%
+		text-transform: uppercase 
+		letter-spacing: 0.24em
+		font-size: 0.6vw
+		border-bottom: 1px $medium-gray solid
+		line-height: 1.6em
+		+main
+	&__location
+		text-align: left
+	&__photograph
+		text-align: right 
+
+.article
+	width: 100%
+	margin-top: 15px
+	.container
+		display: flex
+	&__left
+		width: 25%
+		border-right: 1px $medium-gray solid
+		padding-right: 8px
+	&__right
+		width: 70%
+		padding-top: 80px
+		font-size: 1.45vw
+		line-height: 1.56em
+		padding-left: 72px
+		padding-bottom: 48px
+	&__date
+		+medium
+		font-size: 1.45vw
+	&__social
+		margin-top: 11px
+		display: flex 
+		align-items: center 
+		border-top: 1px $medium-gray solid
+	&__social-item
+		padding: 17px 24px
+		&:nth-child(2)
+			border-left: 1px $medium-gray solid
+			border-right: 1px $medium-gray solid
+		svg
+			transition: fill .3s ease
+		&.facebook
+			&:hover
+				svg
+					fill: #1778F2
+		&.twitter
+			&:hover
+				svg
+					fill: #00ACEE
+		&.telegram
+			&:hover
+				svg
+					fill: #0088CC
+	&__question
+		+medium
+		margin-top: 40px
+		font-size: inherit
+	&__answer
+		margin-top: 40px
+	.interviewer-name, .respondent-name
+		+header
+		display: inline-block
+		margin-right: 80px

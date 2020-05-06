@@ -4,6 +4,7 @@ import tab from './tabs'
 
 import CustomRendererMain from './pageRenders/CustomRenderMain'
 import CustomRendererInterviews from './pageRenders/CustomRenderInterviews'
+import CustomRendererAbout from './pageRenders/CustomRenderAbout'
 
 import SimpleTransition from './transitions/SimpleTransition'
 
@@ -21,7 +22,8 @@ import SimpleTransition from './transitions/SimpleTransition'
 const H = new Highway.Core({
   renderers: {
     main: CustomRendererMain,
-    interview: CustomRendererInterviews
+    interview: CustomRendererInterviews,
+    about: CustomRendererAbout
   },
   transitions: {
     default: SimpleTransition

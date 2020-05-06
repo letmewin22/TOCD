@@ -6,6 +6,7 @@ class CustomRendererInterviews extends Highway.Renderer {
 
   onEnterCompleted() {
     filter()
+    document.body.style.overflow = 'initial'
   }
 }
 // Don`t forget to export your renderer

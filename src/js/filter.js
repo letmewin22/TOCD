@@ -47,11 +47,15 @@ const filter = () => {
 
 
   const filterHandler = (selector, attribute) => {
+
     selector.forEach(elem => {
+
       elem.classList.remove('is-visible')
       filterBtn.querySelector('.name').innerText = event.target.innerText
       filterBtn.classList.add('active')
+
       document.querySelectorAll(`[${attribute}]`).forEach(element => {
+
         if (event.target.innerText === element.getAttribute(attribute)) {
           element.classList.add('is-visible')
         }
@@ -64,16 +68,20 @@ const filter = () => {
   filterItems.forEach(elem => elem.addEventListener('click', (e) => {
 
     if (event.target.classList.contains('by-city')) {
+
       filterHandler(headerName, 'data-city')
     } else if (event.target.classList.contains('by-occupation')) {
+
       filterHandler(headerName, 'data-occupation')
     } else if (event.target.classList.contains('by-key')) {
+
       filterHandler(headerName, 'data-key')
     }
     mainSlider()
   }))
 
   filterBtn.addEventListener('click', () => {
+    
     filterBtn.querySelector('.name').innerText = ''
     filterBtn.classList.remove('active')
 
