@@ -39,21 +39,22 @@ const mainSlider = () => {
 
   let item = document.querySelector('.header')
   const items = [...document.querySelectorAll('.line')].reverse()
-  document.body.style.height = strip.getBoundingClientRect().width * 0.9 + 'px'
+  document.body.style.height = strip.getBoundingClientRect().width - window.innerHeight + 'px'
   
   window.addEventListener('resize', () => {
-    document.body.style.height = strip.getBoundingClientRect().width * 0.9 + 'px'
+    document.body.style.height = strip.getBoundingClientRect().width - window.innerHeight + 'px'
   })
 
   const scrollHandler = (e) => {
     item.scrollLeft = -document.body.getBoundingClientRect().y
+    console.log(document.documentElement.scrollTop)
     const col = Math.floor((item.scrollLeft / document.querySelectorAll('.line').length))
-    // if ((item.scrollLeft >= (strip.getBoundingClientRect().width / 2 - strip.getBoundingClientRect().width * 0.025))) {
-    //   window.scrollTo(0, 0 - strip.getBoundingClientRect().width * 0.025)
-    // } else if (item.scrollLeft === 0) {
-
-    //   window.scrollTo(0, strip.getBoundingClientRect().width / 2 - strip.getBoundingClientRect().width * 0.025)
-    // }
+    if ((item.scrollLeft >= (Math.floor(document.body.getBoundingClientRect().height - window.innerHeight)) - window.innerWidth* 0.03)) {
+      console.log('test')
+      window.scrollTo(0, 1)
+    } else if (item.scrollLeft === 0) {
+      window.scrollTo(0, (Math.floor(document.body.getBoundingClientRect().height - window.innerHeight) - window.innerWidth* 0.035))
+    }
     // for (let i = 0; i < col; i++) {
     //   items[i].classList.add('active')
     // }

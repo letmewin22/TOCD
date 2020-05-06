@@ -4,8 +4,7 @@ import mainSlider from '../mainSlider.js'
 import loader from '../loader.js'
 import detectDate from '../date.js'
 import filter from '../filter.js'
-
-import { HTML } from '../HTML'
+import { TimelineMax } from 'gsap'
 
 class CustomRendererMain extends Highway.Renderer {
 
@@ -23,6 +22,23 @@ class CustomRendererMain extends Highway.Renderer {
     for (const name of names) {
       name.innerHTML = name.innerHTML.replace(/\s/, '<br>')
     }
+
+    const clone = function() {
+
+      const duplicatedNode = this.cloneNode(true)
+      duplicatedNode.style.position = 'absolute'
+      duplicatedNode.style.textAlign = 'center'
+      duplicatedNode.style.left = this.getBoundingClientRect().x + 'px'
+      duplicatedNode.style.top = this.getBoundingClientRect().y + 'px'
+      duplicatedNode.style.lineHeight = '0.89em'
+      this.style.opacity = '0'
+      document.body.appendChild(duplicatedNode)
+      let tl = new TimelineMax()
+      tl
+        .to(duplicatedNode, 1, {left: '50%', top: '50%', fontSize: '88px', ease: Power3.easeInOut})
+    }
+
+    names.forEach(el => el.addEventListener('click', clone))
     // const reviewsArr = []
     // const wrapper = document.querySelector('.header__names .container')
 

@@ -113,12 +113,15 @@ body
 	&__name-wrapper
 		width: 22vw
 		margin-right: 2.5vw
-		display: none 
+		display: none
+		justify-content: center
+		align-items: center
+		flex-direction: column 
 		&:hover
 			.header__name
 				color: $accent-color
 		&.is-visible
-			display: block
+			display: flex
 			&:nth-child(4n+1)
 				margin-top: 33vh 
 			&:nth-child(4n+2)
@@ -131,7 +134,7 @@ body
 		+header
 		text-transform: uppercase
 		font-size: 3.25vw 
-		line-height: 0.8em
+		line-height: 80%
 		transition: color .3s ease 
 	&__description
 		margin-top: 16px
