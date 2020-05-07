@@ -41,6 +41,12 @@ const filter = () => {
     document.querySelector('.filter').classList.add('open')
     document.querySelector('.navbar').classList.add('filter-open')
 
+    window.addEventListener('resize', () => {
+      if (screen.width < 1025) {
+        tab()
+      }
+    })
+
     if (screen.width < 1025) {
       tab()
     }

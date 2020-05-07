@@ -4,3 +4,22 @@ h2
 	font-size: 3.25vw 
 	line-height: 0.8em
 	transition: color .3s ease 
+
+.link
+	position: relative
+	white-space: nowrap
+	&::after
+		content: ''
+		display: block
+		background: $accent-color
+		opacity: .64
+		height: 1px
+		width: 100%
+		position: absolute
+		bottom: 4px
+		left: 0
+		transition: opacity .3s ease
+	&:hover
+		&::after
+			opacity: 1
+

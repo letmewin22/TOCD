@@ -25,7 +25,7 @@ const tab = function() {
   }
 
   function activeTabBg() {
-    tabBg.style.left = document.querySelector('.tabs__nav-item.is-active').offsetLeft + 'px'
+    tabBg.style.transform = `translateX(${document.querySelector('.tabs__nav-item.is-active').offsetLeft}px)`
   }
 
   activeTabBg()

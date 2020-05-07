@@ -28,19 +28,21 @@
 		height: 100%
 		padding-top: 40px
 		margin-left: 16px
-		img
-			height: 100%
-			display: block 
-			float: right
-			width: 100%
-			object-fit: cover
+	&__image
+		height: 100%
+		display: block 
+		float: right
+		width: 100%
+		background-size: cover
+		background-repeat: no-repeat
+		background-position: 50%, 50%
 	&__bottom
 		position: absolute
 		bottom: 0
 		padding-bottom: 30px
 		display: flex
 		justify-content: space-between
-		width: 100%
+		width: 46%
 		text-transform: uppercase 
 		letter-spacing: 0.24em
 		font-size: 0.6vw
@@ -64,13 +66,13 @@
 	&__right
 		width: 70%
 		padding-top: 80px
-		font-size: 1.45vw
+		font-size: 20px
 		line-height: 1.56em
 		padding-left: 72px
 		padding-bottom: 48px
 	&__date
 		+medium
-		font-size: 1.45vw
+		font-size: 20px
 	&__social
 		margin-top: 11px
 		display: flex 
@@ -105,3 +107,64 @@
 		+header
 		display: inline-block
 		margin-right: 80px
+
+@media(max-width: 1025px)
+	.interview-header 
+		.container
+			flex-direction: column
+		&__left
+			width: 100%
+			height: 30%
+		&__right
+			width: 100%
+			height: 70%
+			margin-top: 64px
+			margin-left: 0px
+		&__image
+			background-position: top
+		&__bottom
+			position: static
+			width: 100%
+			margin-top: 16px
+	.interview-header
+		height: auto
+		padding-top: 200px
+		&__image
+			height: 395px
+			width: 327px
+			float: none
+			margin: 0 auto
+		&__description
+			font-size: 13px
+			margin-top: 40px
+		&__bottom
+			font-size: 8px
+		.container h1
+			font-size: 48px
+
+@media(max-width: 900px)
+	.article 
+		.container
+			flex-direction: column
+		&__left
+			width: 100%
+			border-right: none
+		&__right
+			width: 100%
+			padding-left: 0px
+			padding-top: 24px
+		&__social
+			justify-content: space-between
+		&__social-item
+			width: 33.3%
+			display: flex
+			justify-content: center
+			align-items: center 
+
+@media(max-width: 460px)
+	.interview-header
+		&__image
+			width: 100%
+	.article
+		.interviewer-name, .respondent-name
+			margin-right: 46px
