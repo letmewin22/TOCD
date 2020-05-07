@@ -4,6 +4,7 @@ import { TimelineMax } from 'gsap'
 export default class InterviewTransition extends Highway.Transition {
   // Built-in methods
   out({ from, done }) {
+    document.body.style.cursor = 'wait'
     let tl = new TimelineMax({ onComplete: done })
       .to(from, 0.25, { opacity: 0 })
   }
@@ -12,6 +13,7 @@ export default class InterviewTransition extends Highway.Transition {
     window.scrollTo(0, 1)
     document.body.style.pointerEvents = 'auto'
     document.body.overflow = 'auto'
+    document.body.style.cursor = 'auto'
       
     const clicked = document.querySelector('.clicked')
 

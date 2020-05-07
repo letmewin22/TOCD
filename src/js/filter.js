@@ -50,7 +50,7 @@ const filter = () => {
 
     selector.forEach(elem => {
 
-      elem.classList.remove('is-visible')
+      elem.classList.remove('is-visible', 'default-layout')
       filterBtn.querySelector('.name').innerText = event.target.innerText
       filterBtn.classList.add('active')
 
@@ -63,9 +63,10 @@ const filter = () => {
     })
   }
 
-  filterItems.forEach(elem => elem.addEventListener('click', close))
 
   filterItems.forEach(elem => elem.addEventListener('click', (e) => {
+
+    close()
 
     if (event.target.classList.contains('by-city')) {
 
@@ -81,11 +82,11 @@ const filter = () => {
   }))
 
   filterBtn.addEventListener('click', () => {
-    
+
     filterBtn.querySelector('.name').innerText = ''
     filterBtn.classList.remove('active')
 
-    headerName.forEach(elem => elem.classList.add('is-visible'))
+    headerName.forEach(elem => elem.classList.add('is-visible', 'default-layout'))
     mainSlider()
   })
 

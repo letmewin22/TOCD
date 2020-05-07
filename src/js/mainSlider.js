@@ -1,93 +1,58 @@
 import { TimelineMax } from 'gsap'
 
-const mainSlider = () => {
-  const slider = document.querySelector('.header')
-  const strip = document.querySelector('.header__names')
-  const pathNodes = []
+export default class MainSlider {
 
-  for (let i = 0; i < 48; i++) {
-    pathNodes.push(document.querySelector(`.header__clock .real [id="id-${i+1}"]`))
-    // const path = document.querySelectorAll(`.header__clock .real [id="id-${i}"]`)
+  constructor() {
+
+    this.strip = document.querySelector('.header__names')
+    this.clockItems = [...document.querySelectorAll('.line')]
+    this.item = document.querySelector('.header')
+
+    this.setup()
+    this.scrollHandler()
+
+    this.clockItems.forEach(el => el.addEventListener('click', this.clockClick.bind(this, el)))
+
   }
 
-  [...pathNodes].forEach(el => {
-    el.classList.add('line')
-  })
+  setup() {
 
-  // let isDown = false
-  // let startX
-  // let scrollLeft
+    document.body.style.height = this.strip.getBoundingClientRect().width - window.innerHeight + 'px'
+    document.documentElement.scrollTop = 10
 
+    this.step = (document.body.getBoundingClientRect().height - window.innerHeight) / this.clockItems.length
 
-  // slider.addEventListener('mousedown', (e) => {
-  //   isDown = true
-  //   slider.classList.add('active')
-  //   startX = e.pageX - slider.offsetLeft
-  //   scrollLeft = slider.scrollLeft
-  // })
-  // slider.addEventListener('mouseleave', () => {
-  //   isDown = false
-  //   slider.classList.remove('active')
-  // })
-  // slider.addEventListener('mouseup', () => {
-  //   isDown = false
-  //   slider.classList.remove('active')
-  // })
-  // slider.addEventListener('mousemove', (e) => {
-  //   if (!isDown) return
-  //   e.preventDefault()
-  //   const x = e.pageX - slider.offsetLeft
-  //   const walk = (x - startX) * 1.2 //scroll-fast
+    window.addEventListener('resize', () => {
+      document.body.style.height = this.strip.getBoundingClientRect().width - window.innerHeight + 'px'
+    })
+  }
 
-  //   let tl2 = new TimelineMax()
-  //   tl2
-  //     .to(document.documentElement, 0.5, {scrollTop: scrollLeft - walk, ease: Power1.easeOut}, 0)
-  // })
+  scrollHandler() {
 
-  let item = document.querySelector('.header')
-
-  const items = [...document.querySelectorAll('.line')].reverse()
-
-  document.body.style.height = strip.getBoundingClientRect().width - window.innerHeight + 'px'
-  document.documentElement.scrollTop = 10
-
-  const step = (document.body.getBoundingClientRect().height - window.innerHeight) / document.querySelectorAll('.line').length
-
-  window.addEventListener('resize', () => {
-    document.body.style.height = strip.getBoundingClientRect().width - window.innerHeight + 'px'
-  })
-
-  const scrollHandler = (e) => {
     if (document.querySelector('[data-router-view]').getAttribute('data-router-view') === 'main') {
 
-      item.scrollLeft = -document.body.getBoundingClientRect().y
+      this.item.scrollLeft = -document.body.getBoundingClientRect().y
 
-      for (let i = 0; i < items.length; i++) {
-        items[i].classList.remove('active')
-        items[Math.floor(item.scrollLeft / step)].classList.add('active')
+      for (let i = 0; i < this.clockItems.length; i++) {
+        this.clockItems[i].classList.remove('active')
+        this.clockItems[Math.floor(this.item.scrollLeft / this.step)].classList.add('active')
       }
 
-      if ((item.scrollLeft >= (Math.floor(document.body.getBoundingClientRect().height - window.innerHeight)) - window.innerWidth * 0.03)) {
+      if ((this.item.scrollLeft >= (Math.floor(document.body.getBoundingClientRect().height - window.innerHeight)) - window.innerWidth * 0.03)) {
         window.scrollTo(0, 1)
-      } else if (item.scrollLeft === 0) {
+      } else if (this.item.scrollLeft === 0) {
         window.scrollTo(0, (Math.floor(document.body.getBoundingClientRect().height - window.innerHeight) - window.innerWidth * 0.035))
       }
-      window.requestAnimationFrame(scrollHandler)
+      window.requestAnimationFrame(this.scrollHandler.bind(this))
     }
   }
 
-  scrollHandler()
+  clockClick(elem) {
 
-  document.querySelectorAll('.line').forEach(el => el.addEventListener('click', function() {
+    const scrollPos = (Math.floor(this.step) * (elem.getAttribute('id').replace(/\D/g, '')))
 
-    const scrollPos = (Math.floor(step) * (this.getAttribute('id').replace(/\D/g, '')))
     let tl2 = new TimelineMax()
     tl2
       .to(document.documentElement, 2, { scrollTop: scrollPos, ease: Power3.easeOut }, 0)
-  }))
-
+  }
 }
-
-
-
-export default mainSlider

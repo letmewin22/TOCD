@@ -25,6 +25,7 @@ const H = new Highway.Core({
 })
 
 window.addEventListener('load', () => {
+  document.body.style.cursor = 'auto'
   if (screen.width < 1025) {
     tab()
   }
