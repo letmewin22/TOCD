@@ -41,13 +41,17 @@
       <div class="navbar__link">
         <a href="/about.html">Про проєкт</a>
       </div>
+      <div class="burger">
+        <div class="burger__line"></div>
+        <div class="burger__line"></div>
+      </div>
     </div>
   </div>
   <div class="site-wrapper" data-router-wrapper>
     <div data-router-view="main">
       <!-- BEGIN content -->
       
-<header class="header">
+<header class="header custom">
   <div class="header__clock">
     <svg class="fake" width="674" height="674" viewBox="0 0 674 674" fill="none" xmlns="http://www.w3.org/2000/svg">
   <g id="clock_slider">
@@ -389,10 +393,11 @@
       <div class="filter__right">
         <div class="tabs">
           <div class="tabs__scroll-wrap">
+            <div class="tabs__bg"></div>
             <div class="tabs__nav tabs-nav">
               <div class="tabs__nav-item is-active" data-tab-name="tab-1">Місто</div>
               <div class="tabs__nav-item" data-tab-name="tab-2">Сфера</div>
-              <div class="tabs__nav-item" data-tab-name="tab-3">Ключове слово</div>
+              <div class="tabs__nav-item" data-tab-name="tab-3"><span class='only-desktop'>Ключове</span> слово</div>
             </div>
           </div>
           <div class="tabs__content">

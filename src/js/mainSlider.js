@@ -18,7 +18,7 @@ export default class MainSlider {
   setup() {
 
     document.body.style.height = this.strip.getBoundingClientRect().width - window.innerHeight + 'px'
-    document.documentElement.scrollTop = 10
+    document.documentElement.scrollTop = 1
 
     this.step = (document.body.getBoundingClientRect().height - window.innerHeight) / this.clockItems.length
 
@@ -51,8 +51,8 @@ export default class MainSlider {
 
     const scrollPos = (Math.floor(this.step) * (elem.getAttribute('id').replace(/\D/g, '')))
 
-    let tl2 = new TimelineMax()
-    tl2
+    const tl = new TimelineMax()
+    tl
       .to(document.documentElement, 2, { scrollTop: scrollPos, ease: Power3.easeOut }, 0)
   }
 }

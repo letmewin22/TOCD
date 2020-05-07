@@ -1,4 +1,5 @@
-import mainSlider from './mainSlider.js'
+import MainSlider from './MainSlider.js'
+import tab from './tabs'
 
 const filter = () => {
 
@@ -17,6 +18,7 @@ const filter = () => {
       return `<div class="tabs__item by-${by}">${el}</div>`
     }).join('')
     document.querySelector(`.tab-${by}`).innerHTML = valueHTML
+    document.querySelector('.tab-1').classList.add('is-active')
   }
 
   filterValues('city')
@@ -38,6 +40,10 @@ const filter = () => {
     document.querySelector('.navbar__filter-btn').classList.add('open')
     document.querySelector('.filter').classList.add('open')
     document.querySelector('.navbar').classList.add('filter-open')
+
+    if (screen.width < 1025) {
+      tab()
+    }
   }
 
   document.querySelector('.navbar__filter-btn').addEventListener('click', () => {
@@ -78,7 +84,7 @@ const filter = () => {
 
       filterHandler(headerName, 'data-key')
     }
-    mainSlider()
+    new MainSlider()
   }))
 
   filterBtn.addEventListener('click', () => {
@@ -87,7 +93,7 @@ const filter = () => {
     filterBtn.classList.remove('active')
 
     headerName.forEach(elem => elem.classList.add('is-visible', 'default-layout'))
-    mainSlider()
+    new MainSlider()
   })
 
 }

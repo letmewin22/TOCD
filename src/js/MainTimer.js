@@ -1,4 +1,4 @@
-export default class DetectDate {
+export default class MainTimer {
 
   constructor() {
 
@@ -16,20 +16,19 @@ export default class DetectDate {
     const d = new Date()
     const ukTime = new Date(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), d.getUTCHours() + 3, d.getUTCMinutes(), d.getUTCSeconds())
 
-    this.newd = new Date(ukTime)
-    this.countDown = new Date('Mar 12, 2020 00:00:00').getTime()
-
-    this.now = new Date().getTime()
-
-    this.distance = this.now - this.countDown
+    const newd = new Date(ukTime)
+    const countDown = new Date('Mar 12, 2020 00:00:00').getTime()
+    
+    const now = d.getTime()
+    const distance = now - countDown
 
     this.store = {
-      hours: ('0' + this.newd.getHours()).substr(-2),
-      minutes: ('0' + this.newd.getMinutes()).substr(-2),
-      seconds: ('0' + this.newd.getSeconds()).substr(-2),
-      daysAfter: ('0' + Math.floor(this.distance / (this.day))).substr(-2),
-      hoursAfter: ('0' + Math.floor((this.distance % (this.day)) / (this.hour))).substr(-2),
-      minutesAfter: ('0' + Math.floor((this.distance % (this.hour)) / (this.minute))).substr(-2)
+      hours: ('0' + newd.getHours()).substr(-2),
+      minutes: ('0' + newd.getMinutes()).substr(-2),
+      seconds: ('0' + newd.getSeconds()).substr(-2),
+      daysAfter: ('0' + Math.floor(distance / (this.day))).substr(-2),
+      hoursAfter: ('0' + Math.floor((distance % (this.day)) / (this.hour))).substr(-2),
+      minutesAfter: ('0' + Math.floor((distance % (this.hour)) / (this.minute))).substr(-2)
     }
 
     this.colorScheme()

@@ -1,6 +1,7 @@
 const tab = function() {
-  let tabNav = document.querySelectorAll('.tabs-nav__item'),
+  let tabNav = document.querySelectorAll('.tabs__nav-item'),
     tabContent = document.querySelectorAll('.tab'),
+    tabBg = document.querySelector('.tabs__bg'),
     tabName
 
   tabNav.forEach(item => {
@@ -12,18 +13,22 @@ const tab = function() {
       item.classList.remove('is-active')
     })
     this.classList.add('is-active')
+    activeTabBg()
     tabName = this.getAttribute('data-tab-name')
     selectTabContent(tabName)
   }
 
   function selectTabContent(tabName) {
     tabContent.forEach(item => {
-      item.classList.contains(tabName) ? item.style.opacity = 1 : item.style.opacity = 0
-      setTimeout(() => {
-        item.classList.contains(tabName) ? item.classList.add('is-active') : item.classList.remove('is-active')
-      }, 500)
+      item.classList.contains(tabName) ? item.classList.add('is-active') : item.classList.remove('is-active')
     })
   }
+
+  function activeTabBg() {
+    tabBg.style.left = document.querySelector('.tabs__nav-item.is-active').offsetLeft + 'px'
+  }
+
+  activeTabBg()
 }
 
 export default tab

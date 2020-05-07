@@ -1,8 +1,8 @@
 import Highway from '@dogstudio/highway'
 
-import MainSlider from '../mainSlider.js'
+import MainSlider from '../MainSlider.js'
 import loader from '../loader.js'
-import DetectDate from '../date.js'
+import MainTimer from '../MainTimer.js'
 import filter from '../filter.js'
 import { TimelineMax } from 'gsap'
 
@@ -10,9 +10,9 @@ class CustomRendererMain extends Highway.Renderer {
 
   onEnterCompleted() {
 
-    new DetectDate()
+    new MainTimer()
     setInterval(() => {
-      new DetectDate()
+      new MainTimer()
     }, 3000)
     loader(() => new MainSlider)
     

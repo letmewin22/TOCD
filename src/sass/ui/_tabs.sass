@@ -1,19 +1,78 @@
-.tabs
-	&__nav
-		+bold 
-		display: flex
-		justify-content: space-between
-	&__nav-item
-		width: 28%
-	&__content
-		display: flex
-		justify-content: space-between
-		.tab
-			width: 28%
-			margin-top: 24px		
-	&__item
-		margin-top: 24px
-		cursor: pointer
-		transition: color .3s ease
-		&:hover
-			color: $accent-color
+@media(max-width: 1025px)
+	.tabs
+		position: relative
+		&__nav
+			+bold 
+			display: flex
+			justify-content: space-between
+			border-left: 1px $medium-gray solid
+			border-right: 1px $medium-gray solid
+		&__nav-item
+			opacity: .4
+			width: auto
+			padding: 16px 36px
+			width: 33.3%
+			display: flex
+			justify-content: center
+			align-items: center
+			text-align: center
+			border-top: 1px $medium-gray solid
+			border-bottom: 1px $medium-gray solid
+			position: relative
+			text-transform: capitalize
+			&::before
+				content: ''
+				display: block
+				width: 1px
+				height: 50%
+				background: $medium-gray
+				position: absolute
+				left: -1px
+			&.is-active
+				opacity: 1
+				color: $accent-color
+				border-bottom: none
+				// background: white
+				border-right: 1px $medium-gray solid
+				border-left: 1px $medium-gray solid
+				border-top: none
+				&::before
+					display: none
+				&::after
+					display: none 
+			&:nth-child(1)
+				&.is-active
+					border-right: 1px $medium-gray solid
+					border-left: none
+			&:nth-child(3)
+				&.is-active
+					border-left: 1px $medium-gray solid
+					border-right: none
+		&__content
+			display: flex
+			justify-content: space-between
+			.tab
+				width: 100%
+				margin-top: 24px
+				position: absolute
+				left: 0	
+				display: none
+				&.is-active
+					display: block	
+		&__item
+			margin-top: 32px
+			cursor: pointer
+			transition: color .3s ease
+			&:hover
+				color: $accent-color
+		&__bg
+			width: 33.3%
+			background: white
+			border-top: 2px $accent-color solid
+			height: 100%
+			position: absolute
+			top: 0
+			z-index: -1
+			transition: left .3s ease
+	.only-desktop
+		display: none

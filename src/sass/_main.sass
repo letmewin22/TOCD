@@ -3,6 +3,13 @@
     background: $accent-color
     color: white
 
+.custom
+	scrollbar-width: none 
+	-ms-overflow-style: none 
+	&::-webkit-scrollbar 
+		width: 0px 
+		background: transparent 
+
 body
 	overflow: auto
 	height: 100vh 
@@ -56,11 +63,6 @@ body
 	position: fixed
 	overflow: hidden
 	overflow-x: auto
-	scrollbar-width: none 
-	-ms-overflow-style: none 
-	&::-webkit-scrollbar 
-		width: 0px 
-		background: transparent 
 	&__clock
 		height: 100%
 		position: fixed 

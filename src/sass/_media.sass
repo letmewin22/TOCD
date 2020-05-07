@@ -4,3 +4,52 @@
 			.open
 				width: 16px
 				height: 16px
+
+@media(max-width: 1024px)
+	.footer
+		display: none 
+
+@media(max-width: 850px)
+	.header
+		&__name-wrapper
+			width: 30vw
+		&__name
+			font-size: 24px
+		&__description
+			font-size: 13px
+			padding-left: 0px
+			padding-right: 0px
+		&__time-wrapper
+			top: 30%
+		&__clock
+			bottom: -80%
+			svg
+				height: 100%
+
+
+@media(max-width: 460px)
+	.header
+		&__clock
+			bottom: -70%
+			transform: scale(1.4)
+		&__time
+			font-size: 64px
+		&__name-wrapper
+			width: 46vw
+			&.default-layout
+				&:nth-child(4n+1)
+					margin-top: 25vh 
+				&:nth-child(4n+2)
+					margin-bottom: 16.3vh
+				&:nth-child(4n+3)
+					margin-top: 23vh 
+				&:nth-child(4n+4)
+					margin-bottom: 14.3vh
+		&__names
+			left: -75%
+			top: 60%
+	.navbar__filter-current
+		display: none
+	.container
+		padding-left: 24px
+		padding-right: 24px

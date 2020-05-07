@@ -79,3 +79,30 @@
 			color: $accent-color
 
 
+.burger
+	cursor: pointer
+	display: none
+	&__line
+		width: 40px
+		height: 2px
+		background: #000
+		&:nth-child(2)
+			margin-top: 4px
+
+
+@media (max-width: 1192px)
+	.navbar
+		&__left
+			width: auto
+		&__link
+			font-size: 14px
+
+@media(max-width: 1024px)
+	.burger
+		display: block
+	.navbar
+		&__link
+			display: none
+		.container
+			justify-content: space-between 
+			
