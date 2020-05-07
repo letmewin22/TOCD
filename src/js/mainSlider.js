@@ -17,13 +17,13 @@ export default class MainSlider {
 
   setup() {
 
-    document.body.style.height = this.strip.getBoundingClientRect().width - window.innerHeight + 'px'
+    document.body.style.height = (window.innerWidth + window.innerWidth /2 + window.innerWidth * 0.06) + 'px'
     document.documentElement.scrollTop = 1
 
     this.step = (document.body.getBoundingClientRect().height - window.innerHeight) / this.clockItems.length
 
     window.addEventListener('resize', () => {
-      document.body.style.height = this.strip.getBoundingClientRect().width - window.innerHeight + 'px'
+      document.body.style.height = window.innerWidth + window.innerWidth /2 + window.innerWidth * 0.06 + 'px'
     })
   }
 
@@ -31,8 +31,7 @@ export default class MainSlider {
 
     if (document.querySelector('[data-router-view]').getAttribute('data-router-view') === 'main') {
 
-      this.item.scrollLeft = -document.body.getBoundingClientRect().y
-
+      this.item.scrollLeft = document.documentElement.scrollTop
       for (let i = 0; i < this.clockItems.length; i++) {
         this.clockItems[i].classList.remove('active')
         this.clockItems[Math.floor(this.item.scrollLeft / this.step)].classList.add('active')

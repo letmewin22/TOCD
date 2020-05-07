@@ -18,7 +18,7 @@ export default class MainTimer {
 
     const newd = new Date(ukTime)
     const countDown = new Date('Mar 12, 2020 00:00:00').getTime()
-    
+
     const now = d.getTime()
     const distance = now - countDown
 
@@ -40,6 +40,32 @@ export default class MainTimer {
 
     this.timerChange(document.querySelector('.minutes-2'), this.store.minutesAfter.slice(1))
     this.timerChange(document.querySelector('.minutes-1'), this.store.minutesAfter.slice(0, 1))
+
+    // if (!document.querySelector('select')) {
+    //   const select = document.createElement('select')
+    //   select.style.position = 'fixed'
+    //   select.style.top = '3%'
+    //   select.style.right = '3%'
+    //   select.style.zIndex = '10000'
+    //   select.innerHTML = '<option>Morning</option><option>Day</option><option>Evening</option><option>Night</option>'
+
+    //   document.body.appendChild(select)
+
+    //   select.addEventListener('change', function(e) {
+    //     console.log(this.selectedIndex)
+    //     if (this.selectedIndex === 0) {
+    //       document.body.classList = 'morning'
+    //     } else if(this.selectedIndex === 1) {
+    //       document.body.classList = 'lunchtime'
+    //     } else if(this.selectedIndex === 2) {
+    //       document.body.classList = 'evening'
+    //     } else {
+    //       document.body.classList = 'night'
+    //     }
+    //   })
+    // }
+
+
   }
 
   colorScheme() {
