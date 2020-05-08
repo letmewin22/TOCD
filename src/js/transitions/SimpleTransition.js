@@ -10,7 +10,8 @@ export default class SimpleTransition extends Highway.Transition {
     document.body.style.cursor = 'wait'
     tl
       .to(from, 0.6, { opacity: 0, ease: Power1.easeInOut })
-      .fromTo(document.querySelector('.page-rewealer'), 1, { y: '100%', ease: Power1.easeInOut }, { y: '0%', ease: Power3.easeInOut }, 0)
+      .to(document.querySelector('header'), 0.6, { y: -80, ease: Power1.easeInOut }, 0)
+      .fromTo(document.querySelector('.page-rewealer'), 1.2, { y: '100%'}, { y: '0%', ease: Power2.easeOut }, 0)
 
   }
 
@@ -25,10 +26,11 @@ export default class SimpleTransition extends Highway.Transition {
         done()
         let tl2 = new TimelineMax()
         tl2
-          .to(document.querySelector('.page-rewealer'), 0.7, { y: '-100%', ease: Power1.easeInOut }, 0)
+          .to(document.querySelector('.page-rewealer'), 1, { y: '-100%', ease: Power2.easeOut }, 0)
       }
     })
     tl
       .fromTo(to, 0.6, { opacity: 0 }, { opacity: 1, ease: Power3.easeInOut })
+
   }
 };

@@ -39,21 +39,25 @@ export default class InterviewTransition extends Highway.Transition {
     let tl = new TimelineMax({
       onComplete: () => {
         clicked.style.position = 'absolute'
+        // clicked.style.position = 'static'
+        // clicked.style.transform = 'translate(0, 0)'
         wrapper.appendChild(clicked)
-        h1.style.display = 'none'
-        wrapper.removeChild(document.querySelector('h1'))
+        // h1.style.display = 'none'
+        // wrapper.removeChild(document.querySelector('h1'))
 
         clickedText.style.position = 'absolute'
+        // clickedText.style.position = 'static'
+        // clickedText.style.transform = 'translate(0, 0)'
         textWrapper.appendChild(clickedText)
-        description.style.display = 'none'
-        textWrapper.removeChild(description)
+        // description.style.display = 'none'
+        // textWrapper.removeChild(description)
         document.body.style.position = 'initial'
         done()
       }
     })
 
     tl
-      .to(clicked, 1, {
+      .to(clicked, 0.8, {
         left: css.h1X,
         top: css.h1Y,
         fontSize: css.h1fontSize,
@@ -63,7 +67,8 @@ export default class InterviewTransition extends Highway.Transition {
         y: '-50%',
         ease: Power2.easeInOut
       })
-      .to(clickedText, 1, {
+
+      .to(clickedText, 0.8, {
         left: css.textX,
         top: css.textY,
         fontSize: css.textFontSize,
@@ -77,6 +82,7 @@ export default class InterviewTransition extends Highway.Transition {
       .to(to.querySelector('.interview-header__image-rewealer'), 1.2, { x: '-100%', ease: Power2.easeOut }, 0.2)
       .to(to.querySelector('.interview-header__right'), 0.6, { opacity: 1, ease: Power2.easeInOut }, 0.2)
       .to(to.querySelector('.interview-header__image'), 1, { scale: 1, ease: Power1.easeInOut }, 0.2)
+      .to(to.querySelector('.interview-randomizer'), 1, { opacity: 1, ease: Power1.easeInOut }, 0.5)
 
     from.remove()
   }

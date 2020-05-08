@@ -29,6 +29,7 @@ class CustomRendererInterviews extends Highway.Renderer {
         .to(imgRewealer, 1.2, { x: '-100%', ease: Power2.easeOut }, 0.4)
         .to(imgWrapper, 0.6, { opacity: 1, ease: Power2.easeInOut }, 0.4)
         .to(img, 1, { scale: 1, ease: Power1.easeInOut }, 0.4)
+        .to(document.querySelector('.interview-randomizer'), 1, { opacity: 1, ease: Power1.easeInOut }, 0.8)
     }
 
     const randomizerItems = document.querySelectorAll('.interview-randomizer__item')
