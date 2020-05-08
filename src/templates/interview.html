@@ -3,17 +3,43 @@ title: Index page
 route: interview
 ---
 {% extends "layouts/_layout.html" %}
+{% import "data/data.html" as items %}
 {% block content %}
+<div class="interview-randomizer">
+  <div class="interview-randomizer__ui">
+    <div class="interview-randomizer__filter-btn">{% include "partials/_filter-btn.html" %}</div>
+    <div class="interview-randomizer__random-btn">{% include "partials/_random.html" %}</div>
+  </div>
+  <div class="interview-randomizer__items">
+    <div class="interview-randomizer__items-wrapper">
+      {% for member in items.members %}
+      <div class="interview-randomizer__item">
+        <div class="interview-randomizer__photo">
+          <img src="{{member.img}}" alt="avatar">
+        </div>
+        <div class="interview-randomizer__text">
+          <h3 class="interview-randomizer__header">{{member.name}}</h3>
+          <span class="interview-randomizer__description">{{member.occupation}}</span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
 <header class="interview-header">
   <div class="container">
     <div class="interview-header__left">
       <div class="h1-wrapper">
-        <h1>Микола <br>Дориченко</h1>
+        <h1 class="interview-header__h1">Микола <br>Дориченко</h1>
       </div>
-      <div class="interview-header__description">Співвласник та виконавчий директор <br>у Хексагон Едженсі</div>
+      <div class="description-wrapper">
+        <div class="interview-header__description">Співвласник та виконавчий директор <br>у Хексагон Едженсі</div>
+      </div>
     </div>
     <div class="interview-header__right">
-      <div class="interview-header__image" style="background-image: url(./img/1.jpg);"></div>
+      <div class="interview-header__image-rewealer"></div>
+      <div class="interview-header__image" style="background-image: url(./img/1.jpg);">
+      </div>
     </div>
     <div class="interview-header__bottom">
       <span class="interview-header__location">локація<br>М. Кривий ріг</span>

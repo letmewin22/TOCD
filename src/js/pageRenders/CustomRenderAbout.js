@@ -8,6 +8,7 @@ class CustomRendererAbout extends Highway.Renderer {
     document.body.style.overflow = 'initial'
     document.body.style.height = 'auto'
     document.body.classList = ''
+    document.querySelector('.navbar').style.position = 'absolute'
   }
 }
 // Don`t forget to export your renderer

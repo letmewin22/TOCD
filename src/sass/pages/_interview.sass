@@ -6,15 +6,17 @@
 		align-items: center
 		height: 100%
 		text-align: center
+		overflow: hidden
 		h1
 			+header
 			font-size: 6.45vw
-			line-height: 72%
+			line-height: 0.72em
 			letter-spacing: 0.02em
-	&__description
+	.description-wrapper
 		margin-top: 70px
-		line-height: 1.4em
-		font-size: 0.9vw
+		// line-height: 1.4em
+		// font-size: 0.9vw
+		// position: relative
 	&__left
 		display: flex
 		justify-content: center
@@ -22,12 +24,19 @@
 		width: 50%
 		flex-direction: column
 		height: 100%
-		position: relative
+		// position: relative
 	&__right
 		width: 50%
 		height: 100%
-		padding-top: 40px
+		margin-top: 40px
 		margin-left: 16px
+		overflow: hidden
+		opacity: 0
+		position: relative
+	&__description
+		opacity: 0
+	&__h1
+		opacity: 0
 	&__image
 		height: 100%
 		display: block 
@@ -36,6 +45,13 @@
 		background-size: cover
 		background-repeat: no-repeat
 		background-position: 50%, 50%
+		transform: scale(1.1)
+	&__image-rewealer
+		width: 100%
+		height: 100%
+		position: absolute
+		background: white
+		z-index: 100
 	&__bottom
 		position: absolute
 		bottom: 0
@@ -108,6 +124,136 @@
 		display: inline-block
 		margin-right: 80px
 
+
+.interview-randomizer
+	position: fixed
+	z-index: 1000
+	bottom: 4%
+	width: 100%
+	background: white
+	display: flex
+	align-items: center
+	border-top: 1px $medium-gray solid
+	border-bottom: 1px $medium-gray solid
+	transition: opacity .3s ease
+	&.hidden
+		opacity: 0
+		pointer-events: none
+	&__ui
+		border-right: 1px $medium-gray solid
+	&__filter-btn
+		width: 46px
+		height: 47px
+		display: flex
+		justify-content: center
+		align-items: center
+		border-bottom: 1px $medium-gray solid
+		cursor: pointer
+		.close
+			display: none
+	&__random-btn
+		width: 46px
+		height: 47px
+		display: flex
+		justify-content: center
+		align-items: center
+		cursor: pointer
+	&__items
+		width: 100%
+		// overflow-x: scroll
+	&__items-wrapper
+		display: flex
+		align-items: center
+		// justify-content: space-between
+		width: 100%
+	&__item
+		display: flex
+		position: relative
+		padding-top: 24px
+		padding-bottom: 24px
+		padding-left: 15px
+		padding-right: 15px 
+		width: 16.6%
+		display: flex
+		cursor: pointer
+		justify-content: center
+		border-bottom: 1px solid transparent
+		transition: border-color .3s ease
+		&::after
+			content: ''
+			display: block
+			height: 66%
+			width: 1px
+			background: $medium-gray
+			position: absolute
+			right: 0 
+			top: 50%
+			transform: translateY(-50%)
+		&:last-child
+			&::after
+				display: none
+		&.active
+			border-bottom: 1px $accent-color solid
+			h3
+				color: $accent-color
+		&:hover
+			border-bottom: 1px $accent-color solid
+			h3
+				color: $accent-color
+	&__text
+		margin-top: 3px
+		margin-left: 16px
+		text-align: center
+		color: $brown
+	&__header
+		font-size: 12px
+		line-height: 1.2em
+		+bold
+		transition: color .3s ease
+	&__description
+		font-size: 10px
+		margin-top: 4px
+		display: inline-block
+
+
+@media(max-width: 1180px)
+	.interview-randomizer
+		bottom: auto
+		top: 0
+		&__items-wrapper
+			overflow-x: scroll
+			justify-content: space-between
+			padding-left: 10px
+			padding-right: 10px
+			padding-top: 8px
+		&__description
+			display: none
+		&__item
+			flex-direction: column
+			align-items: center
+			width: 112px
+			padding: 8px 16px
+			&::after
+				display: none
+		&__text
+			margin-left: 0
+			margin-top: 8px
+		&__ui
+			position: absolute
+			top: 0
+			left: 0
+			background: white
+			height: 100%
+			z-index: 100
+		&__filter-btn
+			height: 50%
+		&__random-btn
+			height: 50%
+		&__items
+			padding-left: 25px
+		&__header
+			font-size: 10px
+
 @media(max-width: 1025px)
 	.interview-header 
 		.container
@@ -136,9 +282,10 @@
 			margin: 0 auto
 		&__description
 			font-size: 13px
-			margin-top: 40px
 		&__bottom
 			font-size: 8px
+		.description-wrapper
+			margin-top: 40px
 		.container h1
 			font-size: 48px
 

@@ -1,7 +1,6 @@
 import Highway from '@dogstudio/highway'
 import './lib/smoothscroll'
 
-
 import CustomRendererMain from './pageRenders/CustomRenderMain'
 import CustomRendererInterviews from './pageRenders/CustomRenderInterviews'
 import CustomRendererAbout from './pageRenders/CustomRenderAbout'
@@ -27,3 +26,4 @@ const H = new Highway.Core({
 window.addEventListener('load', () => {
   document.body.style.cursor = 'auto'
 })
+

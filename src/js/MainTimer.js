@@ -70,10 +70,10 @@ export default class MainTimer {
 
   colorScheme() {
 
-    if (+this.store.hours >= 13 && +this.store.hours < 20) {
+    if (+this.store.hours >= 13 && +this.store.hours < 19) {
       document.querySelector('body').classList = ''
       document.querySelector('body').classList.add('lunchtime')
-    } else if (+this.store.hours >= 20 && +this.store.hours < 22) {
+    } else if (+this.store.hours >= 19 && +this.store.hours < 22) {
       document.querySelector('body').classList = ''
       document.querySelector('body').classList.add('evening')
     } else if (+this.store.hours >= 22 || +this.store.hours < 6) {
