@@ -77,43 +77,12 @@
 		margin-top: 10px
 		&:hover
 			color: $accent-color
-.burger
-	cursor: pointer
-	display: none
-	&__line
-		width: 40px
-		height: 2px
-		background: #000
-		transition: transform .5s ease, margin-top .5s ease
-		&:nth-child(2)
-			margin-top: 4px
-
-.desktop-hidden
-	display: none
-
-
-@media (max-width: 1192px)
-	.navbar
+	@include media("<=1192px")
 		&__left
 			width: auto
 		&__link
 			font-size: 14px
-
-@media(max-width: 1024px)
-	.burger
-		display: block
-		padding-top: 6px
-		padding-bottom: 6px
-		&.open
-			position: fixed
-			right: 24px
-			z-index: 1000
-			.burger__line
-				transform: rotate(225deg)
-				&:nth-child(2)
-					transform: rotate(-45deg)
-					margin-top: -3px
-	.navbar
+	@include media("<=1024px")
 		&__links
 			display: none
 			position: fixed
@@ -158,11 +127,36 @@
 		.container
 			justify-content: space-between 
 			height: 33px
-	.desktop-hidden
+		@include media("<=1024px")
+			&__link
+				font-size: 34px
+.burger
+	cursor: pointer
+	display: none
+	&__line
+		width: 40px
+		height: 2px
+		background: #000
+		transition: transform .5s ease, margin-top .5s ease
+		&:nth-child(2)
+			margin-top: 4px
+	@include media("<=1024px")
 		display: block
+		padding-top: 6px
+		padding-bottom: 6px
+		&.open
+			position: fixed
+			right: 24px
+			z-index: 1000
+			.burger__line
+				transform: rotate(225deg)
+				&:nth-child(2)
+					transform: rotate(-45deg)
+					margin-top: -3px
 
-			
-@media(max-width: 350px)
-	.navbar
-		&__link
-			font-size: 34px
+.desktop-hidden
+	display: none
+	@include media("<=1024px")
+		display: block
+		
+		

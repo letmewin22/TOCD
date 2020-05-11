@@ -1,5 +1,5 @@
 import Highway from '@dogstudio/highway'
-import { TimelineMax } from 'gsap'
+import { TimelineMax, Power2, Power1 } from 'gsap'
 
 export default class InterviewTransition extends Highway.Transition {
   // Built-in methods
@@ -7,6 +7,7 @@ export default class InterviewTransition extends Highway.Transition {
     document.body.style.cursor = 'wait'
     document.body.style.position = 'fixed'
     let tl = new TimelineMax({ onComplete: done })
+    tl
       .to(from, 0.25, { opacity: 0 })
   }
 
@@ -77,7 +78,7 @@ export default class InterviewTransition extends Highway.Transition {
         opacity: 1,
         ease: Power2.easeInOut
       }, 0)
-        
+
       .fromTo(to, 0.5, { opacity: 0 }, { opacity: 1 }, 0)
       .to(to.querySelector('.interview-header__image-rewealer'), 1.2, { x: '-100%', ease: Power2.easeOut }, 0.2)
       .to(to.querySelector('.interview-header__right'), 0.6, { opacity: 1, ease: Power2.easeInOut }, 0.2)
