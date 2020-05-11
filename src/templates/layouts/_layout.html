@@ -1,7 +1,11 @@
 {% include "../partials/_media-tags.html" %}
 
 <body class="morning">
-  <div class="page-rewealer"></div>
+  <div class="page-rewealer">
+    <svg width="2000" height="2000" viewBox="0 0 2000 2000" stroke="#DBDBE0" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="1000" cy="1000" r="500" stroke-width="1000" />
+    </svg>
+  </div>
   {% include "partials/_navbar.html" %}
   <div class="site-wrapper" data-router-wrapper>
     <div data-router-view="{% if route %}{{ route }}{% else %}Template{% endif %}">

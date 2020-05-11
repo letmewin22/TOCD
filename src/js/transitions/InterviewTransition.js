@@ -82,7 +82,6 @@ export default class InterviewTransition extends Highway.Transition {
       .to(to.querySelector('.interview-header__image-rewealer'), 1.2, { x: '-100%', ease: Power2.easeOut }, 0.2)
       .to(to.querySelector('.interview-header__right'), 0.6, { opacity: 1, ease: Power2.easeInOut }, 0.2)
       .to(to.querySelector('.interview-header__image'), 1, { scale: 1, ease: Power1.easeInOut }, 0.2)
-      .to(to.querySelector('.interview-randomizer'), 1, { opacity: 1, ease: Power1.easeInOut }, 0.5)
 
     from.remove()
   }

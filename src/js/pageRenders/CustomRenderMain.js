@@ -1,7 +1,7 @@
 import Highway from '@dogstudio/highway'
 
 import MainSlider from '../MainSlider.js'
-import loader from '../loader.js'
+import loader from '../loaders/loader.js'
 import MainTimer from '../MainTimer.js'
 import filter from '../filter.js'
 import { TimelineMax } from 'gsap'

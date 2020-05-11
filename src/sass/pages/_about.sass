@@ -10,14 +10,23 @@
 	h1
 		color: $medium-gray
 		+main
-		line-height: 112%
+		line-height: 1em
 		font-size: 3.25vw
 		max-width: 55vw
+		opacity: 0
+		.line-wrapper
+			display: inline-block
+			overflow: hidden
+			line-height: 1.12em
+		.splitted-line
+			display: inline-block
+			transform: translateY(140%)
 
 .with-margin
 	margin-top: 5.2vh
 
 .about-section
+	opacity: 0
 	.container
 		display: flex
 		justify-content: flex-end

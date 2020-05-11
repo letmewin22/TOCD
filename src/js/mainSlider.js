@@ -24,13 +24,13 @@ export default class MainSlider {
 
     document.documentElement.scrollTop = 1
 
-    this.stripPercent = window.innerWidth /this.strip.getBoundingClientRect().width * 100
+    this.stripPercent = window.innerWidth / this.strip.getBoundingClientRect().width * 100
 
     this.step = (document.body.getBoundingClientRect().height - window.innerHeight) / this.clockItems1.length
 
     window.addEventListener('resize', () => {
       document.body.style.height = this.strip.getBoundingClientRect().width - window.innerHeight + 'px'
-      this.stripPercent = window.innerWidth /this.strip.getBoundingClientRect().width * 100
+      this.stripPercent = window.innerWidth / this.strip.getBoundingClientRect().width * 100
       this.step = (document.body.getBoundingClientRect().height - window.innerHeight) / this.clockItems1.length
     })
   }
@@ -45,17 +45,24 @@ export default class MainSlider {
       this.percent = this.winScroll / this.winHeight * (100 - this.stripPercent)
       this.strip.style.transform = `translateX(${-this.percent}%)`
 
-
       for (let i = 0; i < this.clockItems2.length; i++) {
         this.clockItems1[i].classList.remove('active')
-        this.clockItems1[Math.floor(document.documentElement.scrollTop / this.step)].classList.add('active')
+
+        if (Math.floor(document.documentElement.scrollTop / this.step) < this.clockItems1.length) {
+          this.clockItems1[Math.floor(document.documentElement.scrollTop / this.step)].classList.add('active')
+        }
+      }
+      if (!document.documentElement.classList.contains('filtered')) {
+        if ((this.winScroll >= (Math.floor(document.body.getBoundingClientRect().height - window.innerHeight - window.innerWidth * 0.04)) /*- window.innerWidth * 0.03*/ )) {
+          window.scrollTo(0, 1)
+        } else if (this.winScroll === 0) {
+          window.scrollTo(0, (Math.floor(document.body.getBoundingClientRect().height - window.innerHeight - window.innerWidth * 0.042) /*- window.innerWidth * 0.035*/ ))
+        }
+      } else {
+        window.scrollTo(0, 1)
+        this.strip.style.transform = 'translateX(0%)'
       }
 
-      // if ((this.winScroll >= (Math.floor(document.body.getBoundingClientRect().height - window.innerHeight)) /*- window.innerWidth * 0.03*/)) {
-      //   window.scrollTo(0, 1)
-      // } else if (this.winScroll=== 0) {
-      //   window.scrollTo(0, (Math.floor(document.body.getBoundingClientRect().height - window.innerHeight) /*- window.innerWidth * 0.035*/))
-      // }
       window.requestAnimationFrame(this.scrollHandler.bind(this))
     }
   }

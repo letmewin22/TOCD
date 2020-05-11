@@ -1,10 +1,11 @@
 import Highway from '@dogstudio/highway'
+import aboutLoader from '../loaders/aboutLoader.js'
 
 
 class CustomRendererAbout extends Highway.Renderer {
 
   onEnterCompleted() {
-
+    aboutLoader()
     document.body.style.overflow = 'initial'
     document.body.style.height = 'auto'
     document.body.classList = ''

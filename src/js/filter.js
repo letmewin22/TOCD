@@ -65,10 +65,12 @@ const filter = () => {
       elem.classList.remove('is-visible', 'default-layout')
       filterBtn.querySelector('.name').innerText = event.target.innerText
       filterBtn.classList.add('active')
+      document.documentElement.classList.add('filtered')
 
       document.querySelectorAll(`[${attribute}]`).forEach(element => {
 
         if (event.target.innerText === element.getAttribute(attribute)) {
+          document.querySelector('.second-strip').style.display = 'none'
           element.classList.add('is-visible')
         }
       })
@@ -99,6 +101,8 @@ const filter = () => {
     filterBtn.classList.remove('active')
 
     headerName.forEach(elem => elem.classList.add('is-visible', 'default-layout'))
+    document.querySelector('.second-strip').style.display = 'flex'
+    document.documentElement.classList.remove('filtered')
     new MainSlider()
   })
 

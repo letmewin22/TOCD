@@ -135,11 +135,12 @@
 	align-items: center
 	border-top: 1px $medium-gray solid
 	border-bottom: 1px $medium-gray solid
-	transition: opacity .3s ease
+	transition: opacity .2s ease
 	opacity: 0
-	&.hidden
-		opacity: 0 !important
-		pointer-events: none
+	pointer-events: none
+	&.show
+		opacity: 1
+		pointer-events: auto
 	&__ui
 		border-right: 1px $medium-gray solid
 	&__filter-btn

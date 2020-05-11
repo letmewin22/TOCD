@@ -37,9 +37,11 @@ export default class MainTimer {
     document.querySelector('.days-2').innerText = this.store.daysAfter.slice(1)
     document.querySelector('.hours-1').innerText = this.store.hoursAfter.slice(0, 1)
     document.querySelector('.hours-2').innerText = this.store.hoursAfter.slice(1)
+    document.querySelector('.minutes-1').innerText = this.store.minutesAfter.slice(0, 1)
+    document.querySelector('.minutes-2').innerText = this.store.minutesAfter.slice(1)
 
-    this.timerChange(document.querySelector('.minutes-2'), this.store.minutesAfter.slice(1))
-    this.timerChange(document.querySelector('.minutes-1'), this.store.minutesAfter.slice(0, 1))
+    // this.timerChange(document.querySelector('.minutes-2'), this.store.minutesAfter.slice(1))
+    // this.timerChange(document.querySelector('.minutes-1'), this.store.minutesAfter.slice(0, 1))
 
     // if (!document.querySelector('select')) {
     //   const select = document.createElement('select')

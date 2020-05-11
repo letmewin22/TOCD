@@ -15,12 +15,22 @@
 .page-rewealer
 	width: 100%
 	height: 100vh
-	background: darken($light-gray, 3%)
 	position: fixed
 	top: 0
 	left: 0
 	z-index: 1001
-	transform: translateY(100%)
+	pointer-events: none
+	// transform: translateY(100%)
+	display: flex
+	justify-content: center
+	align-items: center
+	overflow: hidden
+	svg
+		transform: scale(1.5) rotate(-90deg)
+		stroke-dasharray: 3141.276123046875
+		stroke-dashoffset: 3141.276123046875
+		opacity: 0
+		stroke: darken($light-gray, 2%) 
 
 body
 	overflow: auto
@@ -155,6 +165,14 @@ body
 			justify-content: space-between
 			align-items: center 
 			will-change: transform
+		.first-strip
+			display: flex
+			justify-content: space-between
+			align-items: center 
+		.second-strip
+			display: flex
+			justify-content: space-between
+			align-items: center 
 	&__name-wrapper
 		width: 22vw
 		margin-right: 2.5vw
@@ -204,7 +222,7 @@ body
 		align-items: flex-end 
 	&__left
 		svg
-			margin-left: 5px 
+			margin-left: 10px 
 	&__right
 		display: flex
 		flex-direction: column

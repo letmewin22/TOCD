@@ -9,9 +9,8 @@ export default class SimpleTransition extends Highway.Transition {
     document.body.style.overflow = 'hidden'
     document.body.style.cursor = 'wait'
     tl
-      .to(from, 0.6, { opacity: 0, ease: Power1.easeInOut })
-      .to(document.querySelector('header'), 0.6, { y: -80, ease: Power1.easeInOut }, 0)
-      .fromTo(document.querySelector('.page-rewealer'), 1.2, { y: '100%'}, { y: '0%', ease: Power2.easeOut }, 0)
+      .fromTo(document.querySelector('.page-rewealer svg'), 0.1, { opacity: 0}, {opacity: 1, ease: Power2.easeOut }, 0)
+      .fromTo(document.querySelector('.page-rewealer svg'), 1.4, { strokeDashoffset: 3141.276123046875}, { strokeDashoffset: 0, ease: Power2.easeInOut }, 0)
 
   }
 
@@ -26,11 +25,9 @@ export default class SimpleTransition extends Highway.Transition {
         done()
         let tl2 = new TimelineMax()
         tl2
-          .to(document.querySelector('.page-rewealer'), 1, { y: '-100%', ease: Power2.easeOut }, 0)
+          .fromTo(document.querySelector('.page-rewealer svg'), 1.4, { strokeDashoffset: 0}, { strokeDashoffset: -3141.276123046875, ease: Power2.easeInOut }, 0)
+          .fromTo(document.querySelector('.page-rewealer svg'), 0.2, {opacity: 1}, {opacity: 0, ease: Power2.easeOut }, '-=0.1')
       }
     })
-    tl
-      .fromTo(to, 0.6, { opacity: 0 }, { opacity: 1, ease: Power3.easeInOut })
-
   }
 };
