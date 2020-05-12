@@ -1,314 +1,349 @@
 .interview-header
-	height: 100vh
-	.container
-		display: flex
-		justify-content: space-between
-		align-items: center
-		height: 100%
-		overflow: hidden
-	.description-wrapper
-		margin-top: 70px
-		// line-height: 1.4em
-		// font-size: 0.9vw
-		// position: relative
-	&__left
-		display: flex
-		justify-content: center
-		align-items: center
-		width: 50%
-		flex-direction: column
-		height: 100%
-		// position: relative
-	&__right
-		width: 50%
-		height: 100%
-		margin-top: 40px
-		margin-left: 16px
-		overflow: hidden
-		opacity: 0
-		position: relative
-	&__description
-		opacity: 0
-		text-align: center
-	&__h1
-		opacity: 0
-		+header
-		font-size: 6.45vw
-		line-height: 0.72em
-		letter-spacing: 0.02em
-		text-align: center
-	&__image
-		height: 100%
-		display: block 
-		float: right
-		width: 100%
-		background-size: cover
-		background-repeat: no-repeat
-		background-position: 50%, 50%
-		transform: scale(1.2)
-	&__image-rewealer
-		width: 100%
-		height: 100%
-		position: absolute
-		background: white
-		z-index: 100
-	&__bottom
-		position: absolute
-		bottom: 0
-		padding-bottom: 30px
-		display: flex
-		justify-content: space-between
-		width: 46%
-		text-transform: uppercase 
-		letter-spacing: 0.24em
-		font-size: 0.6vw
-		border-bottom: 1px $medium-gray solid
-		line-height: 1.6em
-		+main
-	&__location
-		text-align: left
-	&__photograph
-		text-align: right 
-	@include media("<=1025px")
-		height: auto
-		padding-top: 200px
-		&__description
-			font-size: 13px
-		&__bottom
-			font-size: 8px
-		.description-wrapper
-			margin-top: 40px
-		.container
-			flex-direction: column
-			h1
-				font-size: 48px
-		&__left
-			width: 100%
-			height: 30%
-		&__right
-			width: 100%
-			height: 70%
-			margin-top: 64px
-			margin-left: 0px
-		&__image
-			background-position: top
-			height: 395px
-			width: 327px
-			float: none
-			margin: 0 auto
-		&__bottom
-			position: static
-			width: 100%
-			margin-top: 16px
-		@include media("<=phone")
-			&__image
-				width: 100%
-
-			
-			
+  height: 100vh
+  .container
+    display: flex
+    justify-content: space-between
+    align-items: center
+    height: 100%
+    overflow: hidden
+  .description-wrapper
+    margin-top: 70px
+    // line-height: 1.4em
+    // font-size: 0.9vw
+    // position: relative
+  &__left
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 50%
+    flex-direction: column
+    height: 100%
+    // position: relative
+  &__right
+    width: 50%
+    height: 100%
+    margin-top: 40px
+    margin-left: 16px
+    overflow: hidden
+    opacity: 0
+    position: relative
+  &__description
+    opacity: 0
+    text-align: center
+    font-size: 1vw
+    line-height: 1.4em
+  &__h1
+    opacity: 0
+    +header
+    font-size: 6.45vw
+    line-height: 0.72em
+    letter-spacing: 0.02em
+    text-align: center
+  &__image
+    height: 100%
+    display: block 
+    float: right
+    width: 100%
+    background-size: cover
+    background-repeat: no-repeat
+    background-position: 50%, 50%
+    transform: scale(1.2)
+    cursor: pointer
+  &__image-rewealer
+    width: 100%
+    height: 100%
+    position: absolute
+    background: white
+    z-index: 100
+  &__bottom
+    position: absolute
+    bottom: 0
+    padding-bottom: 30px
+    display: flex
+    justify-content: space-between
+    width: 46%
+    text-transform: uppercase 
+    letter-spacing: 0.24em
+    font-size: 0.6vw
+    border-bottom: 1px $medium-gray solid
+    line-height: 1.6em
+    +main
+  &__location
+    text-align: left
+  &__photograph
+    text-align: right 
+  @include media("<=1025px")
+    height: auto
+    padding-top: 200px
+    &__description
+      font-size: 13px
+    &__bottom
+      font-size: 8px
+    .description-wrapper
+      margin-top: 40px
+    .container
+      flex-direction: column
+      h1
+        font-size: 48px
+    &__left
+      width: 100%
+      height: 30%
+    &__right
+      width: 100%
+      height: 70%
+      margin-top: 64px
+      margin-left: 0px
+    &__image
+      background-position: top
+      height: 395px
+      width: 327px
+      float: none
+      margin: 0 auto
+    &__bottom
+      position: static
+      width: 100%
+      margin-top: 16px
+    @include media("<=850px")
+      font-size: 13px
+    @include media("<=phone")
+      &__image
+        width: 100%
 
 .article
-	width: 100%
-	margin-top: 15px
-	.container
-		display: flex
-	&__left
-		width: 25%
-		border-right: 1px $medium-gray solid
-		padding-right: 8px
-	&__right
-		width: 70%
-		padding-top: 80px
-		font-size: 20px
-		line-height: 1.56em
-		padding-left: 72px
-		padding-bottom: 48px
-	&__date
-		+medium
-		font-size: 20px
-	&__social
-		margin-top: 11px
-		display: flex 
-		align-items: center 
-		border-top: 1px $medium-gray solid
-	&__social-item
-		padding: 17px 24px
-		&:nth-child(2)
-			border-left: 1px $medium-gray solid
-			border-right: 1px $medium-gray solid
-		svg
-			transition: fill .3s ease
-		&.facebook
-			&:hover
-				svg
-					fill: #1778F2
-		&.twitter
-			&:hover
-				svg
-					fill: #00ACEE
-		&.telegram
-			&:hover
-				svg
-					fill: #0088CC
-	&__question
-		+medium
-		margin-top: 40px
-		font-size: inherit
-	&__answer
-		margin-top: 40px
-	.interviewer-name, .respondent-name
-		+header
-		display: inline-block
-		margin-right: 80px
-	@include media("<=900px")
-		.container
-			flex-direction: column
-		&__left
-			width: 100%
-			border-right: none
-		&__right
-			width: 100%
-			padding-left: 0px
-			padding-top: 24px
-		&__social
-			justify-content: space-between
-		&__social-item
-			width: 33.3%
-			display: flex
-			justify-content: center
-			align-items: center 
-	@include media("<=phone")
-		.interviewer-name, .respondent-name
-			margin-right: 46px
+  width: 100%
+  margin-top: 15px
+  margin-bottom: 100px
+  .container
+    display: flex
+    flex-direction: column
+  &__top
+    display: flex
+  &__left
+    width: 25%
+    border-right: 1px $medium-gray solid
+    padding-right: 8px
+  &__right
+    width: 70%
+    padding-top: 80px
+    font-size: 20px
+    line-height: 1.56em
+    padding-left: 72px
+    padding-bottom: 48px
+  &__bottom
+    margin-top: 16px
+    border-top: 1px $medium-gray solid
+    border-bottom: 1px $medium-gray solid
+    padding: 48px 3vw
+    display: flex
+    align-items: center
+    justify-content: center
+    position: relative
+  &__tags-wrapper
+    display: flex
+  &__tag
+    margin-left: 12px
+    padding: 10px 12px
+    border: 1px $medium-gray solid
+    transition: border .3s ease, color .3s ease 
+    cursor: pointer
+    &:hover
+      color: $accent-color
+      border-color: lighten($accent-color, 50%)
+  &__tags-social
+    right: 3vw
+    position: absolute
+    a
+      margin-right: 24px
+  &__date
+    +medium
+    font-size: 20px
+  &__social
+    margin-top: 11px
+    border-top: 1px $medium-gray solid
+  &__social-item
+    padding: 17px 24px
+    &:nth-child(2)
+      border-left: 1px $medium-gray solid
+      border-right: 1px $medium-gray solid
+  &__question
+    +medium
+    margin-top: 40px
+    font-size: inherit
+  &__answer
+    margin-top: 40px
+  .interviewer-name, .respondent-name
+    +header
+    display: inline-block
+    margin-right: 80px
+  @include media("<=900px")
+    .container
+      flex-direction: column
+    &__top
+      flex-direction: column
+    &__left
+      width: 100%
+      border-right: none
+    &__right
+      width: 100%
+      padding-left: 0px
+      padding-top: 24px
+    &__social
+      justify-content: space-between
+    &__social-item
+      width: 33.3%
+      display: flex
+      justify-content: center
+      align-items: center 
+  @include media("<=phone")
+    .interviewer-name, .respondent-name
+      margin-right: 46px
+
+.article-social
+  display: flex 
+  align-items: center
+  &__social-item
+    svg
+      transition: fill .3s ease
+    &.facebook
+      &:hover
+        svg
+          fill: #1778F2
+    &.twitter
+      &:hover
+        svg
+          fill: #00ACEE
+    &.telegram
+      &:hover
+        svg
+          fill: #0088CC 
 
 
 .interview-randomizer
-	position: fixed
-	z-index: 1003
-	bottom: 4%
-	width: 100%
-	background: white
-	display: flex
-	align-items: center
-	border-top: 1px $medium-gray solid
-	border-bottom: 1px $medium-gray solid
-	transition: opacity .2s ease
-	opacity: 1
-	pointer-events: auto
-	&.show
-		opacity: 1
-		pointer-events: auto
-	&__ui
-		border-right: 1px $medium-gray solid
-	&__filter-btn
-		width: 46px
-		height: 47px
-		display: flex
-		justify-content: center
-		align-items: center
-		border-bottom: 1px $medium-gray solid
-		cursor: pointer
-		.close
-			display: none
-	&__random-btn
-		width: 46px
-		height: 47px
-		display: flex
-		justify-content: center
-		align-items: center
-		cursor: pointer
-	&__items
-		width: 100%
-		// overflow-x: scroll
-	&__items-wrapper
-		display: flex
-		align-items: center
-		// justify-content: space-between
-		width: 100%
-	&__item
-		display: flex
-		position: relative
-		padding-top: 24px
-		padding-bottom: 24px
-		padding-left: 15px
-		padding-right: 15px 
-		width: 16.6%
-		display: flex
-		cursor: pointer
-		justify-content: center
-		border-bottom: 1px solid transparent
-		transition: border-color .3s ease
-		&::after
-			content: ''
-			display: block
-			height: 66%
-			width: 1px
-			background: $medium-gray
-			position: absolute
-			right: 0 
-			top: 50%
-			transform: translateY(-50%)
-		&:last-child
-			&::after
-				display: none
-		&.active
-			border-bottom: 1px $accent-color solid
-			h3
-				color: $accent-color
-		&:hover
-			border-bottom: 1px $accent-color solid
-			h3
-				color: $accent-color
-	&__text
-		margin-top: 3px
-		margin-left: 16px
-		text-align: center
-		color: $brown
-	&__header
-		font-size: 12px
-		line-height: 1.2em
-		+bold
-		transition: color .3s ease
-	&__description
-		font-size: 10px
-		margin-top: 4px
-		display: inline-block
-	@include media("<=1180px")
-		bottom: auto
-		top: 0
-		&__items-wrapper
-			overflow-x: scroll
-			justify-content: space-between
-			padding-left: 10px
-			padding-right: 10px
-			padding-top: 8px
-		&__description
-			display: none
-		&__item
-			flex-direction: column
-			align-items: center
-			width: 112px
-			padding: 8px 16px
-			&::after
-				display: none
-		&__text
-			margin-left: 0
-			margin-top: 8px
-		&__ui
-			position: absolute
-			top: 0
-			left: 0
-			background: white
-			height: 100%
-			z-index: 100
-		&__filter-btn
-			height: 50%
-		&__random-btn
-			height: 50%
-		&__items
-			padding-left: 25px
-		&__header
-			font-size: 10px
-	@include media("<=1025px")
-		pointer-events: none
-		opacity: 0
+  position: fixed
+  z-index: 2
+  bottom: 0 
+  width: 100%
+  background: white
+  display: flex
+  align-items: center
+  border-top: 1px $medium-gray solid
+  border-bottom: 1px $medium-gray solid
+  transition: opacity .2s ease
+  opacity: 0
+  pointer-events: auto
+  &.show
+    opacity: 1
+    pointer-events: auto
+  &__ui
+    border-right: 1px $medium-gray solid
+  &__filter-btn
+    width: 46px
+    height: 47px
+    display: flex
+    justify-content: center
+    align-items: center
+    border-bottom: 1px $medium-gray solid
+    cursor: pointer
+    .close
+      display: none
+  &__random-btn
+    width: 46px
+    height: 47px
+    display: flex
+    justify-content: center
+    align-items: center
+    cursor: pointer
+  &__items
+    width: 100%
+  &__items-wrapper
+    display: flex
+    align-items: center
+    width: 100%
+  &__item
+    display: flex
+    position: relative
+    padding-top: 24px
+    padding-bottom: 24px
+    padding-left: 15px
+    padding-right: 15px 
+    width: 16.6%
+    display: flex
+    cursor: pointer
+    justify-content: center
+    border-bottom: 1px solid transparent
+    transition: border-color .3s ease
+    &::after
+      content: ''
+      display: block
+      height: 66%
+      width: 1px
+      background: $medium-gray
+      position: absolute
+      right: 0 
+      top: 50%
+      transform: translateY(-50%)
+    &:last-child
+      &::after
+        display: none
+    &.active
+      border-bottom: 1px $accent-color solid
+      h3
+        color: $accent-color
+    &:hover
+      border-bottom: 1px $accent-color solid
+      h3
+        color: $accent-color
+  &__text
+    margin-top: 3px
+    margin-left: 16px
+    text-align: center
+    color: $brown
+  &__header
+    font-size: 12px
+    line-height: 1.2em
+    +bold
+    transition: color .3s ease
+  &__description
+    font-size: 10px
+    margin-top: 4px
+    display: inline-block
+  @include media("<=1180px")
+    bottom: auto
+    top: 0
+    &__items-wrapper
+      overflow-x: scroll
+      justify-content: space-between
+      padding-left: 10px
+      padding-right: 10px
+      padding-top: 8px
+    &__description
+      display: none
+    &__item
+      flex-direction: column
+      align-items: center
+      width: 112px
+      padding: 8px 16px
+      &::after
+        display: none
+    &__text
+      margin-left: 0
+      margin-top: 8px
+    &__ui
+      position: absolute
+      top: 0
+      left: 0
+      background: white
+      height: 100%
+      z-index: 100
+    &__filter-btn
+      height: 50%
+    &__random-btn
+      height: 50%
+    &__items
+      padding-left: 25px
+    &__header
+      font-size: 10px
+  @include media("<=1025px")
+    pointer-events: none
+    opacity: 0
+    z-index: 1002

@@ -33,14 +33,6 @@ route: main
         {% endfor %}
         {% endfor %}
       </div>
-      <div class="second-strip">
-        {% for item in items.fakeList %}
-        <a data-transition="toInterview" href="interview.html" class="header__name-wrapper is-visible default-layout" data-city="{{item.city}}" data-occupation="{{item.occupation}}" data-key="{{item.key}}">
-          <h2 class="header__name">{{item.name}}</h2>
-          <p class="header__description">{{item.description|safe}}</p>
-        </a>
-        {% endfor %}
-      </div>
     </div>
   </div>
 </header>

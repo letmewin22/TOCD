@@ -7,6 +7,7 @@ const interviewLoader = () => {
   const img = document.querySelector('.interview-header__image')
   const imgWrapper = document.querySelector('.interview-header__right')
   const imgRewealer = document.querySelector('.interview-header__image-rewealer')
+  const strip = document.querySelector('.interview-randomizer')
 
   let tl = new TimelineMax()
   tl
@@ -16,6 +17,13 @@ const interviewLoader = () => {
     .to(imgWrapper, 0.6, { opacity: 1, ease: Power2.easeInOut }, 0.4)
     .to(img, 1, { scale: 1, ease: Power1.easeInOut }, 0.4)
     .to(imgRewealer, 0.1, { display: 'none' })
+
+  if (screen.width > 1023) {
+    let tl2 = new TimelineMax()
+    tl2
+      .to(strip, 1, { opacity: 1 }, 1)
+  }
+
 }
 
 export default interviewLoader

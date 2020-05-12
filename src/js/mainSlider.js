@@ -53,11 +53,11 @@ export default class MainSlider {
         }
       }
       if (!document.documentElement.classList.contains('filtered')) {
-        if ((this.winScroll >= (Math.floor(document.body.getBoundingClientRect().height - window.innerHeight - window.innerWidth * 0.04)) /*- window.innerWidth * 0.03*/ )) {
-          window.scrollTo(0, 1)
-        } else if (this.winScroll === 0) {
-          window.scrollTo(0, (Math.floor(document.body.getBoundingClientRect().height - window.innerHeight - window.innerWidth * 0.042) /*- window.innerWidth * 0.035*/ ))
-        }
+        // if ((this.winScroll >= (Math.floor(document.body.getBoundingClientRect().height - window.innerHeight - window.innerWidth * 0.04)) /*- window.innerWidth * 0.03*/ )) {
+        //   window.scrollTo(0, 1)
+        // } else if (this.winScroll === 0) {
+        //   window.scrollTo(0, (Math.floor(document.body.getBoundingClientRect().height - window.innerHeight - window.innerWidth * 0.042) /*- window.innerWidth * 0.035*/ ))
+        // }
       } else {
         window.scrollTo(0, 1)
         this.strip.style.transform = 'translateX(0%)'

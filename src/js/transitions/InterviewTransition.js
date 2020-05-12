@@ -27,6 +27,7 @@ export default class InterviewTransition extends Highway.Transition {
     const textWrapper = to.querySelector('.description-wrapper')
     const h1 = to.querySelector('h1')
     const description = to.querySelector('.interview-header__description')
+    const strip = document.querySelector('.interview-randomizer')
 
     const css = {
       h1X: h1.getBoundingClientRect().x + h1.getBoundingClientRect().width / 2,
@@ -34,7 +35,8 @@ export default class InterviewTransition extends Highway.Transition {
       h1fontSize: getComputedStyle(h1).fontSize,
       textX: description.getBoundingClientRect().x + description.getBoundingClientRect().width / 2,
       textY: description.getBoundingClientRect().y + description.getBoundingClientRect().height / 2,
-      textFontSize: getComputedStyle(description).fontSize
+      textFontSize: getComputedStyle(description).fontSize,
+      textLineHeight: getComputedStyle(description).lineHeight
     }
 
     let tl = new TimelineMax({
@@ -71,6 +73,7 @@ export default class InterviewTransition extends Highway.Transition {
         left: css.textX,
         top: css.textY,
         fontSize: css.textFontSize,
+        lineHeight: css.textLineHeight,
         x: '-50%',
         y: '-50%',
         opacity: 1,
@@ -81,7 +84,13 @@ export default class InterviewTransition extends Highway.Transition {
       .to(to.querySelector('.interview-header__image-rewealer'), 1.2, { x: '-100%', ease: Power2.easeOut }, 0.2)
       .to(to.querySelector('.interview-header__right'), 0.6, { opacity: 1, ease: Power2.easeInOut }, 0.2)
       .to(to.querySelector('.interview-header__image'), 1, { scale: 1, ease: Power1.easeInOut }, 0.2)
-      .to(to.querySelector('.interview-header__image-rewealer'), 0.1, { display: 'none'})
+      .to(to.querySelector('.interview-header__image-rewealer'), 0.1, { display: 'none' })
+
+    if (screen.width > 1023) {
+      let tl2 = new TimelineMax()
+      tl2
+        .to(strip, 1, { opacity: 1 }, 1)
+    }
 
     from.remove()
   }

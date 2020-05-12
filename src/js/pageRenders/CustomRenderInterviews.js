@@ -6,9 +6,7 @@ import Slideshow from '../slider/Slideshow.js'
 import interviewLoader from '../loaders/interviewLoader'
 import rewealSlider from '../rewealSlider'
 
-
 class CustomRendererInterviews extends Highway.Renderer {
-
   onEnterCompleted() {
     filter()
     scrollDirection()
@@ -22,16 +20,20 @@ class CustomRendererInterviews extends Highway.Renderer {
     }
     rewealSlider()
 
-
-    const randomizerItems = document.querySelectorAll('.interview-randomizer__item')
-    const h1 = document.querySelector('.clicked') || document.querySelector('h1')
-    randomizerItems.forEach(el => {
+    const randomizerItems = document.querySelectorAll(
+      '.interview-randomizer__item',
+    )
+    const h1 =
+      document.querySelector('.clicked') || document.querySelector('h1')
+    randomizerItems.forEach((el) => {
       el.classList.remove('active')
-      if (el.querySelector('h3').innerText.replace(/\s/g, '').toLowerCase() === h1.innerText.replace(/\<br>/, '').replace(/\s/g, '').toLowerCase()) {
+      if (
+        el.querySelector('h3').innerText.replace(/\s/g, '').toLowerCase() ===
+        h1.innerText.replace(/\<br>/, '').replace(/\s/g, '').toLowerCase()
+      ) {
         el.classList.add('active')
       }
     })
-
   }
 }
 // Don`t forget to export your renderer
