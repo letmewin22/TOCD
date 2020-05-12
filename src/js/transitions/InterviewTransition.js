@@ -43,14 +43,12 @@ export default class InterviewTransition extends Highway.Transition {
         // clicked.style.position = 'static'
         // clicked.style.transform = 'translate(0, 0)'
         wrapper.appendChild(clicked)
-        // h1.style.display = 'none'
         // wrapper.removeChild(document.querySelector('h1'))
 
         clickedText.style.position = 'absolute'
         // clickedText.style.position = 'static'
         // clickedText.style.transform = 'translate(0, 0)'
         textWrapper.appendChild(clickedText)
-        // description.style.display = 'none'
         // textWrapper.removeChild(description)
         document.body.style.position = 'initial'
         done()
@@ -83,6 +81,7 @@ export default class InterviewTransition extends Highway.Transition {
       .to(to.querySelector('.interview-header__image-rewealer'), 1.2, { x: '-100%', ease: Power2.easeOut }, 0.2)
       .to(to.querySelector('.interview-header__right'), 0.6, { opacity: 1, ease: Power2.easeInOut }, 0.2)
       .to(to.querySelector('.interview-header__image'), 1, { scale: 1, ease: Power1.easeInOut }, 0.2)
+      .to(to.querySelector('.interview-header__image-rewealer'), 0.1, { display: 'none'})
 
     from.remove()
   }

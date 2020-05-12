@@ -31,7 +31,7 @@ export default class MainTimer {
       minutesAfter: ('0' + Math.floor((distance % (this.hour)) / (this.minute))).substr(-2)
     }
 
-    this.colorScheme()
+    // this.colorScheme()
 
     document.querySelector('.days-1').innerText = this.store.daysAfter.slice(0, 1)
     document.querySelector('.days-2').innerText = this.store.daysAfter.slice(1)
@@ -40,32 +40,32 @@ export default class MainTimer {
     document.querySelector('.minutes-1').innerText = this.store.minutesAfter.slice(0, 1)
     document.querySelector('.minutes-2').innerText = this.store.minutesAfter.slice(1)
 
-    // this.timerChange(document.querySelector('.minutes-2'), this.store.minutesAfter.slice(1))
-    // this.timerChange(document.querySelector('.minutes-1'), this.store.minutesAfter.slice(0, 1))
+    this.timerChange(document.querySelector('.minutes-2'), this.store.minutesAfter.slice(1))
+    this.timerChange(document.querySelector('.minutes-1'), this.store.minutesAfter.slice(0, 1))
 
-    // if (!document.querySelector('select')) {
-    //   const select = document.createElement('select')
-    //   select.style.position = 'fixed'
-    //   select.style.top = '3%'
-    //   select.style.right = '3%'
-    //   select.style.zIndex = '10000'
-    //   select.innerHTML = '<option>Morning</option><option>Day</option><option>Evening</option><option>Night</option>'
+    if (!document.querySelector('select')) {
+      const select = document.createElement('select')
+      select.style.position = 'fixed'
+      select.style.top = '3%'
+      select.style.right = '3%'
+      select.style.zIndex = '10000'
+      select.innerHTML = '<option>Morning</option><option>Day</option><option>Evening</option><option>Night</option>'
 
-    //   document.body.appendChild(select)
+      document.body.appendChild(select)
 
-    //   select.addEventListener('change', function(e) {
-    //     console.log(this.selectedIndex)
-    //     if (this.selectedIndex === 0) {
-    //       document.body.classList = 'morning'
-    //     } else if(this.selectedIndex === 1) {
-    //       document.body.classList = 'lunchtime'
-    //     } else if(this.selectedIndex === 2) {
-    //       document.body.classList = 'evening'
-    //     } else {
-    //       document.body.classList = 'night'
-    //     }
-    //   })
-    // }
+      select.addEventListener('change', function(e) {
+        console.log(this.selectedIndex)
+        if (this.selectedIndex === 0) {
+          document.body.classList = 'morning'
+        } else if(this.selectedIndex === 1) {
+          document.body.classList = 'lunchtime'
+        } else if(this.selectedIndex === 2) {
+          document.body.classList = 'evening'
+        } else {
+          document.body.classList = 'night'
+        }
+      })
+    }
 
 
   }

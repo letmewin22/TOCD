@@ -45,7 +45,7 @@
 		background-size: cover
 		background-repeat: no-repeat
 		background-position: 50%, 50%
-		transform: scale(1.1)
+		transform: scale(1.2)
 	&__image-rewealer
 		width: 100%
 		height: 100%
@@ -69,6 +69,43 @@
 		text-align: left
 	&__photograph
 		text-align: right 
+	@include media("<=1025px")
+		height: auto
+		padding-top: 200px
+		&__description
+			font-size: 13px
+		&__bottom
+			font-size: 8px
+		.description-wrapper
+			margin-top: 40px
+		.container
+			flex-direction: column
+			h1
+				font-size: 48px
+		&__left
+			width: 100%
+			height: 30%
+		&__right
+			width: 100%
+			height: 70%
+			margin-top: 64px
+			margin-left: 0px
+		&__image
+			background-position: top
+			height: 395px
+			width: 327px
+			float: none
+			margin: 0 auto
+		&__bottom
+			position: static
+			width: 100%
+			margin-top: 16px
+		@include media("<=phone")
+			&__image
+				width: 100%
+
+			
+			
 
 .article
 	width: 100%
@@ -123,6 +160,26 @@
 		+header
 		display: inline-block
 		margin-right: 80px
+	@include media("<=900px")
+		.container
+			flex-direction: column
+		&__left
+			width: 100%
+			border-right: none
+		&__right
+			width: 100%
+			padding-left: 0px
+			padding-top: 24px
+		&__social
+			justify-content: space-between
+		&__social-item
+			width: 33.3%
+			display: flex
+			justify-content: center
+			align-items: center 
+	@include media("<=phone")
+		.interviewer-name, .respondent-name
+			margin-right: 46px
 
 
 .interview-randomizer
@@ -136,8 +193,8 @@
 	border-top: 1px $medium-gray solid
 	border-bottom: 1px $medium-gray solid
 	transition: opacity .2s ease
-	opacity: 0
-	pointer-events: none
+	opacity: 1
+	pointer-events: auto
 	&.show
 		opacity: 1
 		pointer-events: auto
@@ -216,10 +273,7 @@
 		font-size: 10px
 		margin-top: 4px
 		display: inline-block
-
-
-@media(max-width: 1180px)
-	.interview-randomizer
+	@include media("<=1180px")
 		bottom: auto
 		top: 0
 		&__items-wrapper
@@ -255,65 +309,6 @@
 			padding-left: 25px
 		&__header
 			font-size: 10px
-
-@media(max-width: 1025px)
-	.interview-header 
-		.container
-			flex-direction: column
-		&__left
-			width: 100%
-			height: 30%
-		&__right
-			width: 100%
-			height: 70%
-			margin-top: 64px
-			margin-left: 0px
-		&__image
-			background-position: top
-		&__bottom
-			position: static
-			width: 100%
-			margin-top: 16px
-	.interview-header
-		height: auto
-		padding-top: 200px
-		&__image
-			height: 395px
-			width: 327px
-			float: none
-			margin: 0 auto
-		&__description
-			font-size: 13px
-		&__bottom
-			font-size: 8px
-		.description-wrapper
-			margin-top: 40px
-		.container h1
-			font-size: 48px
-
-@media(max-width: 900px)
-	.article 
-		.container
-			flex-direction: column
-		&__left
-			width: 100%
-			border-right: none
-		&__right
-			width: 100%
-			padding-left: 0px
-			padding-top: 24px
-		&__social
-			justify-content: space-between
-		&__social-item
-			width: 33.3%
-			display: flex
-			justify-content: center
-			align-items: center 
-
-@media(max-width: 460px)
-	.interview-header
-		&__image
-			width: 100%
-	.article
-		.interviewer-name, .respondent-name
-			margin-right: 46px
+	@include media("<=1025px")
+		pointer-events: none
+		opacity: 0

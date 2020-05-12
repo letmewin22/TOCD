@@ -1,4 +1,4 @@
-import { TimelineMax } from 'gsap'
+import { TimelineMax, Power3 } from 'gsap'
 
 export default class MainSlider {
 
@@ -61,6 +61,7 @@ export default class MainSlider {
       } else {
         window.scrollTo(0, 1)
         this.strip.style.transform = 'translateX(0%)'
+        document.documentElement.classList.remove('filtered')
       }
 
       window.requestAnimationFrame(this.scrollHandler.bind(this))
