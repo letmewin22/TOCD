@@ -38,8 +38,11 @@
     width: 75vw
     height: 49vw
   @include media("<=1025px")
-    height: 395px
-    width: 76vw 
+    height: 40vw
+    width: 60vw 
+  @include media("<=phone")
+    height: 216px
+    width: 327px
 
 .slide 
   width: 100% 
@@ -67,10 +70,9 @@
   left: 0 
   top: 0 
   background-color: white 
-  background-size: cover 
   position: absolute 
   pointer-events: none 
-  background-position: 50% 50% 
+  +cover
 .boxnav 
   display: flex 
   width: 90vw
@@ -78,7 +80,7 @@
   position: absolute
   z-index: 101
   @include media("<=phone")
-    width: 98vw
+    display: none
 .boxnav__item 
   display: flex 
   align-items: center 

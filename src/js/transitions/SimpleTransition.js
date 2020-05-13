@@ -32,11 +32,11 @@ export default class SimpleTransition extends Highway.Transition {
     from.remove()
     window.scrollTo(0, 0)
     document.querySelector('.site-wrapper').scrollTo(0, 0)
-    document.body.style.cursor = 'auto'
-
+    
     let tl2 = new TimelineMax({
       onComplete: () => {
         document.body.style.pointerEvents = 'auto'
+        document.body.style.cursor = 'auto'
         done()
       },
     })

@@ -33,20 +33,19 @@
     font-size: 1vw
     line-height: 1.4em
   &__h1
-    opacity: 0
     +header
-    font-size: 6.45vw
     line-height: 0.72em
     letter-spacing: 0.02em
     text-align: center
+    +fontSize(88, 48) 
+    &:first-child
+      opacity: 0
   &__image
     height: 100%
     display: block 
     float: right
     width: 100%
-    background-size: cover
-    background-repeat: no-repeat
-    background-position: 50%, 50%
+    +cover
     transform: scale(1.2)
     cursor: pointer
   &__image-rewealer
@@ -83,8 +82,8 @@
       margin-top: 40px
     .container
       flex-direction: column
-      h1
-        font-size: 48px
+      // h1
+      //   font-size: 48px
     &__left
       width: 100%
       height: 30%
@@ -112,7 +111,7 @@
 .article
   width: 100%
   margin-top: 15px
-  margin-bottom: 100px
+  margin-bottom: 48px
   .container
     display: flex
     flex-direction: column
@@ -146,6 +145,7 @@
     border: 1px $medium-gray solid
     transition: border .3s ease, color .3s ease 
     cursor: pointer
+    font-size: 13px
     &:hover
       color: $accent-color
       border-color: lighten($accent-color, 50%)
@@ -194,9 +194,41 @@
       display: flex
       justify-content: center
       align-items: center 
+    &__bottom
+      flex-direction: column
+      border-bottom: none
+      padding-top: 40px
+      padding-bottom: 40px
+      margin-top: 0px
+      padding-left: 0px
+      padding-right: 0px
+    &__tags-social
+      position: static
+      justify-content: space-between
+      width: 100vw
+      margin-top: 40px
+      border-top: 1px $medium-gray solid
+      a
+        width: 33.3%
+        display: flex
+        justify-content: center
+        align-items: center 
+        padding: 17px 24px
+        margin-right: 0
+        &:nth-child(2)
+          border-left: 1px $medium-gray solid
+          border-right: 1px $medium-gray solid
+    &__tag
+      white-space: nowrap
+      &:last-child
+        margin-right: 12px
+
   @include media("<=phone")
     .interviewer-name, .respondent-name
       margin-right: 46px
+    &__tags
+      width: 100%
+      overflow-x: scroll
 
 .article-social
   display: flex 

@@ -9,6 +9,7 @@
 	transition: background .3s ease
 	&.filter-open
 		background: white
+		position: fixed !important
 		color: $brown
 	&__logo
 		+header
@@ -41,6 +42,13 @@
 			pointer-events: auto
 		svg
 			margin-right: 8px
+		@include media("<=phone")
+			display: none
+			position: absolute
+			top: 90px
+			margin-left: 0px
+			&.active
+				display: flex
 	&__filter-btn
 		margin-left: 14px
 		border: 1px solid $medium-gray
@@ -77,6 +85,9 @@
 		margin-top: 10px
 		&:hover
 			color: $accent-color
+	&__ui
+		display: flex
+		align-items: center
 	@include media("<=1192px")
 		&__left
 			width: auto

@@ -8,11 +8,16 @@ import rewealSlider from '../rewealSlider'
 
 class CustomRendererInterviews extends Highway.Renderer {
   onEnterCompleted() {
+
     filter()
     scrollDirection()
-    new Slideshow(document.querySelector('.slideshow'))
+    for (const item of document.querySelectorAll('.slideshow')) {
+      new Slideshow(item)
+    }
+    
     document.body.style.overflow = 'initial'
     document.body.style.height = 'auto'
+
     document.querySelector('.navbar').style.position = 'absolute'
 
     if (!document.body.classList.contains('transitioned')) {
@@ -20,11 +25,9 @@ class CustomRendererInterviews extends Highway.Renderer {
     }
     rewealSlider()
 
-    const randomizerItems = document.querySelectorAll(
-      '.interview-randomizer__item',
-    )
-    const h1 =
-      document.querySelector('.clicked') || document.querySelector('h1')
+    const randomizerItems = document.querySelectorAll('.interview-randomizer__item')
+    const h1 = document.querySelector('.clicked') || document.querySelector('h1')
+
     randomizerItems.forEach((el) => {
       el.classList.remove('active')
       if (

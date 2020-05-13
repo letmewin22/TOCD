@@ -31,13 +31,13 @@ const filter = () => {
   const filterBtn = document.querySelector('.navbar__filter-current')
 
   const close = () => {
-    document.querySelector('.navbar__filter-btn').classList.remove('open')
+    document.querySelectorAll('.filter-btn').forEach(el => el.classList.remove('open'))
     document.querySelector('.filter').classList.remove('open')
     document.querySelector('.navbar').classList.remove('filter-open')
   }
 
   const open = () => {
-    document.querySelector('.navbar__filter-btn').classList.add('open')
+    document.querySelectorAll('.filter-btn').forEach(el => el.classList.add('open'))
     document.querySelector('.filter').classList.add('open')
     document.querySelector('.navbar').classList.add('filter-open')
 
@@ -52,9 +52,9 @@ const filter = () => {
     }
   }
 
-  document.querySelector('.navbar__filter-btn').addEventListener('click', () => {
-    document.querySelector('.navbar__filter-btn').classList.contains('open') ? close() : open()
-  })
+  document.querySelectorAll('.filter-btn').forEach(el => el.addEventListener('click', () => {
+    el.classList.contains('open') ? close() : open()
+  }))
 
 
 
@@ -70,7 +70,6 @@ const filter = () => {
       document.querySelectorAll(`[${attribute}]`).forEach(element => {
 
         if (event.target.innerText === element.getAttribute(attribute)) {
-          document.querySelector('.second-strip').style.display = 'none'
           element.classList.add('is-visible')
         }
       })
@@ -101,7 +100,6 @@ const filter = () => {
     filterBtn.classList.remove('active')
 
     headerName.forEach(elem => elem.classList.add('is-visible', 'default-layout'))
-    document.querySelector('.second-strip').style.display = 'flex'
     document.documentElement.classList.remove('filtered')
     new MainSlider()
   })

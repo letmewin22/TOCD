@@ -2,12 +2,12 @@ import { TimelineMax, Power2, Power1 } from 'gsap'
 
 const interviewLoader = () => {
 
-  const h1 = document.querySelector('h1')
-  const description = document.querySelector('.interview-header__description')
-  const img = document.querySelector('.interview-header__image')
-  const imgWrapper = document.querySelector('.interview-header__right')
-  const imgRewealer = document.querySelector('.interview-header__image-rewealer')
-  const strip = document.querySelector('.interview-randomizer')
+  const h1 = document.querySelectorAll('h1')
+  const description = document.querySelectorAll('.interview-header__description')
+  const img = document.querySelectorAll('.interview-header__image')
+  const imgWrapper = document.querySelectorAll('.interview-header__right')
+  const imgRewealer = document.querySelectorAll('.interview-header__image-rewealer')
+  const strip = document.querySelectorAll('.interview-randomizer')
 
   let tl = new TimelineMax()
   tl

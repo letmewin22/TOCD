@@ -1,4 +1,4 @@
-
+import swipedetect from '../lib/swipe'
 // The navigation class. Controls the .boxnav animations (e.g. pagination animation).
 export default class Navigation {
   constructor(el, settings) {
@@ -20,5 +20,8 @@ export default class Navigation {
   initEvents() {
     this.DOM.prevCtrl.addEventListener('click', () => this.settings.prev())
     this.DOM.nextCtrl.addEventListener('click', () => this.settings.next())
+    swipedetect(document.querySelector('.slideshow'), (swipedir) => {
+      swipedir === 'left' ? this.settings.next() : this.settings.prev()
+    })
   }
 }

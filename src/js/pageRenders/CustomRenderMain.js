@@ -11,10 +11,15 @@ class CustomRendererMain extends Highway.Renderer {
   onEnterCompleted() {
 
     new MainTimer()
+
     setInterval(() => {
       new MainTimer()
     }, 3000)
+
+    
+
     loader(() => new MainSlider)
+    
 
     filter()
     document.querySelector('.navbar').style.position = 'fixed'
@@ -53,7 +58,6 @@ class CustomRendererMain extends Highway.Renderer {
       duplicatedText.style.top = this.querySelector('p').getBoundingClientRect().y + 'px'
       duplicatedText.style.width = this.querySelector('p').getBoundingClientRect().width + 'px'
       duplicatedText.style.marginTop = 0
-      // duplicatedText.style.lineHeight = '0.89em'
       duplicatedText.style.zIndex = '1000'
 
       duplicatedText.classList.add('text-clicked')
@@ -61,37 +65,6 @@ class CustomRendererMain extends Highway.Renderer {
     }
 
     namesWrapper.forEach(el => el.addEventListener('click', clone))
-    // const reviewsArr = []
-    // const wrapper = document.querySelector('.header__names .container')
-
-    // const url = 'https://test-db-tocd.firebaseio.com/db.json'
-
-
-    // const fetchReviews = (arr) => {
-    //   return fetch(url)
-    //     .then(response => response.json())
-    //     .then(response => {
-    //       return response ?
-    //         Object.keys(response).map(key => {
-    //           arr.push(response[key])
-    //         }) : []
-    //     })
-    // }
-
-    // window.addEventListener('load', () => {
-
-    //   fetchReviews(reviewsArr)
-    //     .then(() => {
-    //       const reviews = reviewsArr
-    //       const reviewsItem = reviews.length ?
-    //         reviews.map(HTML.addToHTML).join('') :
-    //         '<span>No reviews yet</span>'
-
-    //       wrapper.innerHTML = reviewsItem + reviewsItem
-    //       localStorage.setItem('people', JSON.stringify(reviews))
-    //       filter()
-    //     })
-    // })
   }
 }
 // Don`t forget to export your renderer

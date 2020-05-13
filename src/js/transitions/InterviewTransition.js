@@ -6,6 +6,7 @@ export default class InterviewTransition extends Highway.Transition {
   out({ from, done }) {
     document.body.style.cursor = 'wait'
     document.body.style.position = 'fixed'
+    document.body.style.position = 'initial'
     let tl = new TimelineMax({ onComplete: done })
     tl
       .to(from, 0.25, { opacity: 0 })
@@ -18,7 +19,6 @@ export default class InterviewTransition extends Highway.Transition {
     document.body.classList = ''
     document.body.classList.add('transitioned')
     document.body.overflow = 'auto'
-    document.body.style.cursor = 'auto'
 
     const clicked = document.querySelector('.clicked')
     const clickedText = document.querySelector('.text-clicked')
@@ -35,8 +35,8 @@ export default class InterviewTransition extends Highway.Transition {
       h1fontSize: getComputedStyle(h1).fontSize,
       textX: description.getBoundingClientRect().x + description.getBoundingClientRect().width / 2,
       textY: description.getBoundingClientRect().y + description.getBoundingClientRect().height / 2,
-      textFontSize: getComputedStyle(description).fontSize,
-      textLineHeight: getComputedStyle(description).lineHeight
+      textLineHeight: getComputedStyle(description).lineHeight,
+      textColor: getComputedStyle(description).color
     }
 
     let tl = new TimelineMax({
@@ -53,6 +53,7 @@ export default class InterviewTransition extends Highway.Transition {
         textWrapper.appendChild(clickedText)
         // textWrapper.removeChild(description)
         document.body.style.position = 'initial'
+        document.body.style.cursor = 'auto'
         done()
       }
     })
@@ -72,11 +73,10 @@ export default class InterviewTransition extends Highway.Transition {
       .to(clickedText, 0.8, {
         left: css.textX,
         top: css.textY,
-        fontSize: css.textFontSize,
         lineHeight: css.textLineHeight,
         x: '-50%',
         y: '-50%',
-        opacity: 1,
+        color: css.textColor,
         ease: Power2.easeInOut
       }, 0)
 

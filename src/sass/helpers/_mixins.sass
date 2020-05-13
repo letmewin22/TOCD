@@ -300,3 +300,9 @@
     position: absolute
     top: 50%
     transform: translateY(-50%)
+
+
+=fontSize($pcSize, $mobSize)
+  $addSize: $pcSize - $mobSize
+  $maxWidth: $maxWidth - $minWidth
+  font-size: calc(#{$mobSize + px} + #{$addSize} * ((100vw - #{$minWidth + px}) / #{$maxWidth}))

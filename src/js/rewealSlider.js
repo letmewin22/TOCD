@@ -4,8 +4,13 @@ const rewealSlider = () => {
   const img = document.querySelector('.interview-header__image')
   const slider = document.querySelector('.slideshow-wrapper')
   const sliderContent = slider.querySelector('.slideshow')
+  let isAnimating = false
 
   img.addEventListener('click', () => {
+
+    if (isAnimating) return
+    isAnimating = true
+
     document.body.style.cursor = 'wait'
     const clone = img.cloneNode(true)
 
@@ -21,8 +26,8 @@ const rewealSlider = () => {
     let tl = new TimelineMax({
       onComplete: () => {
         document.body.removeChild(clone)
-        img.style.opacity = 1
         document.body.style.cursor = 'auto'
+        isAnimating = false
       },
     })
     tl.to(clone, 0.9, {
@@ -43,17 +48,44 @@ const rewealSlider = () => {
   })
 
   document.querySelector('.slideshow-close').addEventListener('click', () => {
-    let tl = new TimelineMax()
+
+    if (isAnimating) return
+    isAnimating = true
+
+    const current = document.querySelector('.slide--current')
+
+    const newClone = current.querySelector('.slide__img').cloneNode(true)
+
+    newClone.style.width = current.querySelector('.slide__img').getBoundingClientRect().width + 'px'
+    newClone.style.height = current.querySelector('.slide__img').getBoundingClientRect().height + 'px'
+    newClone.style.left = current.querySelector('.slide__img').getBoundingClientRect().x + 'px'
+    newClone.style.top = current.querySelector('.slide__img').getBoundingClientRect().y + 'px'
+    newClone.style.position = 'fixed'
+    newClone.style.zIndex = '100000'
+
+    document.body.appendChild(newClone)
+    sliderContent.style.opacity = 0
+
+    img.style.backgroundImage = getComputedStyle(current.querySelector('.slide__img')).backgroundImage
+
+    let tl = new TimelineMax({
+      onComplete: () => {
+        img.style.opacity = 1
+        document.body.removeChild(newClone)
+        isAnimating = false
+      },
+    })
     tl
-      .to(slider, 0.5, { opacity: 0 }).to(slider, 0.01, { y: '-100%' })
-      .to(sliderContent, 0.01, { opacity: 0, ease: Power2.easeInOut })
+      .to(newClone, 0.9, {
+        left: img.getBoundingClientRect().x + 'px',
+        top: img.getBoundingClientRect().y + 'px',
+        width: img.getBoundingClientRect().width + 'px',
+        height: img.getBoundingClientRect().height + 'px',
+        ease: Power2.easeInOut
+      }, 0)
+      .to(slider, 0.5, { opacity: 0 }).to(slider, 0.01, { y: '-100%' }, 0.2)
+      .to(newClone, 0.01, { zIndex: '1', ease: Power3.easeInOut }, 0.2)
 
-    // const slides = document.querySelectorAll('.slide')
-
-    // for (let i = 0; i < slides.length; i++) {
-    //   slides[i].classList.remove('slide--current')
-    //   slides[0].classList.add('slide--current')
-    // }
   })
 }
 
