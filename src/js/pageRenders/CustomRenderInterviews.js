@@ -1,6 +1,5 @@
 import Highway from '@dogstudio/highway'
 
-import filter from '../filter.js'
 import scrollDirection from '../scrollDirection'
 import Slideshow from '../slider/Slideshow.js'
 import interviewLoader from '../loaders/interviewLoader'
@@ -9,14 +8,16 @@ import rewealSlider from '../rewealSlider'
 class CustomRendererInterviews extends Highway.Renderer {
   onEnterCompleted() {
 
-    filter()
     scrollDirection()
+    
     for (const item of document.querySelectorAll('.slideshow')) {
       new Slideshow(item)
     }
     
     document.body.style.overflow = 'initial'
     document.body.style.height = 'auto'
+    document.body.style.overflowX = 'hidden'
+    document.body.style.width = 'auto'
 
     document.querySelector('.navbar').style.position = 'absolute'
 

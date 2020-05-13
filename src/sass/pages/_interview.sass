@@ -71,7 +71,7 @@
     text-align: left
   &__photograph
     text-align: right 
-  @include media("<=1025px")
+  +media("<=1025px")
     height: auto
     padding-top: 200px
     &__description
@@ -102,9 +102,9 @@
       position: static
       width: 100%
       margin-top: 16px
-    @include media("<=850px")
+    +media("<=850px")
       font-size: 13px
-    @include media("<=phone")
+    +media("<=phone")
       &__image
         width: 100%
 
@@ -175,7 +175,7 @@
     +header
     display: inline-block
     margin-right: 80px
-  @include media("<=900px")
+  +media("<=900px")
     .container
       flex-direction: column
     &__top
@@ -223,7 +223,7 @@
       &:last-child
         margin-right: 12px
 
-  @include media("<=phone")
+  +media("<=phone")
     .interviewer-name, .respondent-name
       margin-right: 46px
     &__tags
@@ -317,6 +317,8 @@
     &:last-child
       &::after
         display: none
+    img
+      width: 48px
     &.active
       border-bottom: 1px $accent-color solid
       h3
@@ -339,7 +341,7 @@
     font-size: 10px
     margin-top: 4px
     display: inline-block
-  @include media("<=1180px")
+  +media("<=1180px")
     bottom: auto
     top: 0
     &__items-wrapper
@@ -375,7 +377,7 @@
       padding-left: 25px
     &__header
       font-size: 10px
-  @include media("<=1025px")
+  +media("<=1025px")
     pointer-events: none
     opacity: 0
     z-index: 1002

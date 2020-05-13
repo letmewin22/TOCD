@@ -3,7 +3,6 @@ import Highway from '@dogstudio/highway'
 import MainSlider from '../MainSlider.js'
 import loader from '../loaders/loader.js'
 import MainTimer from '../MainTimer.js'
-import filter from '../filter.js'
 import { TimelineMax } from 'gsap'
 
 class CustomRendererMain extends Highway.Renderer {
@@ -19,9 +18,7 @@ class CustomRendererMain extends Highway.Renderer {
     
 
     loader(() => new MainSlider)
-    
 
-    filter()
     document.querySelector('.navbar').style.position = 'fixed'
 
     const names = [...document.querySelectorAll('.header__name')]

@@ -8,7 +8,6 @@ export default class Nav {
     this.navItems = document.querySelector('.navbar__links')
     this.navItem = document.querySelectorAll('.navbar__link')
     this.navUI = document.querySelector('.navbar__left')
-
     this.render()
   }
 
@@ -63,3 +62,4 @@ export default class Nav {
       .to(this.navItems, 0.01, { display: 'none' })
   }
 }
+

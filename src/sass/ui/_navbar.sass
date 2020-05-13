@@ -42,7 +42,7 @@
 			pointer-events: auto
 		svg
 			margin-right: 8px
-		@include media("<=phone")
+		+media("<=phone")
 			display: none
 			position: absolute
 			top: 90px
@@ -88,12 +88,12 @@
 	&__ui
 		display: flex
 		align-items: center
-	@include media("<=1192px")
+	+media("<=1192px")
 		&__left
 			width: auto
 		&__link
 			font-size: 14px
-	@include media("<=1024px")
+	+media("<=1024px")
 		&__links
 			display: none
 			position: fixed
@@ -138,9 +138,12 @@
 		.container
 			justify-content: space-between 
 			height: 33px
-		@include media("<=1024px")
+		+media("<=1024px")
 			&__link
 				font-size: 34px
+	+media("<=phone")
+		&.is-filtered
+			padding-bottom: 90px
 .burger
 	cursor: pointer
 	display: none
@@ -151,7 +154,7 @@
 		transition: transform .5s ease, margin-top .5s ease
 		&:nth-child(2)
 			margin-top: 4px
-	@include media("<=1024px")
+	+media("<=1024px")
 		display: block
 		padding-top: 6px
 		padding-bottom: 6px
@@ -167,7 +170,7 @@
 
 .desktop-hidden
 	display: none
-	@include media("<=1024px")
+	+media("<=1024px")
 		display: block
 		
 		

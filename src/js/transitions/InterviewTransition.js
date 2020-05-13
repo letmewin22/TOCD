@@ -7,6 +7,7 @@ export default class InterviewTransition extends Highway.Transition {
     document.body.style.cursor = 'wait'
     document.body.style.position = 'fixed'
     document.body.style.position = 'initial'
+    document.body.style.width = 'auto'
     let tl = new TimelineMax({ onComplete: done })
     tl
       .to(from, 0.25, { opacity: 0 })
@@ -42,12 +43,14 @@ export default class InterviewTransition extends Highway.Transition {
     let tl = new TimelineMax({
       onComplete: () => {
         clicked.style.position = 'absolute'
+        clicked.style.zIndex = '1'
         // clicked.style.position = 'static'
         // clicked.style.transform = 'translate(0, 0)'
         wrapper.appendChild(clicked)
         // wrapper.removeChild(document.querySelector('h1'))
 
         clickedText.style.position = 'absolute'
+        clicked.style.zIndex = '1'
         // clickedText.style.position = 'static'
         // clickedText.style.transform = 'translate(0, 0)'
         textWrapper.appendChild(clickedText)

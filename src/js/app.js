@@ -1,6 +1,7 @@
 import Highway from '@dogstudio/highway'
 import './lib/smoothscroll'
 import Nav from './Nav.js'
+import filter from './filter.js'
 
 import CustomRendererMain from './pageRenders/CustomRenderMain'
 import CustomRendererInterviews from './pageRenders/CustomRenderInterviews'
@@ -27,6 +28,7 @@ const H = new Highway.Core({
 window.addEventListener('load', () => {
   document.body.style.cursor = 'auto'
   new Nav()
+  filter()
 })
 
 

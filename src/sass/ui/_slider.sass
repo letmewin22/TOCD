@@ -34,13 +34,13 @@
     z-index: 1000 
     opacity: 0 
     transition: opacity 0.4s 
-  @include media("<=1366px")
+  +media("<=1366px")
     width: 75vw
     height: 49vw
-  @include media("<=1025px")
+  +media("<=1025px")
     height: 40vw
     width: 60vw 
-  @include media("<=phone")
+  +media("<=phone")
     height: 216px
     width: 327px
 
@@ -79,7 +79,7 @@
   justify-content: space-between
   position: absolute
   z-index: 101
-  @include media("<=phone")
+  +media("<=phone")
     display: none
 .boxnav__item 
   display: flex 
@@ -103,7 +103,7 @@
     margin-top: 2px 
     fill: $medium-gray
     transition: fill .3s ease 
-  @include media("<=phone")
+  +media("<=phone")
     padding: 10px 14px
 
 

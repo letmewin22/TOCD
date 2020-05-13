@@ -8,6 +8,8 @@ export default class MainSlider {
     this.clockItems1 = [...document.querySelectorAll('#clock_slider .line')]
     this.clockItems2 = [...document.querySelectorAll('#clock_slider-2 .line')]
     this.item = document.querySelector('.header')
+    this.isAnimating = false
+    this.direction = window.innerWidth > window.innerHeight ? 'vertical' : 'horizontal'
 
     this.setup()
     this.scrollHandler()
@@ -19,68 +21,135 @@ export default class MainSlider {
   }
 
   setup() {
-
-    document.body.style.height = this.strip.getBoundingClientRect().width - window.innerHeight + 'px'
-    document.documentElement.scrollTop = 1
-
-    this.currentPixel = window.pageYOffset
-
-    this.stripPercent = window.innerWidth / this.strip.getBoundingClientRect().width * 100
-
-    this.step = (document.body.getBoundingClientRect().height - window.innerHeight) / this.clockItems1.length
-
-    window.addEventListener('resize', () => {
+    if (this.direction === 'vertical') {
 
       document.body.style.height = this.strip.getBoundingClientRect().width - window.innerHeight + 'px'
+      document.documentElement.scrollTop = 1
+
       this.currentPixel = window.pageYOffset
 
       this.stripPercent = window.innerWidth / this.strip.getBoundingClientRect().width * 100
+
       this.step = (document.body.getBoundingClientRect().height - window.innerHeight) / this.clockItems1.length
-    })
+
+      window.addEventListener('resize', () => {
+        
+        this.direction = window.innerWidth > window.innerHeight ? 'vertical' : 'horizontal'
+
+        document.body.style.height = this.strip.getBoundingClientRect().width - window.innerHeight + 'px'
+        this.currentPixel = window.pageYOffset
+
+        this.stripPercent = window.innerWidth / this.strip.getBoundingClientRect().width * 100
+        this.step = (document.body.getBoundingClientRect().height - window.innerHeight) / this.clockItems1.length
+      })
+
+    } else {
+
+      document.body.style.overflowY = 'hidden'
+      document.body.style.overflowX = 'scroll'
+      document.body.style.height = '100vh'
+
+      document.body.style.width = this.strip.getBoundingClientRect().width - window.innerWidth + 'px'
+      document.documentElement.scrollLeft = 1
+
+      this.currentPixel = window.pageXOffset
+
+      this.stripPercent = window.innerWidth / this.strip.getBoundingClientRect().width * 100
+
+      this.step = (document.body.getBoundingClientRect().width - window.innerWidth) / this.clockItems1.length
+
+      window.addEventListener('resize', () => {
+
+        document.body.style.width = this.strip.getBoundingClientRect().width - window.innerWidth + 'px'
+        this.currentPixel = window.pageXOffset
+
+        this.stripPercent = window.innerWidth / this.strip.getBoundingClientRect().width * 100
+        this.step = (document.body.getBoundingClientRect().width - window.innerWidth) / this.clockItems1.length
+      })
+    }
   }
 
   scrollHandler() {
 
     if (document.querySelector('[data-router-view]').getAttribute('data-router-view') === 'main') {
+      if (this.direction === 'vertical') {
+        this.winScroll = document.documentElement.scrollTop
+        this.winHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
+        this.percent = this.winScroll / this.winHeight * (100 - this.stripPercent)
 
-      this.winScroll = document.documentElement.scrollTop
-      this.winHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
-      this.percent = this.winScroll / this.winHeight * (100 - this.stripPercent)
+        this.newPixel = window.pageYOffset
+        this.diff = this.newPixel - this.currentPixel
 
-      this.newPixel = window.pageYOffset
-      this.diff = this.newPixel - this.currentPixel
+        this.strip.classList.contains('distortion') ?
+          this.strip.style.transform = `translateX(${-this.percent}%) skewX(${-this.diff * 0.3}deg)` :
+          this.strip.style.transform = `translateX(${-this.percent}%)`
 
-      this.strip.classList.contains('distortion') ?
-        this.strip.style.transform = `translateX(${-this.percent}%) skewX(${-this.diff * 0.3}deg)` :
-        this.strip.style.transform = `translateX(${-this.percent}%)`
+        this.currentPixel = this.newPixel
 
-      this.currentPixel = this.newPixel
+        for (let i = 0; i < this.clockItems2.length; i++) {
+          this.clockItems1[i].classList.remove('active')
 
-      for (let i = 0; i < this.clockItems2.length; i++) {
-        this.clockItems1[i].classList.remove('active')
+          if (Math.floor(document.documentElement.scrollTop / this.step) < this.clockItems1.length)
+            this.clockItems1[Math.floor(document.documentElement.scrollTop / this.step)].classList.add('active')
+        }
 
-        if (Math.floor(document.documentElement.scrollTop / this.step) < this.clockItems1.length)
-          this.clockItems1[Math.floor(document.documentElement.scrollTop / this.step)].classList.add('active')
-      }
+        if (document.documentElement.classList.contains('filtered')) {
+          window.scrollTo(0, 1)
+          this.strip.style.transform = 'translateX(0%)'
+          document.documentElement.classList.remove('filtered')
+        }
+      } else {
+        this.winScroll = document.documentElement.scrollLeft
+        this.winHeight = document.documentElement.scrollWidth - document.documentElement.clientWidth
+        this.percent = this.winScroll / this.winHeight * (100 - this.stripPercent)
 
-      if (document.documentElement.classList.contains('filtered')) {
-        window.scrollTo(0, 1)
-        this.strip.style.transform = 'translateX(0%)'
-        document.documentElement.classList.remove('filtered')
+        this.newPixel = window.pageXOffset
+        this.diff = this.newPixel - this.currentPixel
+
+        this.strip.classList.contains('distortion') ?
+          this.strip.style.transform = `translateX(${-this.percent}%) skewX(${-this.diff * 0.15}deg)` :
+          this.strip.style.transform = `translateX(${-this.percent}%)`
+
+        this.currentPixel = this.newPixel
+        console.log(Math.floor(document.documentElement.scrollLeft / this.step))
+        for (let i = 0; i < this.clockItems2.length; i++) {
+          this.clockItems1[i].classList.remove('active')
+
+          if (Math.floor(document.documentElement.scrollLeft / this.step) < this.clockItems1.length && Math.floor(document.documentElement.scrollLeft / this.step) >= 0)
+            this.clockItems1[Math.floor(document.documentElement.scrollLeft / this.step)].classList.add('active')
+        }
+
+        if (document.documentElement.classList.contains('filtered')) {
+          window.scrollTo(0, 1)
+          this.strip.style.transform = 'translateX(0%)'
+          document.documentElement.classList.remove('filtered')
+        }
       }
       window.requestAnimationFrame(this.scrollHandler.bind(this))
+
     }
   }
 
   clockClick(elem) {
+    if (this.isAnimating) return
+    this.isAnimating = true
     this.strip.classList.remove('distortion')
     const scrollPos = (Math.floor(this.step) * (elem.getAttribute('id').replace(/\D/g, '')))
 
-    const tl = new TimelineMax({onComplete: () => {
-      this.strip.classList.add('distortion')
-    }})
-    tl
-      .to(document.documentElement, 2, { scrollTop: scrollPos, ease: Power3.easeOut }, 0)
+    const tl = new TimelineMax({
+      onComplete: () => {
+        this.strip.classList.add('distortion')
+        this.isAnimating = false
+      }
+    })
+    if (this.direction === 'vertical') {
+      tl
+        .to(document.documentElement, 2, { scrollTop: scrollPos, ease: Power3.easeOut }, 0)
+    } else {
+      tl
+        .to(document.documentElement, 2, { scrollLeft: scrollPos, ease: Power3.easeOut }, 0)
+    }
+
   }
 
   clockHover(elem, index) {
