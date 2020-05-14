@@ -1,7 +1,7 @@
 import MainSlider from './MainSlider.js'
 import tab from './tabs'
 
-const filter = () => {
+const filter = (btn) => {
 
   function uniq(a) {
     return a.sort().filter(function(item, pos, ary) {
@@ -52,7 +52,7 @@ const filter = () => {
     }
   }
 
-  document.querySelectorAll('.filter-btn').forEach(el => el.addEventListener('click', () => {
+  btn.forEach(el => el.addEventListener('click', () => {
     el.classList.contains('open') ? close() : open()
   }))
 
@@ -76,7 +76,7 @@ const filter = () => {
   }
 
 
-  filterItems.forEach(elem => elem.addEventListener('click', (e) => {
+  filterItems.forEach(elem => elem.addEventListener('click', () => {
 
     close()
     document.documentElement.classList.add('filtered')

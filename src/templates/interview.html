@@ -12,16 +12,18 @@ route: interview
     </div>
     <div class="interview-randomizer__items">
       <div class="interview-randomizer__items-wrapper">
-        {% for member in items.members %}
-          <div class="interview-randomizer__item">
-            <div class="interview-randomizer__photo">
-              <img src="{{member.img}}" alt="{{member.name}}">
+        {% for i in range(0, 20) -%}
+          {% for item in items.list %}
+            <div class="interview-randomizer__item">
+              <div class="interview-randomizer__photo">
+                <img src="{{item.avatar}}" alt="{{item.name}}">
+              </div>
+              <div class="interview-randomizer__text">
+                <h3 class="interview-randomizer__header">{{item.name}}</h3>
+                <span class="interview-randomizer__description">{{item.smallDescription}}</span>
+              </div>
             </div>
-            <div class="interview-randomizer__text">
-              <h3 class="interview-randomizer__header">{{member.name}}</h3>
-              <span class="interview-randomizer__description">{{member.occupation}}</span>
-            </div>
-          </div>
+          {% endfor %}
         {% endfor %}
       </div>
     </div>
@@ -100,7 +102,7 @@ route: interview
     </article>
     {% include "partials/_slider.html" %}
   </main>
-    <header class="interview-header">
+  <header class="interview-header">
     <div class="container">
       <div class="interview-header__left">
         <div class="h1-wrapper">

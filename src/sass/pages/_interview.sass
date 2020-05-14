@@ -32,6 +32,7 @@
     text-align: center
     font-size: 1vw
     line-height: 1.4em
+    color: $brown
   &__h1
     +header
     line-height: 0.72em
@@ -292,14 +293,13 @@
     align-items: center
     width: 100%
   &__item
-    display: flex
     position: relative
     padding-top: 24px
     padding-bottom: 24px
     padding-left: 15px
     padding-right: 15px 
     width: 16.6%
-    display: flex
+    display: none
     cursor: pointer
     justify-content: center
     border-bottom: 1px solid transparent
@@ -327,6 +327,8 @@
       border-bottom: 1px $accent-color solid
       h3
         color: $accent-color
+    &.show
+      display: flex
   &__text
     margin-top: 3px
     margin-left: 16px

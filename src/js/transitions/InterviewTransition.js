@@ -44,17 +44,13 @@ export default class InterviewTransition extends Highway.Transition {
       onComplete: () => {
         clicked.style.position = 'absolute'
         clicked.style.zIndex = '1'
-        // clicked.style.position = 'static'
-        // clicked.style.transform = 'translate(0, 0)'
         wrapper.appendChild(clicked)
-        // wrapper.removeChild(document.querySelector('h1'))
 
         clickedText.style.position = 'absolute'
-        clicked.style.zIndex = '1'
-        // clickedText.style.position = 'static'
-        // clickedText.style.transform = 'translate(0, 0)'
+        clickedText.style.zIndex = '1'
+
         textWrapper.appendChild(clickedText)
-        // textWrapper.removeChild(description)
+
         document.body.style.position = 'initial'
         document.body.style.cursor = 'auto'
         done()

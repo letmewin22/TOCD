@@ -3,7 +3,6 @@ import Highway from '@dogstudio/highway'
 import MainSlider from '../MainSlider.js'
 import loader from '../loaders/loader.js'
 import MainTimer from '../MainTimer.js'
-import { TimelineMax } from 'gsap'
 
 class CustomRendererMain extends Highway.Renderer {
 
@@ -15,7 +14,21 @@ class CustomRendererMain extends Highway.Renderer {
       new MainTimer()
     }, 3000)
 
-    
+    const items = [...document.querySelectorAll('.header__name-wrapper')]
+    const wrapper = document.querySelector('.first-strip')
+
+    const shuffleItems = () => {
+
+      wrapper.innerHTML = ''
+      const shuffledItems = items.sort(() => {
+        return 0.5 - Math.random()
+      })
+      shuffledItems.map(el => {
+
+        wrapper.appendChild(el)
+      })
+    }
+    shuffleItems()
 
     loader(() => new MainSlider)
 

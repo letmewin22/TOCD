@@ -47,8 +47,10 @@ export default class MainSlider {
 
       document.body.style.overflowY = 'hidden'
       document.body.style.overflowX = 'scroll'
-      document.body.style.height = '100vh'
-
+      let vh = window.innerHeight * 0.01
+      document.body.style.setProperty('--vh', `${vh}px`)
+      document.body.style.height = 'calc( var(--vh, 1vh) * 100)'
+      
       document.body.style.width = this.strip.getBoundingClientRect().width - window.innerWidth + 'px'
       document.documentElement.scrollLeft = 1
 
@@ -59,6 +61,10 @@ export default class MainSlider {
       this.step = (document.body.getBoundingClientRect().width - window.innerWidth) / this.clockItems1.length
 
       window.addEventListener('resize', () => {
+
+        vh = window.innerHeight * 0.01
+        document.body.style.setProperty('--vh', `${vh}px`)
+        document.body.style.height = 'calc( var(--vh, 1vh) * 100)'
 
         document.body.style.width = this.strip.getBoundingClientRect().width - window.innerWidth + 'px'
         this.currentPixel = window.pageXOffset

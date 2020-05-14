@@ -28,7 +28,6 @@ const H = new Highway.Core({
 window.addEventListener('load', () => {
   document.body.style.cursor = 'auto'
   new Nav()
-  filter()
+  filter(document.querySelectorAll('.navbar__filter-btn'))
 })
-
 

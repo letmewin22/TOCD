@@ -4,11 +4,14 @@ import scrollDirection from '../scrollDirection'
 import Slideshow from '../slider/Slideshow.js'
 import interviewLoader from '../loaders/interviewLoader'
 import rewealSlider from '../rewealSlider'
+import filter from '../filter.js'
 
 class CustomRendererInterviews extends Highway.Renderer {
   onEnterCompleted() {
 
     scrollDirection()
+    
+    filter(document.querySelectorAll('.interview-randomizer__filter-btn'))
     
     for (const item of document.querySelectorAll('.slideshow')) {
       new Slideshow(item)
@@ -38,6 +41,26 @@ class CustomRendererInterviews extends Highway.Renderer {
         el.classList.add('active')
       }
     })
+
+    const items = [...document.querySelectorAll('.interview-randomizer__item')]
+    const randomizeBtn = document.querySelector('.interview-randomizer__random-btn')
+
+    const shuffleItems = () => {
+
+      items.forEach(el => el.classList.remove('show'))
+
+      const shuffledItems = items.sort(() => {
+        return 0.5 - Math.random()
+      })
+
+      for (let i = 0; i < 6; i++) {
+        shuffledItems[i].classList.add('show')
+      }
+    }
+
+    shuffleItems()
+
+    randomizeBtn.addEventListener('click', shuffleItems)
   }
 }
 // Don`t forget to export your renderer

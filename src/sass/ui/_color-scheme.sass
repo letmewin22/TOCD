@@ -1,0 +1,64 @@
+body
+  &.morning
+    background: #fff
+    color: $brown
+    .header__time
+      color: $light-gray
+  &.lunchtime
+    background: #fff
+    color: $brown
+    .header__time
+      color: $accent-color
+  &.evening
+    background: $light-gray
+    color: $brown
+    .header__time
+      color: #fff
+  &.night
+    background: $brown
+    color: white
+    .header__time
+      color: black
+    .header__clock
+      svg
+        path
+          stroke: $accent-color
+        .active
+          path
+            stroke: white
+            stroke-width: 3px
+        .active
+          stroke: white
+    .header__description
+      color: #6A6765
+
+    .navbar__filter-btn
+      border-color: $accent-color
+      .open
+        path
+          fill: white
+      &:hover
+        border-color: $light-gray
+    .burger
+        &__line
+            background: white
+        &.open
+            .burger__line
+                background: $brown
+    .navbar__left 
+        &.open
+            .navbar__logo
+                color: $brown
+            .navbar__filter-btn
+                svg
+                    path
+                        fill: $accent-color
+    .navbar
+        &.filter-open
+            .burger
+                &__line
+                    background: $brown
+    +media("<=1024px")
+        .navbar
+            &__link
+                color: $brown
