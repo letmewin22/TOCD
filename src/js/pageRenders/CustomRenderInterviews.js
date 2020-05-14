@@ -3,18 +3,30 @@ import Highway from '@dogstudio/highway'
 import scrollDirection from '../scrollDirection'
 import Slideshow from '../slider/Slideshow.js'
 import interviewLoader from '../loaders/interviewLoader'
-import rewealSlider from '../rewealSlider'
+import mutationObserver from '../mutationObserver'
+import RewealSlider from '../slider/rewealSlider'
 import filter from '../filter.js'
 
 class CustomRendererInterviews extends Highway.Renderer {
+  
   onEnterCompleted() {
 
     scrollDirection()
-    
+
     filter(document.querySelectorAll('.interview-randomizer__filter-btn'))
-    
-    for (const item of document.querySelectorAll('.slideshow')) {
-      new Slideshow(item)
+
+    const articles = document.querySelectorAll('article')
+
+    for (const article of articles) {
+
+      new Slideshow(article.querySelector('.slideshow'))
+
+      new RewealSlider({
+        img: article.querySelector('.interview-header__image'), 
+        slider: article.querySelector('.slideshow-wrapper')
+      })
+
+      // console.log(article.getAttribute('data-tags').split(',').map(el => el.trim()))
     }
     
     document.body.style.overflow = 'initial'
@@ -27,8 +39,21 @@ class CustomRendererInterviews extends Highway.Renderer {
     if (!document.body.classList.contains('transitioned')) {
       interviewLoader()
     }
-    rewealSlider()
 
+    // mutationObserver((el) => {
+
+    //   console.log(el.addedNodes)
+      
+    //   const img = el.addedNodes[9].querySelector('.interview-header__image')
+    //   const slider = el.addedNodes[9].querySelector('.slideshow-wrapper')
+    //   const slideshow = el.addedNodes[9].querySelector('.slideshow')
+  
+    //   new Slideshow(slideshow)
+  
+    //   new RewealSlider({img, slider})
+  
+    // })
+    
     const randomizerItems = document.querySelectorAll('.interview-randomizer__item')
     const h1 = document.querySelector('.clicked') || document.querySelector('h1')
 
@@ -56,6 +81,7 @@ class CustomRendererInterviews extends Highway.Renderer {
       for (let i = 0; i < 6; i++) {
         shuffledItems[i].classList.add('show')
       }
+
     }
 
     shuffleItems()

@@ -4,6 +4,8 @@ const loader = (callback) => {
 
   document.body.style.overflowY = 'hidden'
   document.body.style.overflowX = 'scroll'
+  document.body.style.pointerEvents = 'none'
+  document.body.style.cursor = 'wait'
 
   callback()
 
@@ -19,6 +21,8 @@ const loader = (callback) => {
       if (window.innerWidth > window.innerHeight) {
         document.body.style.overflow = 'initial'
       }
+      document.body.style.pointerEvents = 'auto'
+      document.body.style.cursor = 'auto'
       document.querySelector('.header__names .container').classList.add('distortion')
     }
   })

@@ -4,14 +4,14 @@ import Navigation from './Navigation.js'
 
 // The Slideshow class.
 export default class Slideshow {
+  
   constructor(el) {
     this.DOM = {el: el}
-    this.navigation = new Navigation(document.querySelector('.boxnav'), {
+
+    this.navigation = new Navigation(this.DOM.el.parentNode.querySelector('.boxnav'), {
       next: () => this.navigate('right'),
       prev: () => this.navigate('left')
     })
-
-    this.DOM.detailsWrap = document.querySelector('.details-wrap')
 
     this.slides = []
     this.slidesHTML = [...this.DOM.el.querySelectorAll('.slide')]

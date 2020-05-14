@@ -21,6 +21,7 @@ export default class MainSlider {
   }
 
   setup() {
+
     if (this.direction === 'vertical') {
 
       document.body.style.height = this.strip.getBoundingClientRect().width - window.innerHeight + 'px'
@@ -42,7 +43,6 @@ export default class MainSlider {
         this.stripPercent = window.innerWidth / this.strip.getBoundingClientRect().width * 100
         this.step = (document.body.getBoundingClientRect().height - window.innerHeight) / this.clockItems1.length
       })
-
     } else {
 
       document.body.style.overflowY = 'hidden'
@@ -117,7 +117,7 @@ export default class MainSlider {
           this.strip.style.transform = `translateX(${-this.percent}%)`
 
         this.currentPixel = this.newPixel
-        console.log(Math.floor(document.documentElement.scrollLeft / this.step))
+        
         for (let i = 0; i < this.clockItems2.length; i++) {
           this.clockItems1[i].classList.remove('active')
 
@@ -126,7 +126,7 @@ export default class MainSlider {
         }
 
         if (document.documentElement.classList.contains('filtered')) {
-          window.scrollTo(0, 1)
+          window.scrollTo(1, 0)
           this.strip.style.transform = 'translateX(0%)'
           document.documentElement.classList.remove('filtered')
         }

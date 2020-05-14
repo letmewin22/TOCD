@@ -8,9 +8,6 @@
     overflow: hidden
   .description-wrapper
     margin-top: 70px
-    // line-height: 1.4em
-    // font-size: 0.9vw
-    // position: relative
   &__left
     display: flex
     justify-content: center
@@ -18,17 +15,14 @@
     width: 50%
     flex-direction: column
     height: 100%
-    // position: relative
   &__right
     width: 50%
     height: 100%
     margin-top: 40px
     margin-left: 16px
-    overflow: hidden
-    opacity: 0
+    overflow: hidden 
     position: relative
   &__description
-    opacity: 0
     text-align: center
     font-size: 1vw
     line-height: 1.4em
@@ -39,21 +33,19 @@
     letter-spacing: 0.02em
     text-align: center
     +fontSize(88, 48) 
-    &:first-child
-      opacity: 0
   &__image
     height: 100%
     display: block 
     float: right
-    width: 100%
+    width: 100% 
     +cover
-    transform: scale(1.2)
     cursor: pointer
   &__image-rewealer
     width: 100%
     height: 100%
     position: absolute
     background: white
+    transform: translateX(-100%) 
     z-index: 100
   &__bottom
     position: absolute
@@ -319,6 +311,7 @@
         display: none
     img
       width: 48px
+      user-select: none
     &.active
       border-bottom: 1px $accent-color solid
       h3
