@@ -54,11 +54,9 @@
     display: flex
     justify-content: space-between
     width: 46%
-    text-transform: uppercase 
-    letter-spacing: 0.24em
-    font-size: 0.6vw
+    +fontSize(13, 10)
     border-bottom: 1px $medium-gray solid
-    line-height: 1.6em
+    line-height: 1.4em
     +main
   &__location
     text-align: left
@@ -68,9 +66,7 @@
     height: auto
     padding-top: 200px
     &__description
-      font-size: 13px
-    &__bottom
-      font-size: 8px
+      font-size: 13px 
     .description-wrapper
       margin-top: 40px
     .container
@@ -263,7 +259,7 @@
     border-right: 1px $medium-gray solid
   &__filter-btn
     width: 46px
-    height: 47px
+    height: 38px
     display: flex
     justify-content: center
     align-items: center
@@ -273,7 +269,7 @@
       display: none
   &__random-btn
     width: 46px
-    height: 47px
+    height: 38px
     display: flex
     justify-content: center
     align-items: center
@@ -286,8 +282,8 @@
     width: 100%
   &__item
     position: relative
-    padding-top: 24px
-    padding-bottom: 24px
+    padding-top: 12px
+    padding-bottom: 12px
     padding-left: 15px
     padding-right: 15px 
     width: 16.6%

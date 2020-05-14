@@ -14,11 +14,12 @@ indent_style = space
 indent_size = 2
 
 [*.scss]
-indent_size = 4
+indent_size = 2
+indent_style = space
 
 [*.sass]
-indent_size = tab
-indent_style = tab
+indent_size = 2
+indent_style = space
 
 [*.sss]
 indent_size = tab

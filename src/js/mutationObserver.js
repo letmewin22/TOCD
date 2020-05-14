@@ -1,3 +1,10 @@
+/**
+ * 
+ * @todo
+ * 1. Добавить классы при создании классов
+ * 2. При изменении проверять на наличие классов и тем, у кого нет добавлять новые
+ */
+
 const mutationObserver = (outsideCallback) => {
 
   const target = document.querySelector('[data-router-view]')
