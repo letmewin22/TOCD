@@ -6,6 +6,7 @@ import interviewLoader from '../loaders/interviewLoader'
 import mutationObserver from '../mutationObserver'
 import RewealSlider from '../slider/rewealSlider'
 import filter from '../filter.js'
+import tags from '../tags'
 
 class CustomRendererInterviews extends Highway.Renderer {
   
@@ -14,10 +15,13 @@ class CustomRendererInterviews extends Highway.Renderer {
     scrollDirection()
 
     filter(document.querySelectorAll('.interview-randomizer__filter-btn'))
+    
 
     const articles = document.querySelectorAll('article')
 
     for (const article of articles) {
+
+      article.classList.add('added')
 
       new Slideshow(article.querySelector('.slideshow'))
 
@@ -26,7 +30,8 @@ class CustomRendererInterviews extends Highway.Renderer {
         slider: article.querySelector('.slideshow-wrapper')
       })
 
-      // console.log(article.getAttribute('data-tags').split(',').map(el => el.trim()))
+      tags(article)
+
     }
     
     document.body.style.overflow = 'initial'
@@ -40,19 +45,21 @@ class CustomRendererInterviews extends Highway.Renderer {
       interviewLoader()
     }
 
-    // mutationObserver((el) => {
+    mutationObserver(() => {
 
-    //   console.log(el.addedNodes)
+      const article = document.querySelector('article:not(.added)')
+      const img = article.querySelector('.interview-header__image')
+      const slider = article.querySelector('.slideshow-wrapper')
+      const slideshow = article.querySelector('.slideshow')
       
-    //   const img = el.addedNodes[9].querySelector('.interview-header__image')
-    //   const slider = el.addedNodes[9].querySelector('.slideshow-wrapper')
-    //   const slideshow = el.addedNodes[9].querySelector('.slideshow')
+      new Slideshow(slideshow)
   
-    //   new Slideshow(slideshow)
-  
-    //   new RewealSlider({img, slider})
-  
-    // })
+      new RewealSlider({img, slider})
+
+      tags(article)
+
+      article.classList.add('added')
+    })
     
     const randomizerItems = document.querySelectorAll('.interview-randomizer__item')
     const h1 = document.querySelector('.clicked') || document.querySelector('h1')

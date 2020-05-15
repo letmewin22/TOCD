@@ -1,10 +1,3 @@
-/**
- * 
- * @todo
- * 1. Добавить классы при создании классов
- * 2. При изменении проверять на наличие классов и тем, у кого нет добавлять новые
- */
-
 const mutationObserver = (outsideCallback) => {
 
   const target = document.querySelector('[data-router-view]')
@@ -17,7 +10,7 @@ const mutationObserver = (outsideCallback) => {
     for (let mutation of mutationsList) {
       if (mutation.type === 'childList') {
 
-        outsideCallback(mutation)
+        outsideCallback()
         // console.log('A child node has been added or removed.')
       }
     }
