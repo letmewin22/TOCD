@@ -16,39 +16,32 @@
 		font-size: 17px
 		letter-spacing: 0.02em
 		line-height: 0.8em
-	.container
+	&__top
 		display: flex
 		align-items: center
+		width: 100%
+	&__bottom
+		width: fit-content
 	&__left
 		display: flex
 		align-items: center
 		width: 36%
 	&__filter-current
-		margin-left: 33px
 		border: 1px solid $medium-gray
 		padding: 12px
+		margin-top: 32px
 		cursor: pointer
 		position: relative
 		transition: border-color .3s ease 
-		display: flex
 		justify-content: space-between
 		align-items: center
-		opacity: 0
-		pointer-events: none
+		display: none 
 		&:hover
 			border-color: $accent-color 
 		&.active
-			opacity: 1
-			pointer-events: auto
+			display: flex 
 		svg
-			margin-right: 8px
-		+media("<=phone")
-			display: none
-			position: absolute
-			top: 90px
-			margin-left: 0px
-			&.active
-				display: flex
+			margin-right: 8px 
 	&__filter-btn
 		margin-left: 14px
 		border: 1px solid $medium-gray
@@ -135,15 +128,13 @@
 			&.open
 				z-index: 1001
 				position: fixed	
-		.container
+		&__top
 			justify-content: space-between 
 			height: 33px
 		+media("<=1024px")
 			&__link
 				font-size: 34px
 	+media("<=phone")
-		&.is-filtered
-			padding-bottom: 90px
 		&__link
 			font-size: 5.5vh
 .burger

@@ -1,8 +1,8 @@
 import Highway from '@dogstudio/highway'
 
-import MainSlider from '../MainSlider.js'
-import loader from '../loaders/loader.js'
-import MainTimer from '../MainTimer.js'
+import Clock from '../ScrollSlider/Clock'
+import loader from '../loaders/loader'
+import MainTimer from '../MainTimer'
 
 class CustomRendererMain extends Highway.Renderer {
 
@@ -30,11 +30,32 @@ class CustomRendererMain extends Highway.Renderer {
     }
     shuffleItems()
 
-    loader(() => new MainSlider)
+    const clock = new Clock(document.querySelector('.header__names .container'), true)
+
+    loader(() => clock.render())
+
+    // document.querySelector('.navbar').onclick = () => {
+
+    //   document.querySelector('.filter-window').style.display = 'flex'
+
+    //   clock.destroy()
+
+    //   const filterSlider = new Clock(document.querySelector('.filter-window__items'))
+
+    //   filterSlider.render()
+
+    //   document.querySelector('.filter-window').onclick = () => {
+
+    //     filterSlider.destroy()
+    //     clock.render()
+    //     document.querySelector('.filter-window').style.display = 'none'
+    //   }
+
+    // }
 
     document.querySelector('.navbar').style.position = 'fixed'
 
-    const names = [...document.querySelectorAll('.header__name')]
+    const names = [...document.querySelectorAll('.br')]
     const namesWrapper = [...document.querySelectorAll('.header__name-wrapper')]
     for (const name of names) {
       name.innerHTML = name.innerHTML.replace(/\s/, '<br>')
@@ -67,7 +88,7 @@ class CustomRendererMain extends Highway.Renderer {
       duplicatedText.style.left = this.querySelector('p').getBoundingClientRect().x + 'px'
       duplicatedText.style.top = this.querySelector('p').getBoundingClientRect().y + 'px'
       duplicatedText.style.width = this.querySelector('p').getBoundingClientRect().width + 'px'
-      duplicatedText.style.marginTop = 0
+      duplicatedText.style.marginTop = '0'
       duplicatedText.style.zIndex = '1000'
 
       duplicatedText.classList.add('text-clicked')

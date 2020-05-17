@@ -1,32 +1,79 @@
 .filter-window
   display: flex
-  justify-content: center
+  justify-content: flex-start
   align-items: center 
   position: fixed
+  top: 0
+  left: 0
   width: 100%
   height: 100vh
   z-index: 1000
   background: white
+  display: none
   &__items
-    width: 100%
     height: 100%
     display: flex
-    justify-content: center
+    justify-content: flex-start 
     align-items: center 
     position: relative
+    padding-left: calc(50vw - 82vh / 2)
   &__item
     position: relative
-    height: 100% 
+    height: 101%
+    display: none 
+    align-items: flex-end  
+    margin-right: 25px
+    margin-left: 25px
+    width: 82vh
+    overflow: hidden 
+    &:hover
+      color: white
+      .filter-window__image
+        height: 100%
+    &.is-visible
+      display: flex 
+    +media("<=1170px") 
+      width: 75vh 
+    +media("<=phone") 
+      width: 90vw
+      align-items: center 
+      &:hover 
+        .filter-window__image 
+          height: 50% 
   &__image
     +cover
-    width: 634px
-    height: 100%
+    width: 100%
+    height: 0%
+    transition: height .8s cubic-bezier(0.25, 1, 0.5, 1) 
   &__text
-      position: absolute 
-      top: 50% 
-      left: 50% 
-      transform: translate(-50%, -50%)
-      color: white
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    text-align: center
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center 
+    width: 100% 
   &__h2
-      +header
-      +fontSize(48, 18)
+    +header
+    text-transform: uppercase
+    +fontSize(88, 48)
+    line-height: 80%
+    transition: color .3s ease
+  &__description
+    width: 22vw
+    margin-top: 24px 
+    font-size: 1vw 
+    line-height: 1.32em 
+    padding-left: 40px 
+    padding-right: 40px 
+    +media("<=850px") 
+      font-size: 13px 
+      padding-left: 0px 
+      padding-right: 0px 
+      width: 30vw
+    +media("<=470px") 
+      width: 46vw
+  

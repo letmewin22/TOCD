@@ -5,7 +5,7 @@ import Slideshow from '../slider/Slideshow.js'
 import interviewLoader from '../loaders/interviewLoader'
 import mutationObserver from '../mutationObserver'
 import RewealSlider from '../slider/rewealSlider'
-import filter from '../filter.js'
+import Filter from '../Filter.js'
 import tags from '../tags'
 
 class CustomRendererInterviews extends Highway.Renderer {
@@ -14,9 +14,10 @@ class CustomRendererInterviews extends Highway.Renderer {
 
     scrollDirection()
 
-    filter(document.querySelectorAll('.interview-randomizer__filter-btn'))
+    const filter = new Filter(document.querySelectorAll('.interview-randomizer__filter-btn'))
     
-
+    filter.render()
+    
     const articles = document.querySelectorAll('article')
 
     for (const article of articles) {

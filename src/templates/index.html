@@ -26,8 +26,8 @@ route: main
       <div class="first-strip">
         {% for i in range(0, 20) -%}
         {% for item in items.list %}
-        <a data-transition="toInterview" href="interview.html" class="header__name-wrapper is-visible default-layout" data-city="{{item.city}}" data-occupation="{{item.occupation}}" data-key="{{item.key}}">
-          <h2 class="header__name">{{item.name}}</h2>
+        <a data-transition="toInterview" href="interview.html" class="header__name-wrapper is-visible default-layout">
+          <h2 class="header__name br">{{item.name}}</h2>
           <p class="header__description">{{item.description|safe}}</p>
         </a>
         {% endfor %}
