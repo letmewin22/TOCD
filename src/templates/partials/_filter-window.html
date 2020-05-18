@@ -1,17 +1,22 @@
 {% import "data/data.html" as items %}
 
 <div class="filter-window">
+  <div class="filter-window__loader">
+    <svg width="2000" height="2000" viewBox="0 0 2000 2000" stroke="#DBDBE0" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="1000" cy="1000" r="500" stroke-width="1000"/>
+    </svg>
+  </div>
   <div class="filter-window__items">
-  {% for i in range(0, 20) -%}
-  {% for item in items.list %}
-    <a href="#" class="filter-window__item is-visible" data-transition="toInterview" data-city="{{item.city}}" data-occupation="{{item.occupation}}" data-key="{{item.key}}">
-      <div class="filter-window__text">
-        <h2 class="filter-window__h2 br">{{item.name}}</h2>
-        <p class="filter-window__description">{{item.description|safe}}</p>
-      </div>
-      <div class="filter-window__image" style="background-image: url(./img/3.jpg)"></div>
-    </a>
+    {% for i in range(0, 20) -%}
+      {% for item in items.list %}
+        <a href="interview.html" class="filter-window__item is-visible" data-transition="toInterview" data-city="{{item.city}}" data-occupation="{{item.occupation}}" data-key="{{item.key}}">
+          <div class="filter-window__text">
+            <h2 class="filter-window__h2 br">{{item.name}}</h2>
+            <p class="filter-window__description">{{item.description|safe}}</p>
+          </div>
+          <div class="filter-window__image" data-bglazy="./img/3.jpg"></div>
+        </a>
+      {% endfor %}
     {% endfor %}
-     {% endfor %}
   </div>
 </div>

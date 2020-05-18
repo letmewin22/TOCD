@@ -12,8 +12,11 @@ export default class Clock extends ScrollSlider {
     this.clockItems2.forEach(el => el.addEventListener('click', this.clockClick.bind(this, el)))
     this.clockItems2.forEach((el, index) => el.addEventListener('mouseenter', this.clockHover.bind(this, el, index)))
     this.clockItems2.forEach((el, index) => el.addEventListener('mouseleave', this.clockHoverOut.bind(this, el, index)))
-
-    this.rotate()
+    
+    if (screen.width <= 960 && document.querySelector('[data-router-view]').getAttribute('data-router-view') === 'main') {
+      this.rotate()
+    }
+    
   }
 
   clockClick(elem) {
@@ -51,7 +54,7 @@ export default class Clock extends ScrollSlider {
   rotate() {
 
     new Propeller(this.clock, {
-      inertia: 0.5, speed: 20,
+      inertia: 0.95, speed: 40,
     })
   }
 }

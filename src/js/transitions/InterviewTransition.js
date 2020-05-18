@@ -7,8 +7,8 @@ export default class InterviewTransition extends Highway.Transition {
   out({ from, done }) {
     document.body.style.cursor = 'wait'
     document.body.style.position = 'fixed'
-    document.body.style.position = 'initial'
     document.body.style.width = 'auto'
+    document.body.style.height = '100vh'
     let tl = new TimelineMax({ onComplete: done })
     tl
       .to(from, 0.25, { opacity: 0 })
@@ -16,9 +16,17 @@ export default class InterviewTransition extends Highway.Transition {
 
   in({ from, to, done }) {
 
+    to.querySelector('.interview-header__right').style.opacity = 0
+    from.remove()
+    const h1 = to.querySelector('h1')
+    const description = to.querySelector('.interview-header__description')
+    
+    h1.style.opacity = 0
+    description.style.opacity = 0
+
     imagesLoaded(to.querySelector('.interview-header__image'), { background: true }, () => {
 
-      window.scrollTo(0, 1)
+      window.scrollTo(1, 1)
       document.body.style.pointerEvents = 'auto'
       document.body.classList = ''
       document.body.classList.add('transitioned')
@@ -29,17 +37,14 @@ export default class InterviewTransition extends Highway.Transition {
 
       const wrapper = to.querySelector('.h1-wrapper')
       const textWrapper = to.querySelector('.description-wrapper')
-      const h1 = to.querySelector('h1')
-      const description = to.querySelector('.interview-header__description')
+
       const strip = document.querySelector('.interview-randomizer')
-
-      h1.style.opacity = 0
-      description.style.opacity = 0
-
+      
       const css = {
         h1X: h1.getBoundingClientRect().x + h1.getBoundingClientRect().width / 2,
         h1Y: h1.getBoundingClientRect().y + h1.getBoundingClientRect().height / 2,
         h1fontSize: getComputedStyle(h1).fontSize,
+        h1LineHeight: getComputedStyle(h1).lineHeight,
         textX: description.getBoundingClientRect().x + description.getBoundingClientRect().width / 2,
         textY: description.getBoundingClientRect().y + description.getBoundingClientRect().height / 2,
         textLineHeight: getComputedStyle(description).lineHeight,
@@ -59,6 +64,7 @@ export default class InterviewTransition extends Highway.Transition {
 
           document.body.style.position = 'initial'
           document.body.style.cursor = 'auto'
+          document.body.style.height = 'auto'
           done()
         }
       })
@@ -69,7 +75,7 @@ export default class InterviewTransition extends Highway.Transition {
           top: css.h1Y,
           fontSize: css.h1fontSize,
           letterSpacing: '0.02em',
-          lineHeight: '0.72em',
+          lineHeight: css.h1LineHeight,
           x: '-50%',
           y: '-50%',
           ease: Power2.easeInOut
@@ -96,8 +102,6 @@ export default class InterviewTransition extends Highway.Transition {
         tl2
           .to(strip, 1, { opacity: 1 }, 1.2)
       }
-
-      from.remove()
     })
   }
   
