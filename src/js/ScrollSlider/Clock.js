@@ -1,5 +1,6 @@
 import ScrollSlider from './ScrollSlider'
 import { TimelineMax, Power3 } from 'gsap'
+import 'Propeller'
 
 export default class Clock extends ScrollSlider {
 
@@ -7,9 +8,12 @@ export default class Clock extends ScrollSlider {
 
     super(strip, skew)
 
+    this.clock = document.querySelector('.header__clock')
     this.clockItems2.forEach(el => el.addEventListener('click', this.clockClick.bind(this, el)))
     this.clockItems2.forEach((el, index) => el.addEventListener('mouseenter', this.clockHover.bind(this, el, index)))
     this.clockItems2.forEach((el, index) => el.addEventListener('mouseleave', this.clockHoverOut.bind(this, el, index)))
+
+    this.rotate()
   }
 
   clockClick(elem) {
@@ -42,5 +46,12 @@ export default class Clock extends ScrollSlider {
 
   clockHoverOut(elem, index) {
     this.clockItems1[index].style.strokeWidth = '1px'
+  }
+
+  rotate() {
+
+    new Propeller(this.clock, {
+      inertia: 0.5, speed: 20,
+    })
   }
 }
