@@ -77,7 +77,13 @@
 		align-self: flex-start
 		margin-top: 10px
 		&:hover
-			color: $accent-color
+			color: $accent-color 
+		&.white 
+				color: white 
+		+media("<=1024px") 
+			&.white
+				color: inherit
+
 	&__ui
 		display: flex
 		align-items: center

@@ -1,9 +1,10 @@
 export default class ScrollSlider {
 
-  constructor(strip, skew) {
+  constructor(strip, skew, func) {
 
     this.strip = strip
     this.skew = skew
+    this.func = func
 
     this.clockItems1 = [...document.querySelectorAll('#clock_slider .line')]
     this.clockItems2 = [...document.querySelectorAll('#clock_slider-2 .line')]
@@ -11,7 +12,6 @@ export default class ScrollSlider {
     this.isAnimating = false
     this.direction = window.innerWidth > window.innerHeight ? 'vertical' : 'horizontal'
     this.ticker = null
-
   }
 
   render() {
@@ -80,7 +80,9 @@ export default class ScrollSlider {
   }
 
   scrollHandler() {
- 
+
+    if (this.func) this.func()
+
     if (this.direction === 'vertical') {
 
       this.winScroll = document.documentElement.scrollTop

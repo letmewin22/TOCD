@@ -3,6 +3,7 @@ import { TimelineMax, Power2 } from 'gsap'
 import clock from './ScrollSlider/clockInstance'
 import ScrollSlider from './ScrollSlider/ScrollSlider'
 import imagesLoaded from 'imagesloaded'
+import FilterStrip from './ScrollSlider/FilterStrip'
 
 export default class Filter {
 
@@ -16,6 +17,10 @@ export default class Filter {
       return a.sort().filter(function(item, pos, ary) {
         return !pos || item !== ary[pos - 1]
       })
+    }
+
+    this.func = () => {
+      new FilterStrip()
     }
   }
 
@@ -179,13 +184,14 @@ export default class Filter {
 
   filteredOpen() {
     
-    this.filterSlider = new ScrollSlider(document.querySelector('.filter-window__items'))
+    this.filterSlider = new ScrollSlider(document.querySelector('.filter-window__items'), false, this.func)
     this.close()
     this.lazyLoad()
     this.loader()
     document.querySelector('.filter-window').style.display = 'flex'
     document.querySelector('.filter-window').style.opacity = '1'
     document.querySelector('.navbar').style.position = 'fixed'
+    document.querySelector('.navbar').classList.add('filter-window-open')
 
     if (document.querySelector('[data-router-view]').getAttribute('data-router-view') === 'main') {
       clock.destroy()
@@ -205,6 +211,7 @@ export default class Filter {
       document.querySelector('.navbar').style.position = 'absolute'
     }
     document.querySelector('.filter-window').style.opacity = '0'
+    document.querySelector('.navbar').classList.remove('filter-window-open')
     setTimeout(() => document.querySelector('.filter-window').style.display = 'none', 500)
     
   }

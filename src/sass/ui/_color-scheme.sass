@@ -58,6 +58,18 @@ body
             .burger
                 &__line
                     background: $brown
+        &.filter-window-open
+          .navbar__logo, .navbar__filter-current, .navbar__link
+            color: $brown
+          .navbar__filter-btn 
+            border-color: rgba($accent-color, 0.4) 
+            svg 
+              path 
+                fill: $accent-color 
+            &:hover
+              border-color: $accent-color
+    .filter-window
+      color: $brown
     +media("<=1024px")
         .navbar
             &__link

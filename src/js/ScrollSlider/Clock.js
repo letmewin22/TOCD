@@ -4,9 +4,9 @@ import 'Propeller'
 
 export default class Clock extends ScrollSlider {
 
-  constructor(strip, skew) {
+  constructor(strip, skew, func) {
 
-    super(strip, skew)
+    super(strip, skew, func)
 
     this.clock = document.querySelector('.header__clock')
     this.clockItems2.forEach(el => el.addEventListener('click', this.clockClick.bind(this, el)))

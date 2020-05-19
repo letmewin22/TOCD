@@ -20,7 +20,7 @@ export default class RewealSlider {
 
     if (this.isAnimating) return
     this.isAnimating = true
-
+    document.body.classList.add('slider-open')
     document.body.style.cursor = 'wait'
     this.clone = this.img.cloneNode(true)
 
@@ -94,6 +94,7 @@ export default class RewealSlider {
         this.img.style.opacity = 1
         document.body.removeChild(this.newClone)
         this.isAnimating = false
+        document.body.classList.remove('slider-open')
       },
     })
 
