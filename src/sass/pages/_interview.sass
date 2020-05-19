@@ -1,7 +1,11 @@
 body
   &.slider-open
     overflow: hidden !important
-  
+
+[data-router-view="interview"]
+  +media("<=1025px") 
+    padding-top: 200px 
+
 .interview-header
   height: 100vh
   .container
@@ -67,8 +71,7 @@ body
   &__photograph
     text-align: right 
   +media("<=1025px")
-    height: auto
-    padding-top: 200px
+    height: auto 
     &__description
       font-size: 13px 
     .description-wrapper
@@ -271,6 +274,8 @@ body
     cursor: pointer
     .close
       display: none
+    svg
+      pointer-events: none 
   &__random-btn
     width: 46px
     height: 38px

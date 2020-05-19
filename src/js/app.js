@@ -35,7 +35,7 @@ window.addEventListener('load', () => {
     name.innerHTML = name.innerHTML.replace(/\s/, '<br>')
   }
 
-  const filter = new Filter(document.querySelectorAll('.navbar__filter-btn'))
+  const filter = new Filter()
   filter.render()
 
   document.querySelectorAll('.filter-window__item').forEach(el => el.addEventListener('click', clone.bind(el, 'filter-window__h2', 'filter-window__description')))

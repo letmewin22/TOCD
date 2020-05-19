@@ -7,9 +7,8 @@ import FilterStrip from './ScrollSlider/FilterStrip'
 
 export default class Filter {
 
-  constructor(btn) {
+  constructor() {
 
-    this.btn = btn
     this.headerName = document.querySelectorAll('.filter-window__item')
     this.filterBtn = document.querySelector('.navbar__filter-current')
 
@@ -32,7 +31,8 @@ export default class Filter {
 
     this.filterItems = document.querySelectorAll('.tabs__item')
 
-    this.btn.forEach(el => el.addEventListener('click', this.toggle.bind(this, el)))
+    document.body.addEventListener('click', (e) => {
+      if (e.target.classList.contains('filter-btn')) this.toggle()})
     document.querySelectorAll('.filter-window__item').forEach(el => el.addEventListener('click', () => {
       document.querySelector('.filter-window').style.opacity = '0'
       setTimeout(() => this.reset(), 500)
@@ -56,14 +56,13 @@ export default class Filter {
     document.querySelector('.tab-1').classList.add('is-active')
   }
 
-  toggle(el) {
-
-    el.classList.contains('open') ? this.close() : this.open()
+  toggle() {
+    document.querySelector('.navbar__filter-btn').classList.contains('open') ? this.close() : this.open()
   }
 
   open() {
 
-    this.btn.forEach(el => el.classList.add('open'))
+    document.querySelectorAll('.navbar__filter-btn').forEach(el => el.classList.add('open'))
     document.querySelector('.filter').classList.add('open')
     document.querySelector('.navbar').classList.add('filter-open')
 
@@ -80,7 +79,7 @@ export default class Filter {
 
   close() {
 
-    this.btn.forEach(el => el.classList.remove('open'))
+    document.querySelectorAll('.navbar__filter-btn').forEach(el => el.classList.remove('open'))
     document.querySelector('.filter').classList.remove('open')
     document.querySelector('.navbar').classList.remove('filter-open')
   }

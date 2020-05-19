@@ -20,7 +20,7 @@ export default class Navigation {
   initEvents() {
     this.DOM.prevCtrl.addEventListener('click', () => this.settings.prev())
     this.DOM.nextCtrl.addEventListener('click', () => this.settings.next())
-    swipedetect(document.querySelector('.slideshow'), (swipedir) => {
+    swipedetect(this.DOM.el.parentNode.querySelector('.slideshow'), (swipedir) => {
       swipedir === 'left' ? this.settings.next() : this.settings.prev()
     })
   }
