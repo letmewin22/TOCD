@@ -1,6 +1,6 @@
 import tab from './tabs'
-import { TimelineMax, Power2 } from 'gsap'
-import clock from './ScrollSlider/clockInstance'
+import { TimelineMax, Power2, Power1, Power3 } from 'gsap'
+import Clock from './ScrollSlider/Clock'
 import ScrollSlider from './ScrollSlider/ScrollSlider'
 import imagesLoaded from 'imagesloaded'
 import FilterStrip from './ScrollSlider/FilterStrip'
@@ -21,6 +21,7 @@ export default class Filter {
     this.func = () => {
       new FilterStrip()
     }
+
   }
 
   render() {
@@ -64,7 +65,14 @@ export default class Filter {
 
     document.querySelectorAll('.navbar__filter-btn').forEach(el => el.classList.add('open'))
     document.querySelector('.filter').classList.add('open')
-    document.querySelector('.navbar').classList.add('filter-open')
+
+    const tl = new TimelineMax({onComplete: () => {
+      document.querySelector('.navbar').classList.add('filter-open')
+    }})
+    tl
+      .to(document.querySelector('.filter'), 0.3, {opacity: 1, ease: Power1.easeOut})
+      .to(document.querySelector('.filter'), 1, {y: '0%', ease: Power3.easeOut}, 0)
+      .fromTo(document.querySelector('.filter .container'), 1, {opacity: 0}, {opacity: 1, ease: Power1.easeOut}, 0.8)
 
     window.addEventListener('resize', () => {
       if (screen.width < 1025) {
@@ -80,8 +88,15 @@ export default class Filter {
   close() {
 
     document.querySelectorAll('.navbar__filter-btn').forEach(el => el.classList.remove('open'))
-    document.querySelector('.filter').classList.remove('open')
     document.querySelector('.navbar').classList.remove('filter-open')
+
+    const tl2 = new TimelineMax({onComplete: () => {
+      document.querySelector('.filter').classList.remove('open')
+    }})
+    tl2
+      .to(document.querySelector('.filter .container'), 0.5, {opacity: 0, ease: Power1.easeOut})
+      .to(document.querySelector('.filter'), 1, {y: '-100%', ease: Power3.easeOut}, 0.5)
+      .to(document.querySelector('.filter'), 0.5, {opacity: 0, ease: Power1.easeOut}, 1)
   }
 
   filterHandler(selector, attribute) {
@@ -183,7 +198,6 @@ export default class Filter {
 
   filteredOpen() {
     
-    this.filterSlider = new ScrollSlider(document.querySelector('.filter-window__items'), false, this.func)
     this.close()
     this.lazyLoad()
     this.loader()
@@ -192,21 +206,18 @@ export default class Filter {
     document.querySelector('.navbar').style.position = 'fixed'
     document.querySelector('.navbar').classList.add('filter-window-open')
 
-    if (document.querySelector('[data-router-view]').getAttribute('data-router-view') === 'main') {
-      clock.destroy()
-      this.filterSlider.render()
-    } else {
-      this.filterSlider.render()
-    }
+    const filterSlider = new ScrollSlider(document.querySelector('.filter-window__items'), false, this.func)
+
+    filterSlider.render()
   }
 
   filteredClose() {
     
     if (document.querySelector('[data-router-view]').getAttribute('data-router-view') === 'main') {
-      this.filterSlider.destroy()
+
+      const clock = new Clock(document.querySelector('.header__names .container'), true)
       clock.render()
     } else {
-      this.filterSlider.destroy()
       document.querySelector('.navbar').style.position = 'absolute'
     }
     document.querySelector('.filter-window').style.opacity = '0'

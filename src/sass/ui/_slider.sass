@@ -75,10 +75,13 @@
   +cover
 .boxnav 
   display: flex 
-  width: 90vw
+  width: 100vw
   justify-content: space-between
   position: absolute
   z-index: 101
+  .container
+    display: flex 
+    justify-content: space-between 
   +media("<=phone")
     display: none
 .boxnav__item 
@@ -129,7 +132,7 @@
 
 .slideshow-close
   position: absolute
-  right: 3%
+  right: 3vw
   top: 3.5%
   z-index: 101
   padding: 10px 14px
@@ -142,3 +145,5 @@
     background: $accent-color
     svg
       fill: white
+  +media("<=470px")
+    right: 24px

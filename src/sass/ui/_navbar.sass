@@ -15,7 +15,9 @@
 		+header
 		font-size: 17px
 		letter-spacing: 0.02em
-		line-height: 0.8em
+		line-height: 0.88em
+		&.is-active
+			pointer-events: none
 	&__top
 		display: flex
 		align-items: center
@@ -81,6 +83,10 @@
 			color: $accent-color 
 		&.white 
 				color: white 
+		a
+			&.is-active
+				color: $accent-color !important
+				pointer-events: none
 		+media("<=1024px") 
 			&.white
 				color: inherit
@@ -89,11 +95,11 @@
 		display: flex
 		align-items: center
 	+media("<=1192px")
-		&__left
-			width: auto
 		&__link
 			font-size: 14px
 	+media("<=1024px")
+		&__left
+			width: auto
 		&__links
 			display: none
 			position: fixed

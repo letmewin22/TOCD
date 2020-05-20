@@ -2,7 +2,7 @@ body
   &.slider-open
     overflow: hidden !important
 
-[data-router-view="interview"]
+#articles
   +media("<=1025px") 
     padding-top: 200px 
 
@@ -15,7 +15,7 @@ body
     height: 100%
     overflow: hidden
   .description-wrapper
-    margin-top: 70px
+    margin-top: 55px
   &__left
     display: flex
     justify-content: center
@@ -68,8 +68,12 @@ body
     +main
   &__location
     text-align: left
+    strong
+      letter-spacing: 0.02em
   &__photograph
     text-align: right 
+    strong
+      letter-spacing: 0.03em
   +media("<=1025px")
     height: auto 
     &__description
@@ -142,6 +146,7 @@ body
     transition: border .3s ease, color .3s ease 
     cursor: pointer
     font-size: 13px
+    line-height: 1em
     &:hover
       color: $accent-color
       border-color: lighten($accent-color, 50%)
@@ -262,6 +267,9 @@ body
   &.show
     opacity: 1
     pointer-events: auto
+  &.slider-open
+    opacity: 0 !important
+    pointer-events: none !important
   &__ui
     border-right: 1px $medium-gray solid
   &__filter-btn
@@ -301,6 +309,8 @@ body
     justify-content: center
     border-bottom: 1px solid transparent
     transition: border-color .3s ease
+    span
+      line-height: 1.2em
     &::after
       content: ''
       display: block

@@ -94,7 +94,7 @@ export default class ScrollSlider {
       
       if(this.skew) {
         this.strip.classList.contains('distortion') ?
-          this.strip.style.transform = `translateX(${-this.percent}%) skewX(${-this.diff * 0.3}deg)` :
+          this.strip.style.transform = `translateX(${-this.percent}%) skewX(${-this.diff * 0.1}deg)` :
           this.strip.style.transform = `translateX(${-this.percent}%)`
 
       } else {
@@ -132,7 +132,7 @@ export default class ScrollSlider {
 
     if(this.skew) {
       this.strip.classList.contains('distortion') ?
-        this.strip.style.transform = `translateX(${-this.percent}%) skewX(${-this.diff * 0.15}deg)` :
+        this.strip.style.transform = `translateX(${-this.percent}%) skewX(${-this.diff * 0.05}deg)` :
         this.strip.style.transform = `translateX(${-this.percent}%)`
     } else {
       this.strip.style.transform = `translateX(${-this.percent}%)`

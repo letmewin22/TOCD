@@ -1,4 +1,4 @@
-import { TimelineMax } from 'gsap'
+import { TimelineMax, Power3, Power2 } from 'gsap'
 
 export default class Nav {
 

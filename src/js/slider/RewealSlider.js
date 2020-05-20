@@ -38,7 +38,7 @@ export default class RewealSlider {
   }
 
   openAnimation() {
-
+    document.querySelector('.interview-randomizer').classList.add('slider-open')
     let tl = new TimelineMax({
       onComplete: () => {
         document.body.removeChild(this.clone)
@@ -95,6 +95,7 @@ export default class RewealSlider {
         document.body.removeChild(this.newClone)
         this.isAnimating = false
         document.body.classList.remove('slider-open')
+        document.querySelector('.interview-randomizer').classList.remove('slider-open')
       },
     })
 
@@ -106,7 +107,7 @@ export default class RewealSlider {
         height: this.img.getBoundingClientRect().height + 'px',
         ease: Power2.easeInOut
       }, 0)
-      .to(this.slider, 0.5, { opacity: 0 }).to(this.slider, 0.01, { y: '-100%' }, 0.2)
-      .to(this.newClone, 0.01, { zIndex: '1', ease: Power3.easeInOut }, 0.2)
+      .to(this.slider, 0.5, { opacity: 0 }, 0.4)
+      .to(this.slider, 0.01, { y: '-100%' })
   }
 }

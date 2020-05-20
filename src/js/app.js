@@ -26,8 +26,29 @@ const H = new Highway.Core({
   }
 })
 
+const curLink = () => {
+
+  const links = [...document.querySelectorAll('.navbar__link a'), document.querySelector('.navbar__logo')]
+
+  // Check Active Link
+  for (let i = 0; i < links.length; i++) {
+    const link = links[i]
+    console.log(link)
+      
+    // Clean class
+    link.classList.remove('is-active')
+  
+    // Active link
+    if (link.href === location.href) {
+      link.classList.add('is-active')
+    }
+  }
+}
+
+
 window.addEventListener('load', () => {
   document.body.style.cursor = 'auto'
+  curLink()
   new Nav()
 
   const names = [...document.querySelectorAll('.br')]
@@ -39,5 +60,12 @@ window.addEventListener('load', () => {
   filter.render()
 
   document.querySelectorAll('.filter-window__item').forEach(el => el.addEventListener('click', clone.bind(el, 'filter-window__h2', 'filter-window__description')))
+})
+
+
+
+H.on('NAVIGATE_IN', () => {
+  
+  curLink()
 })
 
