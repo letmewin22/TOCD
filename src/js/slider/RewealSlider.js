@@ -1,4 +1,5 @@
-import { TimelineMax, Power2, Power3 } from 'gsap'
+import { TimelineMax, Power2 } from 'gsap'
+import swipedetect from '../lib/swipe'
 
 
 export default class RewealSlider {
@@ -14,6 +15,11 @@ export default class RewealSlider {
 
     this.img.addEventListener('click', this.open.bind(this))
     this.closeBtn.addEventListener('click', this.close.bind(this))
+
+    swipedetect(this.slider.querySelector('.slideshow__content'), (swipedir) => {
+      if(!document.documentElement.classList.contains('animating'))
+        if(swipedir === 'down') this.close() 
+    })
   }
 
   open() {

@@ -6,12 +6,17 @@
   background: white
   width: 100%
   height: 100vh
-  display: flex
-  justify-content: center
-  align-items: center
   transform: translateY(-100%)
   opacity: 0
     
+.slideshow__content
+  position: relative 
+  width: 100%
+  height: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+
 .icon 
   display: block 
   margin: 0 auto 
@@ -36,7 +41,7 @@
     transition: opacity 0.4s 
   +media("<=1366px")
     width: 75vw
-    height: 49vw
+    height: 45vw
   +media("<=1025px")
     height: 40vw
     width: 60vw 
@@ -82,8 +87,6 @@
   .container
     display: flex 
     justify-content: space-between 
-  +media("<=phone")
-    display: none
 .boxnav__item 
   display: flex 
   align-items: center 
@@ -95,7 +98,7 @@
   cursor: pointer
   padding: 13px 17px
   border: 1px solid $medium-gray
-  transition: background .3s ease
+  transition: background .3s ease, border-color .3s ease
   +medium
   &:focus 
     outline: none 
@@ -109,25 +112,42 @@
   +media("<=phone")
     padding: 10px 14px
 
+.boxnav__item--label
+    position: fixed 
+    bottom: 3%
+    left: 50%
+    transform: translateX(-50%)
+    display: flex
+    align-items: center
+    +media("<=phone")
+      bottom: 6%
 
 .boxnav__item--prev:hover,
 .boxnav__item--next:hover 
   background: $accent-color
+  border-color: transparent
   svg
     fill: white
+  +media("<=phone")
+    display: none
 .boxnav__label 
   padding: 0 0.5rem 
-  font-size: 1.15rem 
+  font-size: 13px 
   position: relative 
-.boxnav__label--total 
+  color: $brown 
+.boxnav__label--current
+  font-size: 13px 
+.boxnav__label--total
+  margin-left: 2px 
+  font-size: 13px 
   &::before 
     content: '' 
     position: absolute 
-    right: 100% 
+    right: 85% 
     top: 0 
-    width: 2px 
-    height: 1.45rem 
-    background: #000 
+    width: 1px 
+    height: 100%  
+    background: $brown
     transform: rotate(22.5deg) 
 
 .slideshow-close
@@ -138,11 +158,12 @@
   padding: 10px 14px
   border: 1px solid $medium-gray
   cursor: pointer
-  transition: background .3s ease
+  transition: background .3s ease, border-color .3s ease
   svg
     transition: fill .3s ease
   &:hover
     background: $accent-color
+    border-color: transparent
     svg
       fill: white
   +media("<=470px")

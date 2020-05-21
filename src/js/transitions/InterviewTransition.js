@@ -48,7 +48,8 @@ export default class InterviewTransition extends Highway.Transition {
         textX: description.getBoundingClientRect().x + description.getBoundingClientRect().width / 2,
         textY: description.getBoundingClientRect().y + description.getBoundingClientRect().height / 2,
         textLineHeight: getComputedStyle(description).lineHeight,
-        textColor: getComputedStyle(description).color
+        textColor: getComputedStyle(description).color,
+        textWidth: screen.width <= 460 ? description.getBoundingClientRect().width : clickedText.getBoundingClientRect().width
       }
 
       let tl = new TimelineMax({
@@ -88,6 +89,7 @@ export default class InterviewTransition extends Highway.Transition {
           x: '-50%',
           y: '-50%',
           color: css.textColor,
+          width: css.textWidth,
           ease: Power2.easeInOut
         }, 0)
 

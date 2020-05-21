@@ -10,6 +10,7 @@ import CustomRendererAbout from './pageRenders/CustomRenderAbout'
 
 import SimpleTransition from './transitions/SimpleTransition'
 import InterviewTransition from './transitions/InterviewTransition'
+import tab from './tabs'
 
 
 const H = new Highway.Core({
@@ -30,15 +31,11 @@ const curLink = () => {
 
   const links = [...document.querySelectorAll('.navbar__link a'), document.querySelector('.navbar__logo')]
 
-  // Check Active Link
   for (let i = 0; i < links.length; i++) {
     const link = links[i]
-    console.log(link)
-      
-    // Clean class
+ 
     link.classList.remove('is-active')
   
-    // Active link
     if (link.href === location.href) {
       link.classList.add('is-active')
     }
@@ -59,7 +56,26 @@ window.addEventListener('load', () => {
   const filter = new Filter()
   filter.render()
 
-  document.querySelectorAll('.filter-window__item').forEach(el => el.addEventListener('click', clone.bind(el, 'filter-window__h2', 'filter-window__description')))
+  document.querySelectorAll('.filter-window__item').forEach(el => el.addEventListener('click', () => {
+
+    const h1 = document.querySelector('.interview-header__h1') || document.querySelector('h1')
+
+    if (el.querySelector('h2').innerText.replace(/\s/g, '').toLowerCase() !==
+          h1.innerText.replace(/\<br>/, '').replace(/\s/g, '').toLowerCase()
+    ) {
+      clone.call(el, 'filter-window__h2', 'filter-window__description')
+    }
+  }))
+
+  window.addEventListener('resize', () => {
+    if (screen.width < 1025) {
+      tab()
+    }
+  })
+
+  if (screen.width < 1025) {
+    tab()
+  }
 })
 
 

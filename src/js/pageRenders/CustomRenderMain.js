@@ -34,6 +34,11 @@ class CustomRendererMain extends Highway.Renderer {
     const clock = new Clock(document.querySelector('.header__names .container'), true)
     loader(() => clock.render())
 
+    // document.body.addEventListener('click', (e) => {
+    //   if(e.target.classList.contains('tabs__item')) 
+    //     clock.destroy()
+    // })
+
     document.querySelector('.navbar').style.position = 'fixed'
 
     const names = [...document.querySelectorAll('.br')]

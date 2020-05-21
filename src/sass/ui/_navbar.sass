@@ -1,16 +1,17 @@
 .navbar
 	position: fixed
 	top: 0
-	padding: 33px 0px
+	padding-top: 33px
 	left: 0
 	width: 100%
 	z-index: 1002
 	user-select: none
-	transition: background .3s ease
+	transition: background .5s cubic-bezier(0.61, 1, 0.88, 1), padding-bottom .5s cubic-bezier(0.61, 1, 0.88, 1)
 	&.filter-open
 		background: white
 		position: fixed !important
 		color: $brown
+		padding-bottom: 33px
 	&__logo
 		+header
 		font-size: 17px
@@ -86,7 +87,6 @@
 		a
 			&.is-active
 				color: $accent-color !important
-				pointer-events: none
 		+media("<=1024px") 
 			&.white
 				color: inherit
@@ -147,6 +147,10 @@
 		+media("<=1024px")
 			&__link
 				font-size: 34px
+	+media("<=1024px")
+		&.filter-open 
+			.burger
+				display: none 
 	+media("<=phone")
 		&__link
 			font-size: 5.5vh

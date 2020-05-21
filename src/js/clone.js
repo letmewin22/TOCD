@@ -30,6 +30,7 @@ const clone = function(h2, text) {
 
   duplicatedText.classList.add('text-clicked')
   document.body.appendChild(duplicatedText)
+
 }
 
 export default clone
