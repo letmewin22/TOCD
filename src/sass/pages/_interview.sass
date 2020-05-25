@@ -1,21 +1,31 @@
 body
   &.slider-open
     overflow: hidden !important
-
+[data-router-view="interview"]
+  width: 100%
 #articles
+  width: 100%
   +media("<=1025px") 
     padding-top: 200px 
 
+article
+  width: 100%
+
 .interview-header
   height: 100vh
+  width: 100%
   .container
     display: flex
     justify-content: space-between
     align-items: center
     height: 100%
     overflow: hidden
+    position: relative
   .description-wrapper
     margin-top: 55px
+    width: 55%
+    +media("<=1025px")
+      width: auto 
   &__left
     display: flex
     justify-content: center
@@ -278,6 +288,17 @@ body
   &__ui
     border-right: 1px $medium-gray solid
     height: 100%
+  &__ripple
+    width: 350px
+    height: 350px
+    border-radius: 50% 
+    background: $light-gray 
+    position: absolute 
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%) scale(0)
+    transition: transform .5s ease
+    z-index: -1 
   &__filter-btn
     width: 46px
     height: 50%
@@ -319,6 +340,7 @@ body
     padding-right: 15px 
     width: 16.6%
     height: 100%
+    overflow: hidden 
     display: none
     cursor: pointer
     align-items: center 
@@ -342,20 +364,19 @@ body
         display: none
     .interview-randomizer__img
       width: 48px
-      height: 48px
+      height: 48px 
       +cover
       user-select: none
-      transition: transform .3s ease
+      transition: transform .5s ease
     &.active
       border-bottom: 1px $accent-color solid
       h3
         color: $accent-color
     &:hover
-      border-bottom: 1px $accent-color solid
-      h3
-        color: $accent-color 
       .interview-randomizer__img 
-        transform: scale(1.05) 
+        transform: scale(1.1)  
+      .interview-randomizer__ripple 
+        transform: translate(-50%, -50%) scale(1) 
     &.show
       display: flex 
   &__text
@@ -376,18 +397,23 @@ body
     bottom: auto
     top: 0
     height: auto
-    &__items-wrapper
+    &__items
       overflow-x: scroll
+    &__items-wrapper
       justify-content: space-between
+      align-items: flex-start
       padding-left: 10px
       padding-right: 10px
-      padding-top: 8px
+      +media("<=560px")
+        width: fit-content
     &__description
       display: none
     &__item
       flex-direction: column
       align-items: center
-      width: 112px
+      height: 100%
+      justify-content: flex-start
+      width: 90px
       padding: 8px 16px
       &::after
         display: none
@@ -406,7 +432,7 @@ body
     &__random-btn
       height: 50%
     &__items
-      padding-left: 25px
+      padding-left: 35px
     &__header
       font-size: 10px
   +media("<=1025px")

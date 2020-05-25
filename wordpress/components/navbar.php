@@ -12,7 +12,7 @@
       <ul class="navbar__links">
         <li class="navbar__link">
           <div class="navbar__line"></div>
-          <a href="<?php echo get_site_url();?>/about">Про проєкт</a>
+          <a href="<?php echo get_site_url();?>/o-proekte/">Про проєкт</a>
         </li>
         <li class="navbar__link desktop-hidden">
           <div class="navbar__line"></div>

@@ -63,6 +63,23 @@ function mytheme_customize_register( $wp_customize ) {
 		)
 	);
 
+	$wp_customize->add_setting(
+		'site_contact',
+		array(
+			'default' => '',
+			'type' => 'option'
+		)
+	);
+	$wp_customize->add_control(
+		'site_contact_control',
+		array(
+			'type' => 'text',
+			'label' => "Контакт для связи",
+			'section' => 'data_site_section',
+			'settings' => 'site_contact'
+		)
+	);
+
 	}
 	add_action( 'customize_register', 'mytheme_customize_register' );
 
@@ -95,6 +112,31 @@ function remove_admin_menu() {
 	remove_menu_page('edit-comments.php'); // Комментарии	
 
 }
+
+// //Infinite Scroll
+// function wp_infinitepaginate(){
+// 	$loopFile = $_POST['loop_file'];
+// 	$paged = $_POST['page_no'];
+// 	$action = $_POST['what'];
+// 	$value = $_POST['value'];
+
+// 	if($action == 'author_name'){
+// 			$arg = array('author_name' => $value, 'paged' => $paged, 'post_status' => 'publish');
+// 	} elseif ($action == 'category_name'){
+// 			$arg = array('category_name' => $value, 'paged' => $paged, 'post_status' => 'publish' );
+// 	} elseif ($action == 'search'){
+// 			$arg = array('s' => $value, 'paged' => $paged, 'post_status' => 'publish' );
+// 	} else {
+// 			$arg = array('paged' => $paged, 'post_status' => 'publish');
+// 	}
+// 	# Load the posts
+// 	query_posts(array('post_type' => 'interview', 'paged' => 1, 'post_status' => 'publish'));
+// 	get_template_part( $loopFile );
+
+// 	exit;
+// }
+// add_action('wp_ajax_infinite_scroll', 'wp_infinitepaginate'); // for logged in user
+// add_action('wp_ajax_nopriv_infinite_scroll', 'wp_infinitepaginate'); // if user not logged in
 
 
 

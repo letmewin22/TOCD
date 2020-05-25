@@ -13,13 +13,25 @@ export default class RewealSlider {
 
     this.isAnimating = false
 
+    if(this.sliderContent.querySelectorAll('.slide').length > 1) {
+      this.init()
+    } else {
+      this.img.style.cursor = 'auto'
+    }
+  }
+
+  init() {
+
     this.img.addEventListener('click', this.open.bind(this))
     this.closeBtn.addEventListener('click', this.close.bind(this))
+    
+    if(this.slider.querySelector('.slideshow__content')) {
+      swipedetect(this.slider.querySelector('.slideshow__content'), (swipedir) => {
+        if(!document.documentElement.classList.contains('animating'))
+          if(swipedir === 'down') this.close() 
+      })
+    }
 
-    swipedetect(this.slider.querySelector('.slideshow__content'), (swipedir) => {
-      if(!document.documentElement.classList.contains('animating'))
-        if(swipedir === 'down') this.close() 
-    })
   }
 
   open() {

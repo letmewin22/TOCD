@@ -15,6 +15,7 @@ route: interview
         {% for i in range(0, 20) -%}
           {% for item in items.list %}
             <div class="interview-randomizer__item">
+            <div class="interview-randomizer__ripple"></div>
               <div class="interview-randomizer__photo">
                 <div class="interview-randomizer__img" style='background-image: url({{item.avatar}})'></div>
               </div>

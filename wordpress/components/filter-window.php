@@ -22,7 +22,7 @@
         <h2 class="filter-window__h2 br"><?php echo the_title();?></h2>
         <p class="filter-window__description"><?php echo get_field('описание');?></p>
       </div>
-      <div class="filter-window__image" data-bglazy="<?php echo get_template_directory_uri()?>/img/3.jpg"></div>
+      <div class="filter-window__image" data-bglazy="<?php echo get_field('фото_на_первый_экран');?>"></div>
     </a>
     <?php             
         }            

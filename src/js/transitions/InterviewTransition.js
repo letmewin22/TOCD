@@ -7,7 +7,7 @@ export default class InterviewTransition extends Highway.Transition {
   out({ from, done }) {
     document.body.style.cursor = 'wait'
     document.body.style.position = 'fixed'
-    document.body.style.width = 'auto'
+    document.body.style.width = '100%'
     document.body.style.height = '100vh'
     let tl = new TimelineMax({ onComplete: done })
     tl
@@ -15,7 +15,7 @@ export default class InterviewTransition extends Highway.Transition {
   }
 
   in({ from, to, done }) {
-
+    document.body.style.width = '100%'
     to.querySelector('.interview-header__right').style.opacity = 0
     from.remove()
     const h1 = to.querySelector('h1')

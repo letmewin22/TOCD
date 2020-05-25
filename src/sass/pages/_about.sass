@@ -1,6 +1,33 @@
 [data-router-view="about"]
 	background: $light-gray
 
+.about-h
+	color: $medium-gray
+	+main
+	line-height: 1em
+	font-size: 3.25vw
+	max-width: 55vw
+	text-transform: inherit
+	+media("<=900px")
+		font-size: 32px
+		max-width: none
+
+.about-h2
+	line-height: 1.12em
+	max-width: 60vw
+	+media("<=900px")
+		max-width: none
+
+.h2-section
+	margin-top: 128px 
+	+media("<=775px") 
+		margin-top: 64px 
+
+.team-img
+	margin-top: 40px
+	max-width: 100%
+	display: block
+
 .about-header
 	height: 66vh
 	.container
@@ -8,11 +35,6 @@
 		align-items: center
 		height: 100%
 	h1
-		color: $medium-gray
-		+main
-		line-height: 1em
-		font-size: 3.25vw
-		max-width: 55vw
 		opacity: 0
 		.line-wrapper
 			display: inline-block
@@ -53,6 +75,7 @@
 		width: fit-content
 		&:nth-child(2)
 			margin-top: 5px
+			margin-left: 16px
 	.medium
 		a
 			display: inline-block
@@ -94,6 +117,12 @@
 		margin-top: 12px
 		font-size: 13px
 		opacity: 0.64 
+	&__img
+		width: 128px
+		height: 128px
+		+cover
+		border-radius: 50%
+		background-color: #E6EAEB
 
 .about-footer
 	margin-top: 128px
@@ -120,9 +149,6 @@
 		&__right-content
 			width: 100%
 			margin-top: 32px
-	.about-header h1
-		font-size: 32px
-		max-width: none
 	.about-footer
 		.rights
 			width: auto

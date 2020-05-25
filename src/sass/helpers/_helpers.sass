@@ -4,6 +4,11 @@
 @function img-url($image)
   @return url('../img/#{$image}')
 
+@function size($pcSize, $mobSize)
+  $addSize: $pcSize - $mobSize
+  $maxWidth: $maxWidth - $minWidth
+  @return calc(#{$mobSize + px} + #{$addSize} * ((100vw - #{$minWidth + px}) / #{$maxWidth}))
+
 =image($image)
   background-image: img-url($image)
 
