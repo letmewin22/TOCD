@@ -1,4 +1,4 @@
-import { TimelineMax, Power2, Power1, Power4 } from 'gsap'
+import { TimelineMax, Power1, Power4 } from 'gsap'
 import ScrollSlider from './ScrollSlider/ScrollSlider'
 import imagesLoaded from 'imagesloaded'
 import FilterStrip from './ScrollSlider/FilterStrip'
@@ -27,12 +27,12 @@ export default class Filter {
 
     this.filterValues('city')
     this.filterValues('occupation')
-    this.filterValues('key')
 
     this.filterItems = document.querySelectorAll('.tabs__item')
 
     document.body.addEventListener('click', (e) => {
-      if (e.target.classList.contains('filter-btn')) this.toggle()})
+      if (e.target.classList.contains('filter-btn')) this.toggle()
+    })
     document.querySelectorAll('.filter-window__item').forEach(el => el.addEventListener('click', () => {
       document.querySelector('.filter-window').style.opacity = '0'
       setTimeout(() => this.reset(), 500)
@@ -64,44 +64,56 @@ export default class Filter {
 
     document.querySelectorAll('.navbar__filter-btn').forEach(el => el.classList.add('open'))
     document.querySelector('.filter').classList.add('open')
+    document.documentElement.classList.add('e-fixed')
+
+    let vh = window.innerHeight * 0.01
+    document.documentElement.style.setProperty('--vh', `${vh}px`)
 
     const tl = new TimelineMax()
     tl
-      .to(document.querySelector('.filter'), 1, {y: '0%', ease: Power4.easeOut, onComplete: () => {
-        document.querySelector('.navbar').classList.add('filter-open')
-      }}, 0)
-      .fromTo(document.querySelector('.filter .container'), 1, {opacity: 0}, {opacity: 1, ease: Power1.easeOut}, 0.8)
+      .to(document.querySelector('.filter'), 1, {
+        y: '0%', ease: Power4.easeOut, onComplete: () => {
+          document.querySelector('.navbar').classList.add('filter-open')
+        }
+      }, 0)
+      .fromTo(document.querySelector('.filter .container'), 1, { opacity: 0 }, { opacity: 1, ease: Power1.easeOut }, 0.8)
   }
 
   close() {
-
+    document.documentElement.classList.remove('e-fixed')
     document.querySelectorAll('.navbar__filter-btn').forEach(el => el.classList.remove('open'))
     document.querySelector('.navbar').classList.remove('filter-open')
 
-    const tl2 = new TimelineMax({onComplete: () => {
-      document.querySelector('.filter').classList.remove('open')
-    }})
+    const tl2 = new TimelineMax({
+      onComplete: () => {
+        document.querySelector('.filter').classList.remove('open')
+      }
+    })
     tl2
-      .to(document.querySelector('.filter .container'), 0.5, {opacity: 0, ease: Power1.easeOut})
-      .to(document.querySelector('.filter'), 1, {y: '-100%', ease: Power4.easeOut}, 0.5)
+      .to(document.querySelector('.filter .container'), 0.5, { opacity: 0, ease: Power1.easeOut })
+      .to(document.querySelector('.filter'), 1, { y: '-100%', ease: Power4.easeOut }, 0.5)
   }
 
   filterHandler(selector, attribute) {
 
-    selector.forEach(elem => {
+    selector.forEach((elem, i) => {
 
       elem.classList.remove('is-visible', 'default-layout')
+      elem.parentNode.parentNode.querySelectorAll('.filter-window__image')[i].classList.remove('is-visible')
+
       this.filterBtn.querySelector('.name').innerText = event.target.innerText
       this.filterBtn.classList.add('active')
-
-      document.querySelectorAll(`[${attribute}]`).forEach(element => {
-
-        if (event.target.innerText === element.getAttribute(attribute)) {
-          element.classList.add('is-visible')
-          document.querySelectorAll('.is-visible').length
-        }
-      })
     })
+    document.querySelectorAll(`.filter-window__item[${attribute}]`).forEach((element, index) => {
+
+      if (event.target.innerText === element.getAttribute(attribute)) {
+        element.classList.add('is-visible')
+
+        element.parentNode.parentNode.querySelectorAll('.filter-window__image')[index].classList.add('is-visible')
+        document.querySelectorAll('.is-visible').length
+      }
+    })
+
   }
 
   select(event) {
@@ -147,7 +159,9 @@ export default class Filter {
   }
 
   lazyLoad() {
-    this.imgs = document.querySelectorAll('.filter-window__item.is-visible .filter-window__image')
+    document.querySelector('.filter-window__loader').style.opacity = 1
+    document.querySelector('.filter-window__loader').style.display = 'flex'
+    this.imgs = document.querySelectorAll('.filter-window__image.is-visible')
     this.imgs.forEach(el => {
 
       const src = el.getAttribute('data-bglazy')
@@ -157,61 +171,66 @@ export default class Filter {
   }
 
   loader() {
-    const tl = new TimelineMax({ repeat: -1 })
-    tl
-      .fromTo(
-        document.querySelector('.filter-window__loader svg'),
-        1.4,
-        { strokeDashoffset: 0 },
-        { strokeDashoffset: -3141.276123046875, ease: Power2.easeInOut },
-        0
-      )
-      .fromTo(
-        document.querySelector('.filter-window__loader svg'),
-        1.4,
-        { strokeDashoffset: 3141.276123046875 },
-        { strokeDashoffset: 0, ease: Power2.easeInOut }
-      )
+
     imagesLoaded(this.imgs, { background: true }, () => {
 
-      tl.kill()
       document.querySelector('.filter-window__loader').style.opacity = 0
       setTimeout(() => {
         document.querySelector('.filter-window__loader').style.display = 'none'
         document.querySelector('.filter-window__items').style.opacity = '1'
+        document.querySelector('.filter-window__images-wrapper').style.opacity = '1'
       }, 300)
     })
   }
 
   filteredOpen() {
-    
+
     this.close()
     this.lazyLoad()
     this.loader()
+    document.querySelector('.site-wrapper').classList.add('e-fixed')
+    document.querySelector('.navbar').classList.remove('bg')
+    document.querySelector('.navbar').classList.remove('interview-page')
+    let vh = window.innerHeight * 0.01
+    document.querySelector('.site-wrapper').style.setProperty('--vh', `${vh}px`)
+
     document.querySelector('.filter-window').style.display = 'flex'
     document.querySelector('.filter-window').style.opacity = '1'
     document.querySelector('.navbar').style.position = 'fixed'
     document.querySelector('.navbar').classList.add('filter-window-open')
-    const filterSlider = new ScrollSlider(document.querySelector('.filter-window__items'), false, this.func)
-    filterSlider.render()
+
+    if (screen.width > 1024) document.querySelector('.navbar__link').classList.add('white')
+
+    if (document.querySelectorAll('.filter-window__item.is-visible').length > 1) {
+      const filterSlider = new ScrollSlider(document.querySelector('.filter-window__items'), false, this.func)
+      filterSlider.render()
+    } else {
+      document.querySelector('.filter-window__items').style.transfrom = 'translate(0,0)'
+      document.querySelector('.filter-window__item.is-visible').classList.add('active')
+    }
   }
 
   filteredClose() {
-
+    document.querySelector('.site-wrapper').classList.remove('e-fixed')
     document.body.style.overflow = 'auto'
     document.body.style.height = 'auto'
     document.body.style.width = 'auto'
-    
+
     if (document.querySelector('[data-router-view]').getAttribute('data-router-view') === 'main') {
       const clock = new Clock(document.querySelector('.header__names .container'), true)
       clock.render()
+    } else if(document.querySelector('[data-router-view]').getAttribute('data-router-view') === 'interview') {
+      document.querySelector('.navbar').classList.add('interview-page')
     } else {
       document.querySelector('.navbar').style.position = 'absolute'
     }
     document.querySelector('.filter-window').style.opacity = '0'
+    document.querySelector('.filter-window__items').style.opacity = '0'
+    document.querySelector('.filter-window__images-wrapper').style.opacity = '0'
     document.querySelector('.navbar').classList.remove('filter-window-open')
+    if (screen.width > 1024) document.querySelector('.navbar__link').classList.remove('white')
     setTimeout(() => document.querySelector('.filter-window').style.display = 'none', 500)
-    
+
   }
 
 }

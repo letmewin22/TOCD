@@ -6,12 +6,26 @@
 	width: 100%
 	z-index: 1002
 	user-select: none
-	transition: background .5s cubic-bezier(0.61, 1, 0.88, 1), padding-bottom .5s cubic-bezier(0.61, 1, 0.88, 1)
+	transition: background .5s cubic-bezier(0.61, 1, 0.88, 1), padding-bottom .5s cubic-bezier(0.61, 1, 0.88, 1),transform .4s ease
 	&.filter-open
 		background: white
 		position: fixed !important
 		color: $brown
 		padding-bottom: 33px
+	&.filter-window-open
+		background: transparent !important
+		border: none !important
+		padding-bottom: 0px !important
+	&.show
+		transform: translateY(-0%) !important
+	&.bg
+		background: white
+		padding-bottom: 33px
+		border-top: 1px solid $medium-gray
+		border-bottom: 1px solid $medium-gray
+	&.interview-page
+		transform: translateY(-200%)
+		position: fixed !important
 	&__logo
 		+header
 		font-size: 17px

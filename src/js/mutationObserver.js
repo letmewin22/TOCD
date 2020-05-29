@@ -1,6 +1,6 @@
 const mutationObserver = (outsideCallback) => {
 
-  const target = document.querySelector('[data-router-view]')
+  const target = document.querySelector('#articles')
 
   const config = {
     childList: true

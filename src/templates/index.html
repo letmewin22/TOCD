@@ -27,10 +27,10 @@ route: main
       <div class="first-strip">
         {% for i in range(0, 20) -%}
         {% for item in items.list %}
-        <a data-transition="toInterview" href="interview.html" class="header__name-wrapper is-visible default-layout">
-          <h2 class="header__name br">{{item.name}}</h2>
-          <p class="header__description">{{item.description|safe}}</p>
-        </a>
+        <div class="header__name-wrapper is-visible default-layout">
+          <h2 class="header__name br"><a data-transition="toInterview" href="interview.html">{{item.name}}</a></h2>
+          <p>gtwqetw<a href="#">blah</a></p>
+        </div>
         {% endfor %}
         {% endfor %}
       </div>

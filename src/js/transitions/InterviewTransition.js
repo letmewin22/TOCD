@@ -43,6 +43,7 @@ export default class InterviewTransition extends Highway.Transition {
       const css = {
         h1X: h1.getBoundingClientRect().x + h1.getBoundingClientRect().width / 2,
         h1Y: h1.getBoundingClientRect().y + h1.getBoundingClientRect().height / 2,
+        h1Width: h1.getBoundingClientRect().width,
         h1fontSize: getComputedStyle(h1).fontSize,
         h1LineHeight: getComputedStyle(h1).lineHeight,
         textX: description.getBoundingClientRect().x + description.getBoundingClientRect().width / 2,
@@ -77,6 +78,7 @@ export default class InterviewTransition extends Highway.Transition {
           fontSize: css.h1fontSize,
           letterSpacing: '0.02em',
           lineHeight: css.h1LineHeight,
+          width: css.h1Width,
           x: '-50%',
           y: '-50%',
           ease: Power2.easeInOut

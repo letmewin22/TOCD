@@ -2,20 +2,38 @@
 
 <div class="filter-window">
   <div class="filter-window__loader">
-    <svg width="2000" height="2000" viewBox="0 0 2000 2000" stroke="#DBDBE0" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="1000" cy="1000" r="500" stroke-width="1000"/>
+    <svg version="1.1" id="L2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+          y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+      <circle fill="none" stroke="#205A8E" stroke-width="4" stroke-miterlimit="10" cx="50" cy="50" r="48"/>
+      <line fill="none" stroke-linecap="round" stroke="#205A8E" stroke-width="4" stroke-miterlimit="10" x1="50" y1="50"
+            x2="85" y2="50.5">
+        <animateTransform attributeName="transform" dur="2s" type="rotate" from="0 50 50" to="360 50 50"
+              repeatCount="indefinite"/>
+      </line>
+      <line fill="none" stroke-linecap="round" stroke="#205A8E" stroke-width="4" stroke-miterlimit="10" x1="50" y1="50"
+            x2="49.5" y2="74">
+        <animateTransform attributeName="transform" dur="15s" type="rotate" from="0 50 50" to="360 50 50"
+              repeatCount="indefinite"/>
+      </line>
     </svg>
+  </div>
+  <div class="filter-window__images-wrapper">
+  {% for i in range(0, 50) -%}
+    <div class="filter-window__image" data-bglazy="./img/3.jpg"></div>
+    <div class="filter-window__image" data-bglazy="./img/1.jpg"></div>
+    {% endfor %}
   </div>
   <div class="filter-window__items">
     {% for i in range(0, 20) -%}
       {% for item in items.list %}
-        <a href="interview.html" class="filter-window__item is-visible" data-transition="toInterview" data-city="{{item.city}}" data-occupation="{{item.occupation}}" data-key="{{item.key}}">
+        <div class="filter-window__item is-visible"  data-city="{{item.city}}" data-occupation="{{item.occupation}}">
           <div class="filter-window__text">
-            <h2 class="filter-window__h2 br">{{item.name}}</h2>
-            <p class="filter-window__description">{{item.description|safe}}</p>
+            <h2 class="filter-window__h2 br">
+              <a href="interview.html" data-transition="toInterview">{{item.name}}</a>
+            </h2>
+            <p>{{item.description|safe}}</p>
           </div>
-          <div class="filter-window__image" data-bglazy="./img/3.jpg"></div>
-        </a>
+        </div>
       {% endfor %}
     {% endfor %}
   </div>

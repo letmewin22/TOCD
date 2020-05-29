@@ -48,19 +48,22 @@ window.addEventListener('load', () => {
   curLink()
   new Nav()
 
-  const names = [...document.querySelectorAll('.br')]
-  for (const name of names) {
-    name.innerHTML = name.innerHTML.replace(/\s/, '<br>')
-  }
+  // const names = [...document.querySelectorAll('.br')]
+  // for (const name of names) {
+  //   name.innerHTML = name.innerHTML.replace(/\s/, '<br>')
+  // }
+
+  const text = [...document.querySelectorAll('.filter-window__text p')]
+  text.forEach(el => el.classList.add('filter-window__description'))
 
   const filter = new Filter()
   filter.render()
 
-  document.querySelectorAll('.filter-window__item').forEach(el => el.addEventListener('click', () => {
+  document.querySelectorAll('.filter-window__h2').forEach(el => el.addEventListener('click', () => {
 
     const h1 = document.querySelector('.interview-header__h1') || document.querySelector('h1')
 
-    if (el.querySelector('h2').innerText.replace(/\s/g, '').toLowerCase() !==
+    if (el.innerText.replace(/\s/g, '').toLowerCase() !==
           h1.innerText.replace(/\<br>/, '').replace(/\s/g, '').toLowerCase()
     ) {
       clone.call(el, 'filter-window__h2', 'filter-window__description')

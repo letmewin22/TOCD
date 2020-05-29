@@ -6,6 +6,7 @@ import interviewLoader from '../loaders/interviewLoader'
 import mutationObserver from '../mutationObserver'
 import RewealSlider from '../slider/rewealSlider'
 import tags from '../tags'
+import shares from '../shares'
 
 class CustomRendererInterviews extends Highway.Renderer {
   
@@ -27,7 +28,7 @@ class CustomRendererInterviews extends Highway.Renderer {
       })
 
       tags(article)
-
+      shares(article)
     }
     
     document.body.style.overflow = 'initial'
@@ -35,7 +36,7 @@ class CustomRendererInterviews extends Highway.Renderer {
     document.body.style.overflowX = 'hidden'
     document.body.style.width = 'auto'
 
-    document.querySelector('.navbar').style.position = 'absolute'
+    document.querySelector('.navbar').classList.add('interview-page')
 
     if (!document.body.classList.contains('transitioned')) {
       interviewLoader()
@@ -53,6 +54,7 @@ class CustomRendererInterviews extends Highway.Renderer {
       new RewealSlider({img, slider})
 
       tags(article)
+      shares(article)
 
       article.classList.add('added')
     })
@@ -90,6 +92,10 @@ class CustomRendererInterviews extends Highway.Renderer {
     shuffleItems()
 
     randomizeBtn.addEventListener('click', shuffleItems)
+  }
+  onLeave() {
+    document.querySelector('.navbar').classList.remove('interview-page')
+    document.querySelector('.navbar').classList.remove('bg')
   }
 }
 // Don`t forget to export your renderer

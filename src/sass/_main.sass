@@ -3,6 +3,11 @@
     background: $accent-color
     color: white
 
+.e-fixed
+    height: 100vh
+    overflow: hidden !important
+    height: calc( var(--vh, 1vh) * 100)
+
 .custom
   scrollbar-width: none 
   scrollbar-height: none 
@@ -159,6 +164,24 @@ body
     padding-left: 40px
     padding-right: 40px 
     line-height: 1.32em
+    a
+      position: relative
+      display: inline-block
+      // width: fit-content
+      &::after
+        content: ''
+        display: block
+        background: $accent-color
+        opacity: .4
+        height: 1px
+        width: 100%
+        position: absolute
+        bottom: 2px
+        left: 0
+        transition: opacity .3s ease
+      &:hover
+        &::after
+          opacity: 1
 
 .footer
   position: fixed
@@ -192,9 +215,10 @@ body
   position: fixed
   top: 0
   left: 0
+  overflow: hidden
   z-index: 1001 
   width: 100%
-  height: 100vh
+  height: 100% 
   background: $light-gray
   display: flex 
   transform: translateY(-100%)
@@ -208,6 +232,11 @@ body
     width: 36%
   &__right
     width: 55%
+    height: 100% 
+    overflow-y: scroll 
+    padding-bottom: 40px
+    +media("<=1025px")
+      overflow: hidden
   &.open
     pointer-events: auto 
 
@@ -215,12 +244,10 @@ body
   &__nav
     +bold 
     display: flex
-    justify-content: space-between
   &__nav-item
     width: 28%
   &__content
     display: flex
-    justify-content: space-between
     .tab
       width: 28%
       margin-top: 24px    

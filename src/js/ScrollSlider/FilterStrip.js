@@ -1,26 +1,25 @@
 export default class FilterStrip {
 
   constructor() {
-    this.filterItems = document.querySelectorAll('.filter-window__item')
-
+    this.filterItems = document.querySelectorAll('.filter-window__item.is-visible')
+    this.imgs = document.querySelectorAll('.filter-window__image.is-visible')
+    this.count = 0
     this.setup()
   }
 
   setup() {
-    this.filterItems.forEach(el => {
-      const formula = window.innerWidth >= 460 ? (window.innerWidth /2 - el.getBoundingClientRect().width / 2) + window.innerWidth * 0.1 : window.innerWidth / 2 + el.getBoundingClientRect().width / 2
-      if ( window.innerWidth >= 460) {
-        if (el.getBoundingClientRect().x < formula && el.getBoundingClientRect().x > window.innerWidth * 0.15) {
-          el.classList.add('active')
-        } else {
-          el.classList.remove('active')
-        }
-      }else {
-        if (el.getBoundingClientRect().x < formula && el.getBoundingClientRect().x > 0) {
-          el.classList.add('active')
-        } else {
-          el.classList.remove('active')
-        }
+
+    this.filterItems.forEach((el, index) => {
+
+      const formula = window.innerWidth / 2 + el.getBoundingClientRect().width / 2
+
+      if (el.getBoundingClientRect().x < formula && el.getBoundingClientRect().x > 0) {
+        this.imgs[index].classList.add('active')
+        el.classList.add('active')
+      }
+      else {
+        el.classList.remove('active')
+        this.imgs[index].classList.remove('active')
       }
     })
   }

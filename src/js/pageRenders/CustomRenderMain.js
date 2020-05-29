@@ -34,21 +34,19 @@ class CustomRendererMain extends Highway.Renderer {
     const clock = new Clock(document.querySelector('.header__names .container'), true)
     loader(() => clock.render())
 
-    // document.body.addEventListener('click', (e) => {
-    //   if(e.target.classList.contains('tabs__item')) 
-    //     clock.destroy()
-    // })
-
     document.querySelector('.navbar').style.position = 'fixed'
 
-    const names = [...document.querySelectorAll('.br')]
-    const namesWrapper = [...document.querySelectorAll('.header__name-wrapper')]
-    for (const name of names) {
-      name.innerHTML = name.innerHTML.replace(/\s/, '<br>')
-    }
+    // const names = [...document.querySelectorAll('.br')]
+    const names2 = [...document.querySelectorAll('.header__name')]
+    const text = [...document.querySelectorAll('.header__name-wrapper p')]
+    text.forEach(el => el.classList.add('header__description'))
+    
+    // for (const name of names) {
+    //   name.innerHTML = name.innerHTML.replace(/\s/, '<br>')
+    // }
 
 
-    namesWrapper.forEach(el => el.addEventListener('click', clone.bind(el, 'header__name', 'header__description')))
+    names2.forEach(el => el.addEventListener('click', clone.bind(el, 'header__name', 'header__description')))
   }
 }
 // Don`t forget to export your renderer
