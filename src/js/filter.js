@@ -37,6 +37,7 @@ export default class Filter {
       document.querySelector('.filter-window').style.opacity = '0'
       setTimeout(() => this.reset(), 500)
     }))
+    document.querySelectorAll('.navbar__link').forEach(el => el.addEventListener('click', this.reset.bind(this)))
     document.body.addEventListener('click', event => this.select(event))
     this.filterBtn.addEventListener('click', this.reset.bind(this))
 
@@ -46,7 +47,7 @@ export default class Filter {
   filterValues(by) {
 
     const values = [...document.querySelectorAll(`[data-${by}]`)].map(el => {
-      const value = el.getAttribute(`data-${by}`)
+      const value = el.getAttribute(`data-${by}`).trim()
       return value
     })
     const valueHTML = this.uniq(values).map(el => {
@@ -76,6 +77,10 @@ export default class Filter {
           document.querySelector('.navbar').classList.add('filter-open')
         }
       }, 0)
+      .to(document.querySelector('.navbar__filter-btn'), 1, {rotation: 360, ease: Power4.easeOut}, 0)
+      .staggerFromTo(document.querySelectorAll('.tab'), 1, {y: -50, opacity: 0}, {y: 0, opacity: 1}, 0.2, 0.9)
+      .staggerFromTo(document.querySelectorAll('.tabs__nav-item'), 1, {y: -50, opacity: 0}, {y: 0, opacity: 1}, 0.2, 0.9)
+      .fromTo(document.querySelectorAll('.filter__left h2'), 1, {y: -70, opacity: 0}, {y: 0, opacity: 1}, 0.8)
       .fromTo(document.querySelector('.filter .container'), 1, { opacity: 0 }, { opacity: 1, ease: Power1.easeOut }, 0.8)
   }
 
@@ -90,23 +95,27 @@ export default class Filter {
       }
     })
     tl2
+      .staggerFromTo(document.querySelectorAll('.tab'), 1, {y: 0, opacity: 1}, {y: -50, opacity: 0}, 0.2)
+      .staggerFromTo(document.querySelectorAll('.tabs__nav-item'), 1, {y: 0, opacity: 1}, {y: -50, opacity: 0}, 0.2, 0)
+      .fromTo(document.querySelectorAll('.filter__left h2'), 1, {y: 0, opacity: 1}, {y: -70, opacity: 0}, 0.1)
       .to(document.querySelector('.filter .container'), 0.5, { opacity: 0, ease: Power1.easeOut })
-      .to(document.querySelector('.filter'), 1, { y: '-100%', ease: Power4.easeOut }, 0.5)
+      .to(document.querySelector('.navbar__filter-btn'), 1, {rotation: 0, ease: Power4.easeOut}, 0)
+      .to(document.querySelector('.filter'), 1, { y: '-100%', ease: Power4.easeOut }, 1)
   }
 
   filterHandler(selector, attribute) {
 
     selector.forEach((elem, i) => {
 
-      elem.classList.remove('is-visible', 'default-layout')
-      elem.parentNode.parentNode.querySelectorAll('.filter-window__image')[i].classList.remove('is-visible')
+      elem.classList.remove('is-visible', 'default-layout', 'active') 
+      elem.parentNode.parentNode.querySelectorAll('.filter-window__image')[i].classList.remove('is-visible', 'active')
 
       this.filterBtn.querySelector('.name').innerText = event.target.innerText
       this.filterBtn.classList.add('active')
     })
     document.querySelectorAll(`.filter-window__item[${attribute}]`).forEach((element, index) => {
 
-      if (event.target.innerText === element.getAttribute(attribute)) {
+      if (event.target.innerText.trim('') === element.getAttribute(attribute).trim('')) {
         element.classList.add('is-visible')
 
         element.parentNode.parentNode.querySelectorAll('.filter-window__image')[index].classList.add('is-visible')
@@ -199,7 +208,7 @@ export default class Filter {
     document.querySelector('.navbar').style.position = 'fixed'
     document.querySelector('.navbar').classList.add('filter-window-open')
 
-    if (screen.width > 1024) document.querySelector('.navbar__link').classList.add('white')
+    if (screen.width > 1024) document.querySelectorAll('.navbar__link').forEach(el => el.classList.add('white'))
 
     if (document.querySelectorAll('.filter-window__item.is-visible').length > 1) {
       const filterSlider = new ScrollSlider(document.querySelector('.filter-window__items'), false, this.func)
@@ -228,7 +237,7 @@ export default class Filter {
     document.querySelector('.filter-window__items').style.opacity = '0'
     document.querySelector('.filter-window__images-wrapper').style.opacity = '0'
     document.querySelector('.navbar').classList.remove('filter-window-open')
-    if (screen.width > 1024) document.querySelector('.navbar__link').classList.remove('white')
+    if (screen.width > 1024) document.querySelectorAll('.navbar__link').forEach(el => el.classList.remove('white'))
     setTimeout(() => document.querySelector('.filter-window').style.display = 'none', 500)
 
   }

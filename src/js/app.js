@@ -3,6 +3,7 @@ import './lib/smoothscroll'
 import Nav from './Nav.js'
 import Filter from './Filter.js'
 import clone from './clone'
+import scrollDirection from './scrollDirection'
 
 import CustomRendererMain from './pageRenders/CustomRenderMain'
 import CustomRendererInterviews from './pageRenders/CustomRenderInterviews'
@@ -11,6 +12,8 @@ import CustomRendererAbout from './pageRenders/CustomRenderAbout'
 import SimpleTransition from './transitions/SimpleTransition'
 import InterviewTransition from './transitions/InterviewTransition'
 import tab from './tabs'
+import moveEl from './lib/moveEl'
+import { langCurrentPage } from './lang'
 
 
 const H = new Highway.Core({
@@ -33,9 +36,9 @@ const curLink = () => {
 
   for (let i = 0; i < links.length; i++) {
     const link = links[i]
- 
+
     link.classList.remove('is-active')
-  
+
     if (link.href === location.href) {
       link.classList.add('is-active')
     }
@@ -48,6 +51,11 @@ window.addEventListener('load', () => {
   curLink()
   new Nav()
 
+  moveEl()
+  scrollDirection()
+
+  langCurrentPage()
+
   // const names = [...document.querySelectorAll('.br')]
   // for (const name of names) {
   //   name.innerHTML = name.innerHTML.replace(/\s/, '<br>')
@@ -59,14 +67,14 @@ window.addEventListener('load', () => {
   const filter = new Filter()
   filter.render()
 
-  document.querySelectorAll('.filter-window__h2').forEach(el => el.addEventListener('click', () => {
-
+  document.querySelectorAll('.filter-window__h2').forEach(el => el.addEventListener('click', (event) => {
     const h1 = document.querySelector('.interview-header__h1') || document.querySelector('h1')
-
-    if (el.innerText.replace(/\s/g, '').toLowerCase() !==
-          h1.innerText.replace(/\<br>/, '').replace(/\s/g, '').toLowerCase()
-    ) {
-      clone.call(el, 'filter-window__h2', 'filter-window__description')
+    if (!event.ctrlKey) {
+      if (el.innerText.replace(/\s/g, '').toLowerCase() !==
+        h1.innerText.replace(/\<br>/, '').replace(/\s/g, '').toLowerCase()
+      ) {
+        clone.call(el, 'filter-window__h2', 'filter-window__description')
+      }
     }
   }))
 
@@ -84,7 +92,10 @@ window.addEventListener('load', () => {
 
 
 H.on('NAVIGATE_IN', () => {
-  
+
   curLink()
+  moveEl()
+  langCurrentPage()
+  scrollDirection()
 })
 

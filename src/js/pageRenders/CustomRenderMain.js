@@ -40,13 +40,16 @@ class CustomRendererMain extends Highway.Renderer {
     const names2 = [...document.querySelectorAll('.header__name')]
     const text = [...document.querySelectorAll('.header__name-wrapper p')]
     text.forEach(el => el.classList.add('header__description'))
-    
+
     // for (const name of names) {
     //   name.innerHTML = name.innerHTML.replace(/\s/, '<br>')
     // }
 
 
-    names2.forEach(el => el.addEventListener('click', clone.bind(el, 'header__name', 'header__description')))
+    names2.forEach(el => el.addEventListener('click', (event) => {
+      if (!event.ctrlKey)
+        clone.call(el, 'header__name', 'header__description')
+    }))
   }
 }
 // Don`t forget to export your renderer

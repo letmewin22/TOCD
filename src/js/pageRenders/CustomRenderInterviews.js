@@ -1,6 +1,6 @@
 import Highway from '@dogstudio/highway'
 
-import scrollDirection from '../scrollDirection'
+// import scrollDirection from '../scrollDirection'
 import Slideshow from '../slider/Slideshow.js'
 import interviewLoader from '../loaders/interviewLoader'
 import mutationObserver from '../mutationObserver'
@@ -12,7 +12,7 @@ class CustomRendererInterviews extends Highway.Renderer {
   
   onEnterCompleted() {
 
-    scrollDirection()
+    // scrollDirection()
 
     const articles = document.querySelectorAll('article')
 

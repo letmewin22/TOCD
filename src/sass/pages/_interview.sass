@@ -40,7 +40,7 @@ article
   &__right
     width: 50%
     height: 100%
-    margin-top: 40px
+    padding-top: 40px
     margin-left: 16px
     overflow: hidden 
     position: relative
@@ -50,22 +50,16 @@ article
     line-height: 1.4em
     color: $brown
     a
-      position: relative
-      display: inline-block
-      &::after
-        content: ''
-        display: block
-        background: $accent-color
-        opacity: .4
-        height: 1px
-        width: 100%
-        position: absolute
-        bottom: 4px
-        left: 0
-        transition: opacity .3s ease
-      &:hover
-        &::after
-          opacity: 1
+      position: relative 
+      display: inline-block 
+      position: relative 
+      display: inline-block 
+      text-decoration: underline 
+      text-decoration-skip-ink: none 
+      text-decoration-color: $accent-color 
+      transition: color .3s ease  
+      &:hover 
+        color: $accent-color 
   &__h1
     +header
     line-height: 0.8em
@@ -142,7 +136,7 @@ article
 .article
   width: 100%
   margin-top: 15px
-  margin-bottom: 48px
+  margin-bottom: calc(3vw - 40px)
   .container
     display: flex
     flex-direction: column
@@ -167,34 +161,27 @@ article
       a
         position: relative
         display: inline-block
-        &::after
-          content: ''
-          display: block
-          background: $accent-color
-          opacity: .4
-          height: 1px
-          width: 100%
-          position: absolute
-          bottom: 4px
-          left: 0
-          transition: opacity .3s ease
+        text-decoration: underline
+        text-decoration-skip-ink: none
+        text-decoration-color: $accent-color
+        transition: color .3s ease 
         &:hover
-          &::after
-            opacity: 1
+          color: $accent-color
     blockquote
       +fontSize(28, 20)
       line-height: 1.5em
       position: relative
-      padding-left: size(260, 78)
-      margin-top: 14px
+      margin-top: 1em
       margin-bottom: 14px
+      display: flex
       &::before
         content: '“'
         width: 188px
         +header
-        position: absolute
+        // position: absolute
         line-height: 1em
         left: 0
+        padding-right: size(260, 78) 
         top: 0
         font-size: 88px
         color: #D3D1CF
@@ -240,9 +227,9 @@ article
   &__date
     +medium
     font-size: 20px
-  &__social
-    margin-top: 11px
-    border-top: 1px $medium-gray solid
+    + .article__social
+      border-top: 1px $medium-gray solid
+      margin-top: 11px
   &__social-item
     padding: 17px 24px
     &:nth-child(2)

@@ -10,6 +10,7 @@ const clone = function(h2, text) {
   duplicatedH2.style.width = this.getBoundingClientRect().width + 'px'
   duplicatedH2.style.lineHeight = '0.89em'
   duplicatedH2.style.zIndex = '1000'
+  duplicatedH2.style.transform = 'scale(1)'
 
   duplicatedH2.classList.add('clicked')
   this.parentNode.style.opacity = '0'

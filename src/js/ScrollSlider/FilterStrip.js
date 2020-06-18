@@ -14,7 +14,12 @@ export default class FilterStrip {
       const formula = window.innerWidth / 2 + el.getBoundingClientRect().width / 2
 
       if (el.getBoundingClientRect().x < formula && el.getBoundingClientRect().x > 0) {
-        this.imgs[index].classList.add('active')
+        if(screen.width < 460)
+          this.imgs[index].classList.add('active')
+        else
+          setTimeout(() => {
+            this.imgs[index].classList.add('active')
+          }, 250)
         el.classList.add('active')
       }
       else {

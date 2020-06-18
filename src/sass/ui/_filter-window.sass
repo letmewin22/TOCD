@@ -59,6 +59,8 @@
       display: flex 
     &.active 
       color: white 
+      .filter-window__h2
+        transform: scale(1)
     +media("<=1170px") 
       width: 75vh 
     +media("<=phone") 
@@ -69,6 +71,7 @@
     height: 100%
     top: 0
     left: 50%
+    overflow: hidden
     transform: translateX(-50%)
     position: fixed
     opacity: 0
@@ -87,11 +90,12 @@
     top: 0
     left: 0
     height: 100%
-    transition: opacity .3s ease
+    transition: opacity .3s ease, transform 30s linear 
     opacity: 1 
     &.active
       // opacity: 1  
       z-index: 999 
+      transform: scale(1.5)
   &__text
     position: absolute
     top: 50%
@@ -108,7 +112,8 @@
     text-transform: uppercase
     +fontSize(88, 48)
     line-height: 80%
-    transition: color .3s ease
+    transform: scale(0.6)
+    transition: color .6s ease, transform .6s ease
   &__description
     width: 22vw
     margin-top: 50px 

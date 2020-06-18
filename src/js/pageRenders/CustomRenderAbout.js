@@ -10,7 +10,7 @@ class CustomRendererAbout extends Highway.Renderer {
     document.body.style.height = 'auto'
     document.body.style.width = 'auto'
     document.body.classList = ''
-    document.querySelector('.navbar').style.position = 'absolute'
+    document.querySelector('.navbar').classList.add('interview-page')
   }
 }
 // Don`t forget to export your renderer

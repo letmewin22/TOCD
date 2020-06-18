@@ -136,9 +136,6 @@ body
     align-items: center
     flex-direction: column 
     pointer-events: auto
-    &:hover
-      .header__name
-        color: $accent-color
     &.is-visible
       display: flex
     &.default-layout
@@ -157,6 +154,8 @@ body
     font-size: 3.25vw 
     line-height: 80%
     transition: color .3s ease 
+    &:hover
+      color: $accent-color
   &__description
     margin-top: 24px
     font-size: 1vw 
@@ -168,20 +167,14 @@ body
       position: relative
       display: inline-block
       // width: fit-content
-      &::after
-        content: ''
-        display: block
-        background: $accent-color
-        opacity: .4
-        height: 1px
-        width: 100%
-        position: absolute
-        bottom: 2px
-        left: 0
-        transition: opacity .3s ease
+      text-decoration: underline
+      text-decoration-skip-ink: none
+      text-decoration-color: rgba($accent-color, 0.56)
+      transition: color .3s ease 
       &:hover
-        &::after
-          opacity: 1
+        color: $accent-color
+    strong
+      font-weight: inherit
 
 .footer
   position: fixed
@@ -197,6 +190,7 @@ body
   .link
       &::after
         bottom: -3px
+        opacity: .32
   &__right
     display: flex
     flex-direction: column
@@ -227,16 +221,23 @@ body
   .container
     display: flex
     align-items: flex-start
-    margin-top: 180px
+    +media("<=850px")
+      padding-top: 146px
   &__left
     width: 36%
+    padding-top: 180px
+    +media("<=850px")
+      padding-top: 0px
   &__right
     width: 55%
     height: 100% 
+    padding-top: 180px
     overflow-y: scroll 
     padding-bottom: 40px
     +media("<=1025px")
       overflow: hidden
+    +media("<=850px")
+      padding-top: 0px
   &.open
     pointer-events: auto 
 

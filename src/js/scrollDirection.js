@@ -2,34 +2,37 @@ const scrollDirection = () => {
 
   // Initial state
   let scrollPos = 0
-  const randomizer = document.querySelector('.interview-randomizer')
   const navbar = document.querySelector('.navbar')
   const scrollNav = () => {
+    const randomizer = document.querySelector('[data-router-view]').getAttribute('data-router-view') === 'interview' ? document.querySelector('.interview-randomizer') : null
 
-
-    if ((document.body.getBoundingClientRect()).top > scrollPos && Math.abs(scrollPos) >= 200) {
-      randomizer.classList.remove('show')
-      navbar.classList.add('show')
-      navbar.classList.add('bg')
+    if (document.querySelector('[data-router-view]').getAttribute('data-router-view') !== 'main') {
+      if ((document.body.getBoundingClientRect()).top > scrollPos && Math.abs(scrollPos) >= 200) {
+        if (document.querySelector('[data-router-view]').getAttribute('data-router-view') === 'interview')
+          randomizer.classList.add('show')
+        navbar.classList.add('show')
+        if (document.querySelector('[data-router-view]').getAttribute('data-router-view') !== 'about')
+          navbar.classList.add('bg')
+      }
+      else if ((document.body.getBoundingClientRect()).top < scrollPos && scrollPos <= 0) {
+        if (document.querySelector('[data-router-view]').getAttribute('data-router-view') === 'interview')
+          randomizer.classList.remove('show')
+        navbar.classList.remove('show')
+        navbar.classList.remove('bg')
+      }
+      else if (Math.abs(scrollPos) <= 200) {
+        if (document.querySelector('[data-router-view]').getAttribute('data-router-view') === 'interview')
+          randomizer.classList.remove('show')
+        navbar.classList.add('show')
+        navbar.classList.remove('bg')
+      }
+      scrollPos = document.body.getBoundingClientRect().top
+    } else {
+      navbar.classList.remove('bg', 'interview-page', 'show')
     }
-    else if ((document.body.getBoundingClientRect()).top < scrollPos && scrollPos <= 0) {
-      randomizer.classList.add('show')
-      navbar.classList.remove('show')
-      navbar.classList.remove('bg')
-    }
-    else if(Math.abs(scrollPos) <= 200) {
-      randomizer.classList.remove('show')
-      navbar.classList.add('show')
-      navbar.classList.remove('bg')
-    }
-      
-
-    scrollPos = document.body.getBoundingClientRect().top
-
     window.requestAnimationFrame(scrollNav)
   }
-  if (document.querySelector('[data-router-view]').getAttribute('data-router-view') === 'interview')
-    scrollNav()
+  scrollNav()
 }
 
 export default scrollDirection
