@@ -5,12 +5,9 @@ import Filter from './Filter.js'
 import clone from './clone'
 import scrollDirection from './scrollDirection'
 
-import CustomRendererMain from './pageRenders/CustomRenderMain'
-import CustomRendererInterviews from './pageRenders/CustomRenderInterviews'
-import CustomRendererAbout from './pageRenders/CustomRenderAbout'
+import {Main, Interview, About} from './pageRenders'
+import {SimpleTransition, InterviewTransition} from './transitions'
 
-import SimpleTransition from './transitions/SimpleTransition'
-import InterviewTransition from './transitions/InterviewTransition'
 import tab from './tabs'
 import moveEl from './lib/moveEl'
 import { langCurrentPage } from './lang'
@@ -18,9 +15,9 @@ import { langCurrentPage } from './lang'
 
 const H = new Highway.Core({
   renderers: {
-    main: CustomRendererMain,
-    interview: CustomRendererInterviews,
-    about: CustomRendererAbout
+    main: Main,
+    interview: Interview,
+    about: About
   },
   transitions: {
     default: SimpleTransition,
@@ -67,9 +64,14 @@ window.addEventListener('load', () => {
   const filter = new Filter()
   filter.render()
 
+  function isMacintosh() {
+    return navigator.platform.indexOf('Mac') > -1
+  }
+
   document.querySelectorAll('.filter-window__h2').forEach(el => el.addEventListener('click', (event) => {
     const h1 = document.querySelector('.interview-header__h1') || document.querySelector('h1')
-    if (!event.ctrlKey) {
+    const key = isMacintosh() ? event.metaKey : event.ctrlKey
+    if (!key) {
       if (el.innerText.replace(/\s/g, '').toLowerCase() !==
         h1.innerText.replace(/\<br>/, '').replace(/\s/g, '').toLowerCase()
       ) {

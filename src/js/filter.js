@@ -193,7 +193,7 @@ export default class Filter {
   }
 
   filteredOpen() {
-
+    this.filteredClose()
     this.close()
     this.lazyLoad()
     this.loader()
@@ -203,7 +203,7 @@ export default class Filter {
     let vh = window.innerHeight * 0.01
     document.querySelector('.site-wrapper').style.setProperty('--vh', `${vh}px`)
 
-    document.querySelector('.filter-window').style.display = 'flex'
+    document.querySelector('.filter-window').style.visibility = 'visible'
     document.querySelector('.filter-window').style.opacity = '1'
     document.querySelector('.navbar').style.position = 'fixed'
     document.querySelector('.navbar').classList.add('filter-window-open')
@@ -238,8 +238,8 @@ export default class Filter {
     document.querySelector('.filter-window__images-wrapper').style.opacity = '0'
     document.querySelector('.navbar').classList.remove('filter-window-open')
     if (screen.width > 1024) document.querySelectorAll('.navbar__link').forEach(el => el.classList.remove('white'))
-    setTimeout(() => document.querySelector('.filter-window').style.display = 'none', 500)
-
+    // setTimeout(() => document.querySelector('.filter-window').style.display = 'none', 500)
+    document.querySelector('.filter-window').style.visibility = 'hidden'
   }
 
 }

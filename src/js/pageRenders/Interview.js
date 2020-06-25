@@ -8,7 +8,7 @@ import RewealSlider from '../slider/rewealSlider'
 import tags from '../tags'
 import shares from '../shares'
 
-class CustomRendererInterviews extends Highway.Renderer {
+class Interview extends Highway.Renderer {
   
   onEnterCompleted() {
 
@@ -99,4 +99,4 @@ class CustomRendererInterviews extends Highway.Renderer {
   }
 }
 // Don`t forget to export your renderer
-export default CustomRendererInterviews
+export default Interview

@@ -1,7 +1,7 @@
 import Highway from '@dogstudio/highway'
 import aboutLoader from '../loaders/aboutLoader.js'
 
-class CustomRendererAbout extends Highway.Renderer {
+class About extends Highway.Renderer {
 
   onEnterCompleted() {
     aboutLoader()
@@ -14,4 +14,4 @@ class CustomRendererAbout extends Highway.Renderer {
   }
 }
 // Don`t forget to export your renderer
-export default CustomRendererAbout
+export default About

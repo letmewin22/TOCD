@@ -7,10 +7,15 @@ body
   width: 100%
 article
   &:first-child
+    .interview-header__right
+      margin-top: 40px
+      padding-top: 0
     +media("<=1025px") 
       margin-top: 200px 
       .container
         position: static
+  +media("<=1025px") 
+    margin-top: 64px 
 
 article
   width: 100%

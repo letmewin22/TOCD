@@ -5,7 +5,7 @@ import loader from '../loaders/loader'
 import MainTimer from '../MainTimer'
 import clone from '../clone'
 
-class CustomRendererMain extends Highway.Renderer {
+class Main extends Highway.Renderer {
 
   onEnterCompleted() {
 
@@ -44,13 +44,18 @@ class CustomRendererMain extends Highway.Renderer {
     // for (const name of names) {
     //   name.innerHTML = name.innerHTML.replace(/\s/, '<br>')
     // }
-
+    function isMacintosh() {
+      return navigator.platform.indexOf('Mac') > -1
+    }
+    
+    
 
     names2.forEach(el => el.addEventListener('click', (event) => {
-      if (!event.ctrlKey)
+      const key = isMacintosh() ? event.metaKey : event.ctrlKey
+      if (!key)
         clone.call(el, 'header__name', 'header__description')
     }))
   }
 }
 // Don`t forget to export your renderer
-export default CustomRendererMain
+export default Main
