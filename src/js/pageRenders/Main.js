@@ -48,8 +48,6 @@ class Main extends Highway.Renderer {
       return navigator.platform.indexOf('Mac') > -1
     }
     
-    
-
     names2.forEach(el => el.addEventListener('click', (event) => {
       const key = isMacintosh() ? event.metaKey : event.ctrlKey
       if (!key)

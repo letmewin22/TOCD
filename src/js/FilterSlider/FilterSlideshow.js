@@ -3,10 +3,14 @@ import Navigation from './Navigation.js'
 
 
 // The Slideshow class.
-export default class Slideshow {
+export default class FilterSlideshow {
 
   constructor(el) {
     this.DOM = { el: el }
+    this.init()
+  }
+
+  init() {
 
     this.navigation = new Navigation(this.DOM.el.parentNode.querySelector('.boxnav'), {
       next: () => this.navigate('right'),
@@ -14,11 +18,12 @@ export default class Slideshow {
     })
 
     this.slides = []
-    this.slidesHTML = [...this.DOM.el.querySelectorAll('.slide')]
+    this.slidesHTML = [...this.DOM.el.querySelectorAll('.filter-slide.is-visible')]
     this.slidesHTML.forEach((slideEl, pos) => this.slides.push(new Slide(slideEl, {})))
 
     this.slidesTotal = this.slides.length
-
+    console.log(this.slidesTotal)
+    
 
     this.navigation.setTotal(this.slidesTotal)
 
@@ -29,11 +34,17 @@ export default class Slideshow {
 
     this.current = 0
 
-    this.init()
+    this.slides[this.current].setCurrent()
   }
 
-  init() {
-    this.slides[this.current].setCurrent()
+  destroy() {
+    this.current = 0
+    this.slidesTotal = this.slides.length
+
+    this.slidesHTML.forEach(el => {
+      el.setAttribute('style', '')
+      el.classList.remove('filter-slide--current')
+    })
   }
 
   navigate(direction) {

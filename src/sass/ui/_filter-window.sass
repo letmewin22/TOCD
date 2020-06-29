@@ -34,6 +34,7 @@
     align-items: center 
     position: relative
     opacity: 0
+    pointer-events: none
     padding-left: calc(50vw - 45vw / 2) 
     padding-right: calc(50vw - 45vw / 2) 
     +media("<=1170px") 
@@ -71,7 +72,7 @@
     height: 100%
     top: 0
     left: 50%
-    overflow: hidden
+    // overflow: hidden 
     transform: translateX(-50%)
     position: fixed
     opacity: 0
@@ -98,7 +99,7 @@
       transform: scale(1.5)
   &__text
     position: absolute
-    top: 50%
+    top: 75% 
     left: 50%
     transform: translate(-50%, -50%)
     text-align: center

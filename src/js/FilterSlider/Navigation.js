@@ -50,8 +50,8 @@ export default class Navigation {
     this.DOM.prevCtrl.addEventListener('click', () => this.settings.prev())
     this.DOM.nextCtrl.addEventListener('click', () => this.settings.next())
 
-    if(this.DOM.el.parentNode.querySelector('.slideshow')) {
-      swipedetect(this.DOM.el.parentNode.querySelector('.slideshow'), (swipedir) => {
+    if(this.DOM.el.parentNode.querySelector('.filter-slideshow')) {
+      swipedetect(this.DOM.el.parentNode.querySelector('.filter-slideshow'), (swipedir) => {
         swipedir === 'left' ? this.settings.next() : this.settings.prev()
       })
     }

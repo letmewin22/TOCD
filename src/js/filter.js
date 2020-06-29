@@ -1,8 +1,17 @@
+/**
+ * @todo:
+ * 1) Перенести вёрстку слайдера в окно фильтра и написать стили
+ * 2) Подключить скрипт слайдера и подредактировать стили. Сделать стиль для активных элементов
+ * 3) Придумать, как обнулять слайдер при закрытии фильтра
+ * 4) Сделать так, что бы имена ездили синхронно с слайдером
+ */
+
 import { TimelineMax, Power1, Power4 } from 'gsap'
 import ScrollSlider from './ScrollSlider/ScrollSlider'
 import imagesLoaded from 'imagesloaded'
 import FilterStrip from './ScrollSlider/FilterStrip'
 import Clock from './ScrollSlider/Clock'
+import FilterSlideshow from './FilterSlider/FilterSlideshow'
 
 export default class Filter {
 
@@ -20,6 +29,8 @@ export default class Filter {
     this.func = () => {
       new FilterStrip()
     }
+
+    this.slideshow = new FilterSlideshow(document.querySelector('.filter-slideshow'))
 
   }
 
@@ -40,6 +51,11 @@ export default class Filter {
     document.querySelectorAll('.navbar__link').forEach(el => el.addEventListener('click', this.reset.bind(this)))
     document.body.addEventListener('click', event => this.select(event))
     this.filterBtn.addEventListener('click', this.reset.bind(this))
+
+    document.querySelector('.navbar__logo').addEventListener('click', () => {
+      this.close()
+      this.filteredClose()
+    })
 
   }
 
@@ -108,7 +124,9 @@ export default class Filter {
     selector.forEach((elem, i) => {
 
       elem.classList.remove('is-visible', 'default-layout', 'active') 
-      elem.parentNode.parentNode.querySelectorAll('.filter-window__image')[i].classList.remove('is-visible', 'active')
+      elem.parentNode.parentNode.querySelectorAll('.filter-slide')[i].classList.remove('is-visible', 'active')
+      
+      
 
       this.filterBtn.querySelector('.name').innerText = event.target.innerText
       this.filterBtn.classList.add('active')
@@ -118,7 +136,7 @@ export default class Filter {
       if (event.target.innerText.trim('') === element.getAttribute(attribute).trim('')) {
         element.classList.add('is-visible')
 
-        element.parentNode.parentNode.querySelectorAll('.filter-window__image')[index].classList.add('is-visible')
+        element.parentNode.parentNode.querySelectorAll('.filter-slide')[index].classList.add('is-visible')
         document.querySelectorAll('.is-visible').length
       }
     })
@@ -194,6 +212,7 @@ export default class Filter {
 
   filteredOpen() {
     this.filteredClose()
+    this.slideshow.init()
     this.close()
     this.lazyLoad()
     this.loader()
@@ -210,25 +229,20 @@ export default class Filter {
 
     if (screen.width > 1024) document.querySelectorAll('.navbar__link').forEach(el => el.classList.add('white'))
 
-    if (document.querySelectorAll('.filter-window__item.is-visible').length > 1) {
-      const filterSlider = new ScrollSlider(document.querySelector('.filter-window__items'), false, this.func)
-      filterSlider.render()
-    } else {
-      document.querySelector('.filter-window__items').style.transfrom = 'translate(0,0)'
-      document.querySelector('.filter-window__item.is-visible').classList.add('active')
-    }
+    // if (document.querySelectorAll('.filter-window__item.is-visible').length > 1) {
+    //   const filterSlider = new ScrollSlider(document.querySelector('.filter-window__items'), false, this.func)
+    //   filterSlider.render()
+    // } else {
+    //   document.querySelector('.filter-window__items').style.transfrom = 'translate(0,0)'
+    //   document.querySelector('.filter-window__item.is-visible').classList.add('active')
+    // }
   }
 
   filteredClose() {
+    this.slideshow.destroy()
     document.querySelector('.site-wrapper').classList.remove('e-fixed')
-    document.body.style.overflow = 'auto'
-    document.body.style.height = 'auto'
-    document.body.style.width = 'auto'
 
-    if (document.querySelector('[data-router-view]').getAttribute('data-router-view') === 'main') {
-      const clock = new Clock(document.querySelector('.header__names .container'), true)
-      clock.render()
-    } else if(document.querySelector('[data-router-view]').getAttribute('data-router-view') === 'interview') {
+    if(document.querySelector('[data-router-view]').getAttribute('data-router-view') === 'interview') {
       document.querySelector('.navbar').classList.add('interview-page')
     } else {
       document.querySelector('.navbar').style.position = 'absolute'

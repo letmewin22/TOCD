@@ -18,10 +18,7 @@
     </svg>
   </div>
   <div class="filter-window__images-wrapper">
-  {% for i in range(0, 50) -%}
-    <div class="filter-window__image" data-bglazy="./img/3.jpg"></div>
-    <div class="filter-window__image" data-bglazy="./img/1.jpg"></div>
-    {% endfor %}
+    {% include "partials/_filter-slider.html" %}
   </div>
   <div class="filter-window__items">
     {% for i in range(0, 20) -%}

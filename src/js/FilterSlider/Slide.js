@@ -11,8 +11,8 @@ export default class Slide {
     }
     Object.assign(this.settings, settings)
 
-    this.DOM.wrap = this.DOM.el.querySelector('.slide__wrap')
-    this.DOM.img = this.DOM.wrap.querySelector('.slide__img')
+    this.DOM.wrap = this.DOM.el.querySelector('.filter-slide__wrap')
+    this.DOM.img = this.DOM.wrap.querySelector('.filter-slide__img')
 
     this.config = {
       animation: {
@@ -23,7 +23,7 @@ export default class Slide {
   }
   // Sets the current class.
   setCurrent(isCurrent = true) {
-    this.DOM.el.classList[isCurrent ? 'add' : 'remove']('slide--current')
+    this.DOM.el.classList[isCurrent ? 'add' : 'remove']('filter-slide--current')
   }
   // Hide the slide.
   hide(direction) {

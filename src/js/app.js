@@ -50,7 +50,6 @@ window.addEventListener('load', () => {
 
   moveEl()
   scrollDirection()
-
   langCurrentPage()
 
   // const names = [...document.querySelectorAll('.br')]
