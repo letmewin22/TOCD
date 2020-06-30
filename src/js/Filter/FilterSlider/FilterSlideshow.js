@@ -8,14 +8,16 @@ export default class FilterSlideshow {
   constructor(el) {
     this.DOM = { el: el }
     this.init()
+    this.start = false
   }
 
   init() {
 
-    this.navigation = new Navigation(this.DOM.el.parentNode.querySelector('.boxnav'), {
+    this.DOM.el.parentNode.querySelector('.filter-boxnav .container').style.opacity = 1
+    this.navigation = new Navigation(this.DOM.el.parentNode.querySelector('.filter-boxnav'), {
       next: () => this.navigate('right'),
       prev: () => this.navigate('left')
-    })
+    }, this.start)
 
     this.slides = []
     this.slidesHTML = [...this.DOM.el.querySelectorAll('.filter-slide.is-visible')]
@@ -26,7 +28,11 @@ export default class FilterSlideshow {
     this.navigation.setTotal(this.slidesTotal)
 
 
-    if (this.slidesTotal < 2) {
+    if(this.slidesTotal <= 1) {
+      this.destroy()
+      if(this.slidesHTML[0])
+        this.slidesHTML[0].classList.add('filter-slide--current')
+      this.DOM.el.parentNode.querySelector('.filter-boxnav .container').style.opacity = 0
       return false
     }
 
@@ -36,6 +42,7 @@ export default class FilterSlideshow {
   }
 
   destroy() {
+
     this.current = 0
     this.slidesTotal = this.slides.length
 
@@ -44,9 +51,9 @@ export default class FilterSlideshow {
       el.classList.remove('filter-slide--current')
     })
 
-    this.DOM.el.parentNode.querySelector('.boxnav').querySelector('.boxnav__label--current').innerText = '1'
+    this.DOM.el.parentNode.querySelector('.filter-boxnav').querySelector('.filter-boxnav__label--current').innerText = '1'
 
-    this.navigation.destroyMouseHandler()
+    this.navigation.destroy()
   }
 
   navigate(direction) {

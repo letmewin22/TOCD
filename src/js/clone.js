@@ -28,6 +28,7 @@ const clone = function(h2, text) {
   duplicatedText.style.width = this.parentNode.querySelector('.'+text).getBoundingClientRect().width + 'px'
   duplicatedText.style.marginTop = '0'
   duplicatedText.style.zIndex = '1000'
+  duplicatedText.style.opacity = '1'
 
   duplicatedText.classList.add('text-clicked')
   document.body.appendChild(duplicatedText)

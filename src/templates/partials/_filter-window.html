@@ -22,7 +22,6 @@
     {% include "partials/_filter-slider.html" %}
   </div>
   <div class="filter-window__items">
-    {% for i in range(0, 20) -%}
       {% for item in items.list %}
         <div class="filter-window__item is-visible"  data-city="{{item.city}}" data-occupation="{{item.occupation}}">
           <div class="filter-window__text">
@@ -32,7 +31,6 @@
             <p>{{item.description|safe}}</p>
           </div>
         </div>
-      {% endfor %}
     {% endfor %}
   </div>
 </div>

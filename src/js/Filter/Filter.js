@@ -1,16 +1,6 @@
-/**
- * @todo:
- * 1) Перенести вёрстку слайдера в окно фильтра и написать стили
- * 2) Подключить скрипт слайдера и подредактировать стили. Сделать стиль для активных элементов
- * 3) Придумать, как обнулять слайдер при закрытии фильтра
- * 4) Сделать так, что бы имена ездили синхронно с слайдером
- */
-
-import { TimelineMax, Power1, Power4 } from 'gsap'
 import imagesLoaded from 'imagesloaded'
-import FilterStrip from './ScrollSlider/FilterStrip'
 import FilterSlideshow from './FilterSlider/FilterSlideshow'
-import ItemsSlider from './FilterSlider/ItemsSlider'
+import FilterAnimation from './FilterAnimation'
 
 export default class Filter {
 
@@ -25,11 +15,8 @@ export default class Filter {
       })
     }
 
-    this.func = () => {
-      new FilterStrip()
-    }
-
     this.slideshow = new FilterSlideshow(document.querySelector('.filter-slideshow'))
+    this.animations = new FilterAnimation()
 
   }
 
@@ -77,6 +64,12 @@ export default class Filter {
   }
 
   open() {
+    this.reset()
+    this.filteredClose()
+
+    document.documentElement.classList.remove('e-fixed')
+    document.querySelectorAll('.navbar__filter-btn').forEach(el => el.classList.remove('open'))
+    document.querySelector('.navbar').classList.remove('filter-open')
 
     document.querySelectorAll('.navbar__filter-btn').forEach(el => el.classList.add('open'))
     document.querySelector('.filter').classList.add('open')
@@ -85,37 +78,15 @@ export default class Filter {
     let vh = window.innerHeight * 0.01
     document.documentElement.style.setProperty('--vh', `${vh}px`)
 
-    const tl = new TimelineMax()
-    tl
-      .to(document.querySelector('.filter'), 1, {
-        y: '0%', ease: Power4.easeOut, onComplete: () => {
-          document.querySelector('.navbar').classList.add('filter-open')
-        }
-      }, 0)
-      .to(document.querySelector('.navbar__filter-btn'), 1, {rotation: 360, ease: Power4.easeOut}, 0)
-      .staggerFromTo(document.querySelectorAll('.tab'), 1, {y: -50, opacity: 0}, {y: 0, opacity: 1}, 0.2, 0.9)
-      .staggerFromTo(document.querySelectorAll('.tabs__nav-item'), 1, {y: -50, opacity: 0}, {y: 0, opacity: 1}, 0.2, 0.9)
-      .fromTo(document.querySelectorAll('.filter__left h2'), 1, {y: -70, opacity: 0}, {y: 0, opacity: 1}, 0.8)
-      .fromTo(document.querySelector('.filter .container'), 1, { opacity: 0 }, { opacity: 1, ease: Power1.easeOut }, 0.8)
+    this.animations.open()
   }
 
-  close() {
+  close(cb) {
     document.documentElement.classList.remove('e-fixed')
     document.querySelectorAll('.navbar__filter-btn').forEach(el => el.classList.remove('open'))
     document.querySelector('.navbar').classList.remove('filter-open')
 
-    const tl2 = new TimelineMax({
-      onComplete: () => {
-        document.querySelector('.filter').classList.remove('open')
-      }
-    })
-    tl2
-      .staggerFromTo(document.querySelectorAll('.tab'), 1, {y: 0, opacity: 1}, {y: -50, opacity: 0}, 0.2)
-      .staggerFromTo(document.querySelectorAll('.tabs__nav-item'), 1, {y: 0, opacity: 1}, {y: -50, opacity: 0}, 0.2, 0)
-      .fromTo(document.querySelectorAll('.filter__left h2'), 1, {y: 0, opacity: 1}, {y: -70, opacity: 0}, 0.1)
-      .to(document.querySelector('.filter .container'), 0.5, { opacity: 0, ease: Power1.easeOut })
-      .to(document.querySelector('.navbar__filter-btn'), 1, {rotation: 0, ease: Power4.easeOut}, 0)
-      .to(document.querySelector('.filter'), 1, { y: '-100%', ease: Power4.easeOut }, 1)
+    this.animations.close(cb)
   }
 
   filterHandler(selector, attribute) {
@@ -201,26 +172,21 @@ export default class Filter {
     imagesLoaded(this.imgs, { background: true }, () => {
 
       document.querySelector('.filter-window__loader').style.opacity = 0
-      const ltl = new TimelineMax()
-
-      ltl
-        .to(document.querySelector('.filter-window__loader'), 0.1, {display: 'none'}, 0.3)
-        .fromTo(document.querySelector('.filter-window__iw-rewealer'), 1, {width: '100%'}, {width: '0%'}, 0.6)
-        .fromTo(document.querySelector('.filter-window__images-wrapper'), 1, {opacity: 0}, {opacity: 1}, 0.8)
-        .fromTo(document.querySelector('.filter-window__items'), 1, {opacity: 0}, {opacity: 1}, 1)
+      this.animations.loading()
     })
   }
 
   filteredOpen() {
     this.filteredClose()
     this.slideshow.init()
-    new ItemsSlider()
-    this.close()
-    this.lazyLoad()
-    this.loader()
+    this.close(() => {
+      this.lazyLoad()
+      this.loader()
+    })
     document.querySelector('.site-wrapper').classList.add('e-fixed')
     document.querySelector('.navbar').classList.remove('bg')
     document.querySelector('.navbar').classList.remove('interview-page')
+    screen.width < 460 && document.querySelector('.navbar').classList.add('white')
     let vh = window.innerHeight * 0.01
     document.querySelector('.site-wrapper').style.setProperty('--vh', `${vh}px`)
 
@@ -230,7 +196,6 @@ export default class Filter {
     document.querySelector('.navbar').classList.add('filter-window-open')
 
     if (screen.width > 1024) document.querySelectorAll('.navbar__link').forEach(el => el.classList.add('white'))
-    this.func()
     // if (document.querySelectorAll('.filter-window__item.is-visible').length > 1) {
     //   const filterSlider = new ScrollSlider(document.querySelector('.filter-window__items'), false, this.func)
     //   filterSlider.render()
@@ -253,6 +218,7 @@ export default class Filter {
     document.querySelector('.filter-window__items').style.opacity = '0'
     document.querySelector('.filter-window__images-wrapper').style.opacity = '0'
     document.querySelector('.navbar').classList.remove('filter-window-open')
+    screen.width < 460 && document.querySelector('.navbar').classList.remove('white')
     if (screen.width > 1024) document.querySelectorAll('.navbar__link').forEach(el => el.classList.remove('white'))
     // setTimeout(() => document.querySelector('.filter-window').style.display = 'none', 500)
     document.querySelector('.filter-window').style.visibility = 'hidden'

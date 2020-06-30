@@ -37,16 +37,6 @@
     z-index: 1000 
     opacity: 0 
     transition: opacity 0.4s 
-  +media("<=1366px")
-    width: 75vw
-    height: 45vw
-  +media("<=1025px")
-    height: 40vw
-    width: 60vw 
-  +media("<=phone")
-    height: 216px
-    width: 327px
-
 .filter-slide 
   width: 100% 
   height: 100% 
@@ -78,7 +68,7 @@
   position: absolute 
   pointer-events: none 
   +cover
-.boxnav 
+.filter-boxnav 
   display: flex 
   width: 150%
   justify-content: space-between
@@ -87,7 +77,13 @@
   .container
     display: flex 
     justify-content: space-between 
-.boxnav__item 
+  +media('<=460px')
+    width: 100%
+    path
+      fill: white
+    rect
+      fill: white
+.filter-boxnav__item 
   display: flex 
   align-items: center 
   justify-content: center 
@@ -102,17 +98,19 @@
   +medium
   &:focus 
     outline: none 
+  +media('<=460px')
+    padding: 17px 0
   svg
     display: block
     width: 52px 
     height: 9px 
     margin-top: 2px 
     fill: $medium-gray
-    transition: fill .3s ease 
-  +media("<=phone")
-    padding: 10px 14px
+    transition: fill .3s ease
+    path, rect
+      transition: fill .3s ease
 
-.boxnav__item--label
+.filter-boxnav__item--label
     position: fixed 
     bottom: 3%
     color: white
@@ -120,25 +118,23 @@
     transform: translateX(-50%)
     display: flex
     align-items: center
-    +media("<=phone")
+    +media("<=phone") 
       bottom: 6%
-
-.boxnav__item--prev:hover,
-.boxnav__item--next:hover 
-  background: $accent-color
-  border-color: transparent
-  svg
-    fill: white
-  +media("<=phone")
-    display: none
-.boxnav__label 
+@media screen and ( min-width: 460px) 
+  .filter-boxnav__item--prev:hover,
+  .filter-boxnav__item--next:hover 
+    path
+      fill: $accent-color 
+    rect
+      fill: $accent-color
+.filter-boxnav__label 
   padding: 0 0.5rem 
   font-size: 13px 
   position: relative 
   color: white 
-.boxnav__label--current
+.filter-boxnav__label--current
   font-size: 13px 
-.boxnav__label--total
+.filter-boxnav__label--total
   margin-left: 2px 
   font-size: 13px 
   &::before 
@@ -150,22 +146,3 @@
     height: 100%  
     background: white
     transform: rotate(22.5deg) 
-
-.filter-slideshow-close
-  position: absolute
-  right: 3vw
-  top: 3.5%
-  z-index: 101
-  padding: 10px 14px
-  border: 1px solid $medium-gray
-  cursor: pointer
-  transition: background .3s ease, border-color .3s ease
-  svg
-    transition: fill .3s ease
-  &:hover
-    background: $accent-color
-    border-color: transparent
-    svg
-      fill: white
-  +media("<=470px")
-    right: 24px

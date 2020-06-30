@@ -1,7 +1,7 @@
 import Highway from '@dogstudio/highway'
 import './lib/smoothscroll'
 import Nav from './Nav.js'
-import Filter from './Filter.js'
+import Filter from './Filter/Filter.js'
 import clone from './clone'
 import scrollDirection from './scrollDirection'
 
