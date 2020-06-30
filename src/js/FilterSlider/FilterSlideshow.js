@@ -22,8 +22,6 @@ export default class FilterSlideshow {
     this.slidesHTML.forEach((slideEl, pos) => this.slides.push(new Slide(slideEl, {})))
 
     this.slidesTotal = this.slides.length
-    console.log(this.slidesTotal)
-    
 
     this.navigation.setTotal(this.slidesTotal)
 
@@ -45,6 +43,10 @@ export default class FilterSlideshow {
       el.setAttribute('style', '')
       el.classList.remove('filter-slide--current')
     })
+
+    this.DOM.el.parentNode.querySelector('.boxnav').querySelector('.boxnav__label--current').innerText = '1'
+
+    this.navigation.destroyMouseHandler()
   }
 
   navigate(direction) {

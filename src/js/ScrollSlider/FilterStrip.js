@@ -17,5 +17,6 @@ export default class FilterStrip {
       else
         el.classList.remove('active')
     })
+    window.requestAnimationFrame(() => this.setup())
   }
 }

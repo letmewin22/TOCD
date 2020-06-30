@@ -16,7 +16,7 @@ export default class Slide {
 
     this.config = {
       animation: {
-        duration: 1.4,
+        duration: 0.7,
         ease: Power2.easeInOut
       }
     }

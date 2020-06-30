@@ -7,11 +7,10 @@
  */
 
 import { TimelineMax, Power1, Power4 } from 'gsap'
-import ScrollSlider from './ScrollSlider/ScrollSlider'
 import imagesLoaded from 'imagesloaded'
 import FilterStrip from './ScrollSlider/FilterStrip'
-import Clock from './ScrollSlider/Clock'
 import FilterSlideshow from './FilterSlider/FilterSlideshow'
+import ItemsSlider from './FilterSlider/ItemsSlider'
 
 export default class Filter {
 
@@ -188,7 +187,7 @@ export default class Filter {
   lazyLoad() {
     document.querySelector('.filter-window__loader').style.opacity = 1
     document.querySelector('.filter-window__loader').style.display = 'flex'
-    this.imgs = document.querySelectorAll('.filter-window__image.is-visible')
+    this.imgs = document.querySelectorAll('.filter-slide.is-visible .filter-slide__img')
     this.imgs.forEach(el => {
 
       const src = el.getAttribute('data-bglazy')
@@ -202,17 +201,20 @@ export default class Filter {
     imagesLoaded(this.imgs, { background: true }, () => {
 
       document.querySelector('.filter-window__loader').style.opacity = 0
-      setTimeout(() => {
-        document.querySelector('.filter-window__loader').style.display = 'none'
-        document.querySelector('.filter-window__items').style.opacity = '1'
-        document.querySelector('.filter-window__images-wrapper').style.opacity = '1'
-      }, 300)
+      const ltl = new TimelineMax()
+
+      ltl
+        .to(document.querySelector('.filter-window__loader'), 0.1, {display: 'none'}, 0.3)
+        .fromTo(document.querySelector('.filter-window__iw-rewealer'), 1, {width: '100%'}, {width: '0%'}, 0.6)
+        .fromTo(document.querySelector('.filter-window__images-wrapper'), 1, {opacity: 0}, {opacity: 1}, 0.8)
+        .fromTo(document.querySelector('.filter-window__items'), 1, {opacity: 0}, {opacity: 1}, 1)
     })
   }
 
   filteredOpen() {
     this.filteredClose()
     this.slideshow.init()
+    new ItemsSlider()
     this.close()
     this.lazyLoad()
     this.loader()
@@ -228,7 +230,7 @@ export default class Filter {
     document.querySelector('.navbar').classList.add('filter-window-open')
 
     if (screen.width > 1024) document.querySelectorAll('.navbar__link').forEach(el => el.classList.add('white'))
-
+    this.func()
     // if (document.querySelectorAll('.filter-window__item.is-visible').length > 1) {
     //   const filterSlider = new ScrollSlider(document.querySelector('.filter-window__items'), false, this.func)
     //   filterSlider.render()
