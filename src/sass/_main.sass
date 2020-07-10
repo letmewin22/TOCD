@@ -80,7 +80,6 @@ body
       .active
         path
           stroke: $accent-color
-          stroke-width: 2px
       .active
         stroke: $accent-color
   &__time-wrapper
@@ -152,8 +151,10 @@ body
     +header
     text-transform: uppercase
     font-size: 3.25vw 
-    line-height: 80%
+    line-height: 0.8em
+    letter-spacing: 0.01em
     transition: color .3s ease 
+    text-align: center
     &:hover
       color: $accent-color
   &__description
@@ -162,14 +163,17 @@ body
     color: #73706F
     padding-left: 40px
     padding-right: 40px 
-    line-height: 1.32em
+    line-height: 1.4em
+    text-align: center
+    strong
+      font-weight: inherit
     a
       position: relative
       display: inline-block
       // width: fit-content
       text-decoration: underline
       text-decoration-skip-ink: none
-      text-decoration-color: rgba($accent-color, 0.56)
+      text-decoration-color: rgba($accent-color, 0.32)
       transition: color .3s ease 
       &:hover
         color: $accent-color

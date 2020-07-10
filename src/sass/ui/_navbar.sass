@@ -27,7 +27,7 @@
 		border-bottom: 1px solid $medium-gray
 	&.interview-page
 		transform: translateY(-200%)
-		position: fixed !important
+		position: absolute !important
 	&.white
 		color: white
 		path 
@@ -74,6 +74,10 @@
 		cursor: pointer
 		position: relative
 		transition: border-color .3s ease 
+		overflow: hidden
+		&:hover
+      .open
+        animation: filter-btn .6s ease 
 		svg
 			display: block
 			pointer-events: none 
@@ -131,7 +135,7 @@
 		&:hover
 			color: $accent-color 
 		&.white 
-				color: white 
+				color: white !important 
 		a
 			&.is-active
 				color: $accent-color !important

@@ -10,8 +10,8 @@ export default class Clock extends ScrollSlider {
 
     this.clock = document.querySelector('.header__clock')
     this.clockItems2.forEach(el => el.addEventListener('click', this.clockClick.bind(this, el)))
-    this.clockItems2.forEach((el, index) => el.addEventListener('mouseenter', this.clockHover.bind(this, el, index)))
-    this.clockItems2.forEach((el, index) => el.addEventListener('mouseleave', this.clockHoverOut.bind(this, el, index)))
+    // this.clockItems2.forEach((el, index) => el.addEventListener('mouseenter', this.clockHover.bind(this, el, index)))
+    // this.clockItems2.forEach((el, index) => el.addEventListener('mouseleave', this.clockHoverOut.bind(this, el, index)))
     
     if (screen.width <= 960 && document.querySelector('[data-router-view]').getAttribute('data-router-view') === 'main') {
       this.rotate()
@@ -43,13 +43,13 @@ export default class Clock extends ScrollSlider {
 
   }
 
-  clockHover(elem, index) {
-    this.clockItems1[index].style.strokeWidth = '2px'
-  }
+  // clockHover(elem, index) {
+  //   this.clockItems1[index].style.strokeWidth = '2px'
+  // }
 
-  clockHoverOut(elem, index) {
-    this.clockItems1[index].style.strokeWidth = '1px'
-  }
+  // clockHoverOut(elem, index) {
+  //   this.clockItems1[index].style.strokeWidth = '1px'
+  // }
 
   rotate() {
 

@@ -26,13 +26,13 @@ export default class MainTimer {
       hours: ('0' + newd.getHours()).substr(-2),
       minutes: ('0' + newd.getMinutes()).substr(-2),
       seconds: ('0' + newd.getSeconds()).substr(-2),
-      daysAfter: ('0' + Math.floor(distance / (this.day))).substr(-2),
+      daysAfter: ('0' + Math.floor(distance / (this.day))).substr(-3),
       hoursAfter: ('0' + Math.floor((distance % (this.day)) / (this.hour))).substr(-2),
       minutesAfter: ('0' + Math.floor((distance % (this.hour)) / (this.minute))).substr(-2)
     }
 
     this.colorScheme()
-
+    // document.querySelector('.days-0').innerText = this.store.daysAfter.slice(0, 1)
     document.querySelector('.days-1').innerText = this.store.daysAfter.slice(0, 1)
     document.querySelector('.days-2').innerText = this.store.daysAfter.slice(1)
     document.querySelector('.hours-1').innerText = this.store.hoursAfter.slice(0, 1)

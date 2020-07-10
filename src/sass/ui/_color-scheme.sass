@@ -33,12 +33,13 @@ body
       color: #6A6765
 
     .navbar__filter-btn
-      border-color: $accent-color
-      .open
-        path
-          fill: white
-      &:hover
-        border-color: $light-gray
+      @media screen and ( min-width: 460px )
+        border-color: $accent-color
+        .open
+          path
+            fill: white
+        &:hover
+          border-color: $light-gray
     .burger
         &__line
             background: white
@@ -59,15 +60,17 @@ body
                 &__line
                     background: $brown
         &.filter-window-open
-          .navbar__logo, .navbar__filter-current, .navbar__link
-            color: $brown
-          .navbar__filter-btn 
-            border-color: rgba($accent-color, 0.4) 
-            svg 
-              path 
-                fill: $accent-color 
-            &:hover
-              border-color: $accent-color
+          .navbar__logo, .navbar__filter-current
+            @media screen and ( min-width: 460px )
+              color: $brown
+          .navbar__filter-btn
+            @media screen and ( min-width: 460px ) 
+              border-color: rgba($accent-color, 0.4) 
+              svg 
+                path 
+                  fill: $accent-color 
+              &:hover
+                border-color: $accent-color
     .filter-window
       color: $brown
     +media("<=1024px")

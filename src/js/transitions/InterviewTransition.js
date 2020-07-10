@@ -5,6 +5,7 @@ import imagesLoaded from 'imagesloaded'
 export default class InterviewTransition extends Highway.Transition {
   // Built-in methods
   out({ from, done }) {
+    
     document.body.style.cursor = 'wait'
     document.body.style.position = 'fixed'
     document.body.style.width = '100%'
@@ -12,7 +13,7 @@ export default class InterviewTransition extends Highway.Transition {
     window.scrollTo(1, 1)
     let tl = new TimelineMax({ onComplete: done })
     tl
-      .to(from, 0.25, { opacity: 0 })
+      .to(from, 0.7, { opacity: 0 })
   }
 
   in({ from, to, done }) {
@@ -46,10 +47,8 @@ export default class InterviewTransition extends Highway.Transition {
         h1Y: h1.getBoundingClientRect().y + h1.getBoundingClientRect().height / 2,
         h1Width: h1.getBoundingClientRect().width,
         h1fontSize: getComputedStyle(h1).fontSize,
-        h1LineHeight: getComputedStyle(h1).lineHeight,
         textX: description.getBoundingClientRect().x + description.getBoundingClientRect().width / 2,
         textY: description.getBoundingClientRect().y + description.getBoundingClientRect().height / 2,
-        textLineHeight: getComputedStyle(description).lineHeight,
         textColor: getComputedStyle(description).color,
         textWidth: screen.width <= 460 ? description.getBoundingClientRect().width : clickedText.getBoundingClientRect().width
       }
@@ -75,8 +74,6 @@ export default class InterviewTransition extends Highway.Transition {
           left: css.h1X,
           top: css.h1Y,
           fontSize: css.h1fontSize,
-          letterSpacing: '0.02em',
-          lineHeight: css.h1LineHeight,
           width: css.h1Width,
           pointerEvents: 'none',
           x: '-50%',
@@ -87,7 +84,6 @@ export default class InterviewTransition extends Highway.Transition {
         .to(clickedText, 0.8, {
           left: css.textX,
           top: css.textY,
-          lineHeight: css.textLineHeight,
           x: '-50%',
           y: '-50%',
           color: css.textColor,

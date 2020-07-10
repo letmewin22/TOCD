@@ -6,9 +6,10 @@ export default class SimpleTransition extends Highway.Transition {
   out({ done }) {
 
     let tl = new TimelineMax({ onComplete: done })
-    document.body.style.pointerEvents = 'none'
-    document.body.style.overflow = 'hidden'
     document.body.style.cursor = 'wait'
+    document.body.style.position = 'fixed'
+    document.body.style.width = '100%'
+    document.body.style.height = '100vh'
 
     tl
       .fromTo(
@@ -28,6 +29,10 @@ export default class SimpleTransition extends Highway.Transition {
   }
 
   in({ from, done }) {
+
+    document.body.style.width = '100%'
+    document.body.style.position = 'initial'
+    document.body.style.height = 'auto'
     
     from.remove()
     window.scrollTo(0, 0)

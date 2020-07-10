@@ -14,6 +14,10 @@ export default class FilterSlideshow {
   init() {
 
     this.DOM.el.parentNode.querySelector('.filter-boxnav .container').style.opacity = 1
+
+    if(document.querySelector('.slider-overlay'))
+      this.DOM.el.parentNode.removeChild(document.querySelector('.slider-overlay'))
+      
     this.navigation = new Navigation(this.DOM.el.parentNode.querySelector('.filter-boxnav'), {
       next: () => this.navigate('right'),
       prev: () => this.navigate('left')
@@ -32,7 +36,13 @@ export default class FilterSlideshow {
       this.destroy()
       if(this.slidesHTML[0])
         this.slidesHTML[0].classList.add('filter-slide--current')
+      
       this.DOM.el.parentNode.querySelector('.filter-boxnav .container').style.opacity = 0
+      
+      const overlay = document.createElement('div')
+      overlay.classList.add('slider-overlay')
+      this.DOM.el.parentNode.appendChild(overlay)
+      
       return false
     }
 

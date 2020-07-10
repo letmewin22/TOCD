@@ -6,7 +6,7 @@ export default class Filter {
 
   constructor() {
 
-    this.headerName = document.querySelectorAll('.filter-window__item')
+    this.headerName = document.querySelectorAll('.filter-window .filter-window__item')
     this.filterBtn = document.querySelector('.navbar__filter-current')
 
     this.uniq = (a) => {
@@ -30,9 +30,15 @@ export default class Filter {
     document.body.addEventListener('click', (e) => {
       if (e.target.classList.contains('filter-btn')) this.toggle()
     })
-    document.querySelectorAll('.filter-window__item').forEach(el => el.addEventListener('click', () => {
+    this.headerName.forEach(el => el.addEventListener('click', () => {
+      // setTimeout(() => {
+      //   document.querySelector('.filter-window').style.opacity = '0'
+      //   this.reset()
+      // }, 500)
+
       document.querySelector('.filter-window').style.opacity = '0'
-      setTimeout(() => this.reset(), 500)
+      this.reset()
+
     }))
     document.querySelectorAll('.navbar__link').forEach(el => el.addEventListener('click', this.reset.bind(this)))
     document.body.addEventListener('click', event => this.select(event))
@@ -189,20 +195,20 @@ export default class Filter {
     screen.width < 460 && document.querySelector('.navbar').classList.add('white')
     let vh = window.innerHeight * 0.01
     document.querySelector('.site-wrapper').style.setProperty('--vh', `${vh}px`)
+    document.querySelector('.filter-window').style.setProperty('--vh', `${vh}px`)
+
+    window.addEventListener('resize', () => {
+      let vh = window.innerHeight * 0.01
+      document.querySelector('.site-wrapper').style.setProperty('--vh', `${vh}px`)
+      document.querySelector('.filter-window').style.setProperty('--vh', `${vh}px`)
+    })
 
     document.querySelector('.filter-window').style.visibility = 'visible'
     document.querySelector('.filter-window').style.opacity = '1'
-    document.querySelector('.navbar').style.position = 'fixed'
-    document.querySelector('.navbar').classList.add('filter-window-open')
+    // document.querySelector('.navbar').style.position = 'fixed'
+    // document.querySelector('.navbar').classList.add('filter-window-open')
 
-    if (screen.width > 1024) document.querySelectorAll('.navbar__link').forEach(el => el.classList.add('white'))
-    // if (document.querySelectorAll('.filter-window__item.is-visible').length > 1) {
-    //   const filterSlider = new ScrollSlider(document.querySelector('.filter-window__items'), false, this.func)
-    //   filterSlider.render()
-    // } else {
-    //   document.querySelector('.filter-window__items').style.transfrom = 'translate(0,0)'
-    //   document.querySelector('.filter-window__item.is-visible').classList.add('active')
-    // }
+    // if (screen.width > 1024) document.querySelectorAll('.navbar__link').forEach(el => el.classList.add('white'))
   }
 
   filteredClose() {
@@ -211,6 +217,8 @@ export default class Filter {
 
     if(document.querySelector('[data-router-view]').getAttribute('data-router-view') === 'interview') {
       document.querySelector('.navbar').classList.add('interview-page')
+    } else if (document.querySelector('[data-router-view]').getAttribute('data-router-view') === 'main') {
+      document.querySelector('.navbar').style.position = 'fixed'
     } else {
       document.querySelector('.navbar').style.position = 'absolute'
     }

@@ -2,9 +2,9 @@ body
   &.slider-open
     overflow: hidden !important
 [data-router-view="interview"]
-  width: 100%
+  width: 100vw
 #articles
-  width: 100%
+  width: 100vw
 article
   &:first-child
     .interview-header__right
@@ -18,11 +18,11 @@ article
     margin-top: 64px 
 
 article
-  width: 100%
+  width: 100vw
 
 .interview-header
   height: 100vh
-  width: 100%
+  width: 100vw
   .container
     display: flex
     justify-content: space-between
@@ -33,6 +33,8 @@ article
   .description-wrapper
     margin-top: 55px
     width: 55%
+    a
+      text-decoration-color: rgba($accent-color, 0.32) 
     +media("<=1025px")
       width: auto 
   &__left
@@ -54,6 +56,10 @@ article
     font-size: 1vw
     line-height: 1.4em
     color: $brown
+    strong
+      font-weight: inherit
+    p strong
+      font-weight: inherit
     a
       position: relative 
       display: inline-block 
@@ -61,14 +67,13 @@ article
       display: inline-block 
       text-decoration: underline 
       text-decoration-skip-ink: none 
-      text-decoration-color: $accent-color 
       transition: color .3s ease  
       &:hover 
         color: $accent-color 
   &__h1
     +header
     line-height: 0.8em
-    letter-spacing: 0.02em
+    letter-spacing: 0.01em
     text-align: center
     +fontSize(88, 48) 
   &__image
@@ -168,16 +173,18 @@ article
         display: inline-block
         text-decoration: underline
         text-decoration-skip-ink: none
-        text-decoration-color: $accent-color
+        text-decoration-color: rgba($accent-color, 0.32) 
         transition: color .3s ease 
         &:hover
           color: $accent-color
+    strong
+      font-weight: inherit
     blockquote
       +fontSize(28, 20)
       line-height: 1.5em
       position: relative
-      margin-top: 1em
-      margin-bottom: 14px
+      margin-top: 64px
+      margin-bottom: calc(64px - 1em)
       display: flex
       &::before
         content: '“'
