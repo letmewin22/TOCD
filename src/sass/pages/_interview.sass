@@ -215,13 +215,15 @@ article
     padding: 48px 3vw
     display: flex
     align-items: center
-    justify-content: center
     position: relative
   &__tags-wrapper
     display: flex
     justify-content: center
+  &__tags
+    margin-left: calc(25% + 72px)
+    +media('<=900px')
+      margin-left: 3vw
   &__tag
-    margin-left: 12px
     padding: 10px 12px
     border: 1px $medium-gray solid
     transition: border .3s ease, color .3s ease 
@@ -231,6 +233,8 @@ article
     &:hover
       color: $accent-color
       border-color: lighten($accent-color, 50%)
+    + .article__tag
+      margin-left: 12px
   &__tags-social
     right: 3vw
     position: absolute
@@ -284,6 +288,7 @@ article
       margin-top: 0px
       padding-left: 0px
       padding-right: 0px
+      align-items: flex-start
     &__tags-social
       position: static
       justify-content: space-between
@@ -308,9 +313,8 @@ article
   +media("<=phone")
     .interviewer-name, .respondent-name
       margin-right: 46px
-    &__tags
-      width: 100%
-      overflow-x: scroll
+    .article__tags
+      margin-left: 24px
 
 .article-social
   display: flex 

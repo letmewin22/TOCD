@@ -25,7 +25,7 @@ export default class Nav {
   }
 
   navOpen() {
-
+    document.documentElement.classList.add('nav-fixed')
     this.burger.classList.add('open')
     this.navUI.classList.add('open')
 
@@ -33,7 +33,7 @@ export default class Nav {
   }
 
   navClose() {
-
+    document.documentElement.classList.remove('nav-fixed')
     this.closeAnim(() => {
       this.burger.classList.remove('open')
       this.navUI.classList.remove('open')

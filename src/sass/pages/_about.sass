@@ -13,10 +13,18 @@
 		max-width: none
 
 .about-h2
-	line-height: 1.12em
+	line-height: 1em
 	max-width: 60vw
+	opacity: 0
 	+media("<=900px")
 		max-width: none
+	.line-wrapper
+		line-height: 1.04em
+		display: inline-block
+		overflow: hidden
+	.splitted-line
+		display: inline-block
+		transform: translateY(140%) rotate(7deg)
 
 .h2-section
 	margin-top: 128px 

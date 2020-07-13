@@ -3,6 +3,10 @@
     background: $accent-color
     color: white
 
+html
+  &.nav-fixed
+    overflow: hidden
+
 .e-fixed
     height: 100vh
     overflow: hidden !important
@@ -45,6 +49,7 @@ body
   cursor: wait
   overflow-x: hidden 
   -webkit-font-smoothing: antialiased
+  font-feature-settings: "kern"
 .header
   width: 100%
   height: 100vh
@@ -235,11 +240,12 @@ body
   &__right
     width: 55%
     height: 100% 
-    padding-top: 180px
+    padding-top: 200px
     overflow-y: scroll 
     padding-bottom: 40px
     +media("<=1025px")
       overflow: hidden
+      padding-top: 180px
     +media("<=850px")
       padding-top: 0px
   &__h2

@@ -1,4 +1,5 @@
 import Highway from '@dogstudio/highway'
+import { TweenMax } from 'gsap'
 
 // import scrollDirection from '../scrollDirection'
 import Slideshow from '../slider/Slideshow.js'
@@ -9,7 +10,7 @@ import tags from '../tags'
 import shares from '../shares'
 
 class Interview extends Highway.Renderer {
-  
+
   onEnterCompleted() {
 
     // scrollDirection()
@@ -23,14 +24,14 @@ class Interview extends Highway.Renderer {
       new Slideshow(article.querySelector('.slideshow'))
 
       new RewealSlider({
-        img: article.querySelector('.interview-header__image'), 
+        img: article.querySelector('.interview-header__image'),
         slider: article.querySelector('.slideshow-wrapper')
       })
 
       tags(article)
       shares(article)
     }
-    
+
     document.body.style.overflow = 'initial'
     document.body.style.height = 'auto'
     document.body.style.overflowX = 'hidden'
@@ -48,17 +49,17 @@ class Interview extends Highway.Renderer {
       const img = article.querySelector('.interview-header__image')
       const slider = article.querySelector('.slideshow-wrapper')
       const slideshow = article.querySelector('.slideshow')
-      
+
       new Slideshow(slideshow)
-  
-      new RewealSlider({img, slider})
+
+      new RewealSlider({ img, slider })
 
       tags(article)
       shares(article)
 
       article.classList.add('added')
     })
-    
+
     const randomizerItems = document.querySelectorAll('.interview-randomizer__item')
     const h1 = document.querySelector('.clicked') || document.querySelector('h1')
 
@@ -76,16 +77,23 @@ class Interview extends Highway.Renderer {
     const randomizeBtn = document.querySelector('.interview-randomizer__random-btn')
 
     const shuffleItems = () => {
-
-      items.forEach(el => el.classList.remove('show'))
-
-      const shuffledItems = items.sort(() => {
-        return 0.5 - Math.random()
+      TweenMax.to(document.querySelector('.interview-randomizer__items-wrapper'), 0.3, {
+        opacity: 0, onComplete: () => {
+          items.forEach(el => {
+            el.classList.remove('show')
+          })
+          const shuffledItems = items.sort(() => {
+            return 0.5 - Math.random()
+          })
+    
+          for (let i = 0; i < 6; i++) {
+            shuffledItems[i].classList.add('show')
+            // TweenMax.set(document.querySelector('.interview-randomizer__items-wrapper'), { opacity: 0 })
+            TweenMax.to(document.querySelector('.interview-randomizer__items-wrapper'), 0.3, { opacity: 1 })
+            TweenMax.to(shuffledItems[i], 0.2, {y: 0})
+          }
+        }
       })
-
-      for (let i = 0; i < 6; i++) {
-        shuffledItems[i].classList.add('show')
-      }
 
     }
 

@@ -1,6 +1,7 @@
 import imagesLoaded from 'imagesloaded'
 import FilterSlideshow from './FilterSlider/FilterSlideshow'
 import FilterAnimation from './FilterAnimation'
+import {TweenMax} from 'gsap'
 
 export default class Filter {
 
@@ -31,14 +32,19 @@ export default class Filter {
       if (e.target.classList.contains('filter-btn')) this.toggle()
     })
     this.headerName.forEach(el => el.addEventListener('click', () => {
-      // setTimeout(() => {
-      //   document.querySelector('.filter-window').style.opacity = '0'
-      //   this.reset()
-      // }, 500)
+      TweenMax.to(document.querySelector('.filter-window__images-wrapper'), 0.5, {opacity: 0})
+      TweenMax.to(document.querySelector('.filter-window__items'), 0.5, {opacity: 0, onComplete: () => {
+        
+        setTimeout(() => {
+          document.querySelector('.filter-window').style.opacity = 0
+          setTimeout(() => {
+            this.reset()
+            document.querySelector('.filter-window__items').style.opacity = '1'
+            document.querySelector('.filter-window__images-wrapper').style.opacity = '1'
+          }, 500)
+        }, 100)
 
-      document.querySelector('.filter-window').style.opacity = '0'
-      this.reset()
-
+      }})
     }))
     document.querySelectorAll('.navbar__link').forEach(el => el.addEventListener('click', this.reset.bind(this)))
     document.body.addEventListener('click', event => this.select(event))
@@ -155,6 +161,7 @@ export default class Filter {
 
     this.headerName.forEach(elem => elem.classList.add('is-visible', 'default-layout'))
     document.documentElement.classList.remove('filtered')
+    document.querySelectorAll('.filter-window__text').forEach(el => el.style.opacity = '1')
     document.querySelector('.navbar').classList.remove('is-filtered')
     document.querySelector('.filter').classList.remove('is-filtered')
     window.scrollTo(0, 0)

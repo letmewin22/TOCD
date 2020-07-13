@@ -1,4 +1,4 @@
-import { TimelineMax, Power3, Power1, Expo } from 'gsap'
+import { TimelineMax, Power3, Power1 } from 'gsap'
 import { splitLines } from '../lib/splitLines.js'
 import Splitting from 'splitting'
 
