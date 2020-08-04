@@ -31,9 +31,23 @@ body
           stroke: white
     .header__description
       color: #6A6765
-
+    .navbar
+      color: white
+      svg 
+        path 
+          fill: white 
+    .filter-open
+      color: $brown
+      svg 
+        path 
+          fill: $accent-color
+    .navbar.is-filtered
+      color: $brown
+      svg 
+        path 
+          fill: $accent-color
     .navbar__filter-btn
-      @media screen and ( min-width: 460px )
+      @media screen and ( max-width: 460px )
         border-color: $accent-color
         .open
           path

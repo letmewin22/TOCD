@@ -61,15 +61,15 @@ article
     p strong
       font-weight: inherit
     a
-      position: relative 
-      display: inline-block 
-      position: relative 
-      display: inline-block 
-      text-decoration: underline 
-      text-decoration-skip-ink: none 
-      transition: color .3s ease  
-      &:hover 
-        color: $accent-color 
+      position: relative
+      display: inline-block
+      // width: fit-content
+      border-bottom: 1px rgba($accent-color, 0.32) solid
+      line-height: 1em
+      transition: color .3s ease, border-color .3s ease
+      &:hover
+        color: $accent-color
+        border-color: $accent-color
   &__h1
     +header
     line-height: 0.8em
@@ -166,17 +166,18 @@ article
     > p
       &:first-child
         &::first-line
-          text-indent: size(260, 78)
+          text-indent: size(255, 15) 
     p
       a
-        position: relative
-        display: inline-block
-        text-decoration: underline
-        text-decoration-skip-ink: none
-        text-decoration-color: rgba($accent-color, 0.32) 
-        transition: color .3s ease 
-        &:hover
-          color: $accent-color
+       position: relative
+       display: inline-block
+       // width: fit-content
+       border-bottom: 1px rgba($accent-color, 0.32) solid
+       line-height: 1em
+       transition: color .3s ease, border-color .3s ease
+       &:hover
+         color: $accent-color
+         border-color: $accent-color
     strong
       font-weight: inherit
     blockquote
@@ -193,7 +194,7 @@ article
         // position: absolute
         line-height: 1em
         left: 0
-        padding-right: size(260, 78) 
+        padding-right: size(255, 15) 
         top: 0
         font-size: 88px
         color: #D3D1CF

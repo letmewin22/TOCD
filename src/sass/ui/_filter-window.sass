@@ -149,13 +149,12 @@
       position: relative
       display: inline-block
       // width: fit-content
-      text-decoration: underline
-      text-decoration-skip-ink: none
-      text-decoration-color: white
-      transition: color .3s ease, text-decoration-color .3s ease 
-      &:hover 
+      border-bottom: 1px rgba(white, 0.56) solid
+      line-height: 1em
+      transition: color .3s ease, border-color .3s ease
+      &:hover
         color: $accent-color
-        text-decoration-color: $accent-color
+        border-color: $accent-color
     +media("<=850px") 
       font-size: 13px 
       padding-left: 0px 

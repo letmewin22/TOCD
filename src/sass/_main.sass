@@ -45,6 +45,7 @@ body
   height: 100vh 
   +main
   color: $brown
+  overscroll-behavior-y: none
   transition: color .3s ease, background .3s ease
   cursor: wait
   overflow-x: hidden 
@@ -176,12 +177,12 @@ body
       position: relative
       display: inline-block
       // width: fit-content
-      text-decoration: underline
-      text-decoration-skip-ink: none
-      text-decoration-color: rgba($accent-color, 0.32)
-      transition: color .3s ease 
+      border-bottom: 1px rgba($accent-color, 0.32) solid
+      line-height: 1em
+      transition: color .3s ease, border-color .3s ease
       &:hover
         color: $accent-color
+        border-color: $accent-color
     strong
       font-weight: inherit
 
@@ -197,9 +198,15 @@ body
     justify-content: space-between
     align-items: flex-end 
   .link
-      &::after
-        bottom: -3px
-        opacity: .32
+    position: relative
+    display: inline-block
+    // width: fit-content
+    border-bottom: 1px rgba($accent-color, 0.32) solid
+    line-height: 1.3em
+    transition: color .3s ease, border-color .3s ease
+    &:hover
+      color: $accent-color
+      border-color: $accent-color
   &__right
     display: flex
     flex-direction: column

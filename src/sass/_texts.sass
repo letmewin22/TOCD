@@ -6,21 +6,13 @@ h2
 	transition: color .3s ease 
 
 .link
-	position: relative
-	white-space: nowrap
-	display: inline-block
-	&::after
-		content: ''
-		display: block
-		background: $accent-color
-		opacity: .4
-		height: 1px
-		width: 100%
-		position: absolute
-		bottom: 4px
-		left: 0
-		transition: opacity .3s ease
-	&:hover
-		&::after
-			opacity: 1
+  position: relative
+  display: inline-block
+  // width: fit-content
+  border-bottom: 1px rgba($accent-color, 0.32) solid
+  line-height: 1.1em
+  transition: color .3s ease, border-color .3s ease
+  &:hover
+    color: $accent-color
+    border-color: $accent-color
 
