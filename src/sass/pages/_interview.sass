@@ -163,14 +163,15 @@ article
     line-height: 1.56em
     padding-left: 72px
     padding-bottom: 48px
-    > p
-      &:first-child
-        &::first-line
-          text-indent: size(255, 15) 
     p
+      padding-left: size(255, 0)
+      text-indent: size(48, 0)
+      @include media('<=460px')
+        padding-left: 0 
+        text-indent: 0
       a
        position: relative
-       display: inline-block
+       display: inline
        // width: fit-content
        border-bottom: 1px rgba($accent-color, 0.32) solid
        line-height: 1em
@@ -225,7 +226,7 @@ article
     +media('<=900px')
       margin-left: 3vw
   &__tag
-    padding: 10px 12px
+    padding: 13px 20px 10px
     border: 1px $medium-gray solid
     transition: border .3s ease, color .3s ease 
     cursor: pointer

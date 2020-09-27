@@ -199,6 +199,7 @@ export default class Filter {
     document.querySelector('.site-wrapper').classList.add('e-fixed')
     document.querySelector('.navbar').classList.remove('bg')
     document.querySelector('.navbar').classList.remove('interview-page')
+    document.querySelector('.navbar').classList.add('e-filtered')
     screen.width < 460 && document.querySelector('.navbar').classList.add('white')
     let vh = window.innerHeight * 0.01
     document.querySelector('.site-wrapper').style.setProperty('--vh', `${vh}px`)
@@ -221,6 +222,8 @@ export default class Filter {
   filteredClose() {
     this.slideshow.destroy()
     document.querySelector('.site-wrapper').classList.remove('e-fixed')
+    document.querySelector('.navbar').classList.remove('e-filtered')
+
 
     if(document.querySelector('[data-router-view]').getAttribute('data-router-view') === 'interview') {
       document.querySelector('.navbar').classList.add('interview-page')

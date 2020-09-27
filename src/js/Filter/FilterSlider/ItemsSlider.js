@@ -28,7 +28,6 @@ export default class ItemsSlider {
   }
 
   prev() {
-
     if (this.animation) return
 
     this.animation = true
@@ -38,7 +37,7 @@ export default class ItemsSlider {
 
     this.items.style.left = currentPos + this.params.iw + 'px'
 
-    if (+currentPos >= this.start) {
+    if (Math.round(+currentPos) >= Math.round(this.start)) {
       this.counter = this.item.length - 1
       this.items.style.left = -(this.params.isw - (this.params.ww - ((this.params.ww - this.params.iw) / 2))) + 'px'
     }
@@ -60,8 +59,7 @@ export default class ItemsSlider {
     const currentPos = +window.getComputedStyle(this.items).getPropertyValue('left').replace('px', '')
 
     this.items.style.left = currentPos - this.params.iw + 'px'
-
-    if (this.params.isw - -currentPos <= this.params.ww - ((this.params.ww - this.params.iw) / 2)) {
+    if (Math.round(this.params.isw - -currentPos) <= Math.round(this.params.ww - ((this.params.ww - this.params.iw) / 2))) {
       this.items.style.left = this.start + 'px'
       this.counter = 0
     }

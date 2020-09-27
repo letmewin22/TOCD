@@ -63,6 +63,11 @@ window.addEventListener('load', () => {
   const filter = new Filter()
   filter.render()
 
+  const items = document.querySelectorAll('.br a')
+  items.forEach(item => {
+    item.innerHTML = item.innerHTML.replace(/\s(?=\S*$)/m, '</br>')
+  })
+
   function isMacintosh() {
     return navigator.platform.indexOf('Mac') > -1
   }
@@ -99,4 +104,3 @@ H.on('NAVIGATE_IN', () => {
   langCurrentPage()
   scrollDirection()
 })
-
